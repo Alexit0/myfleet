@@ -1,8 +1,8 @@
-import LoadingDetails from "./components/LoadingDetails";
+import LoadingForm from "./components/LoadingForm";
 
 function App() {
   return <div>MY FLEET
-    <LoadingDetails/>
+    <LoadingForm/>
   </div>;
 }
 
