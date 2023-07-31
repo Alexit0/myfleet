@@ -1,20 +1,22 @@
 import React from "react";
-
+import Date from "./Date";
+import Time from "./Time";
+import FixedTerm from "./FixedTerm";
+import Address from "./Address";
+import Coordinates from "./Coordinates";
+import Cargo from "./Cargo";
+import Ref from "./Ref";
 const LoadingForm = () => {
   return (
     <form>
-      <div>
-        <label>Date</label>
-        <input></input>
-      </div>
-      <div>
-        <label>Time</label>
-        <input></input>
-      </div>
-      <div>
-        <label>Loading Place</label>
-        <input></input>
-      </div>
+      <Date />
+      <Time />
+      <FixedTerm />
+      <Address />
+      <Coordinates />
+      <Address />
+      <Cargo />
+      <Ref />
     </form>
   );
 };
