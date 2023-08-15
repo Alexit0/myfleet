@@ -1,0 +1,12 @@
+.div-sections {
+    /* border: solid 4px; */
+    display: flex;
+    /* justify-content: center; */
+    max-width: 600px;
+    margin: 10px;
+    font-size: 14px;
+    color: white;
+    padding: 0.2rem;
+
+}
+

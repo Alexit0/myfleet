@@ -1,10 +1,12 @@
 import React from "react";
 
-const Time = () => {
+import classes from "./Input.module.css";
+
+const Time = (props) => {
   return (
-    <form>
-      <label>Time</label>
-      <input type="time"></input>
+    <form className={classes.form}>
+      <label>{props.time}</label>
+      <input className={classes.input} type="time"></input>
     </form>
   );
 };

@@ -1,10 +1,13 @@
 import React from "react";
 
+import classes from "./Input.module.css";
+
+
 const Coordinates = () => {
   return (
-    <form>
+    <form className={classes.form}>
       <label>Coordinates</label>
-      <input></input>
+      <input className={classes.input}></input>
     </form>
   );
 };

@@ -1,0 +1,14 @@
+.form {
+    /* border: solid 1px; */
+    display: block;
+    justify-content: center;
+    text-align: left;
+    margin: 1px;
+
+}
+
+.input {
+    border-radius: 5px;
+
+}
+

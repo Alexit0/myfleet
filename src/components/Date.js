@@ -1,12 +1,14 @@
-import React from 'react'
+import React from "react";
+
+import classes from "./Input.module.css";
 
 const Date = () => {
   return (
-    <form>
-        <label>Date</label>
-        <input type='date'></input>
+    <form className={classes.form}>
+      <label>Date</label>
+      <input className={classes.input} type="date"></input>
     </form>
-  )
-}
+  );
+};
 
-export default Date
+export default Date;

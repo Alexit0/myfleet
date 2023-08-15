@@ -1,10 +1,12 @@
 import React from "react";
 
+import classes from "./Input.module.css";
+
 const Address = () => {
   return (
-    <form>
+    <form className={classes.form}>
       <label>Address line</label>
-      <input></input>
+      <input className={classes.input}></input>
     </form>
   );
 };

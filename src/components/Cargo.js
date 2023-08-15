@@ -1,10 +1,13 @@
 import React from "react";
 
+import classes from "./Input.module.css";
+
+
 const Cargo = () => {
   return (
-    <form>
+    <form className={classes.form}>
       <label>Cargo Details</label>
-      <input type="text"></input>
+      <input className={classes.input} type="text"></input>
     </form>
   );
 };

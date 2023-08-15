@@ -1,10 +1,12 @@
 import React from "react";
 
+import classes from "./Input.module.css";
+
 const Ref = () => {
   return (
-    <form>
+    <form className={classes.form}>
       <label>Ref</label>
-      <input></input>
+      <input className={classes.input}></input>
     </form>
   );
 };
