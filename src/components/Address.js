@@ -2,10 +2,10 @@ import React from "react";
 
 import classes from "./Input.module.css";
 
-const Address = () => {
+const Address = (props) => {
   return (
     <form className={classes.form}>
-      <label>Address line</label>
+      <label>{props.addressTitle}</label>
       <input className={classes.input}></input>
     </form>
   );

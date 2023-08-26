@@ -15,18 +15,18 @@ const LoadingForm = () => {
       <label className={classes["div-sections"]}>Loading Place</label>
       <div className={classes["div-sections"]}>
         <div>
-          <Date />
+          <Date dateTitle="Loading date"/>
         </div>
-        <Time time="From " />
-        <Time time="To " />
+        <Time timeTitle="From " />
+        <Time timeTitle="To " />
         <FixedTerm />
-        <Address />
+        <Address addressTitle="Loading Address"/>
         <Coordinates />
       </div>
       <div className={classes["div-sections"]}>
-        <Address />
+      <Address addressTitle="Consignee"/>
         <Cargo />
-        <Ref />
+        <Ref refTitle="Loading Reference"/>
       </div>
     </form>
   );

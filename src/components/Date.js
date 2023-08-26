@@ -2,10 +2,10 @@ import React from "react";
 
 import classes from "./Input.module.css";
 
-const Date = () => {
+const Date = (props) => {
   return (
     <form className={classes.form}>
-      <label>Date</label>
+      <label>{props.dateTitle}</label>
       <input className={classes.input} type="date"></input>
     </form>
   );
