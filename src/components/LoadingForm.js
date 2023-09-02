@@ -10,24 +10,33 @@ import Ref from "./Ref";
 import classes from "./LoadingForm.module.css";
 
 const LoadingForm = () => {
+  const handleRemoveUnloading = (event) => {
+    event.preventDefault();
+  };
+
+  const handleAddUnloading = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <form>
-      <label className={classes["div-sections"]}>Loading Place</label>
-      <div className={classes["div-sections"]}>
-        <div>
-          <Date dateTitle="Loading date"/>
-        </div>
+      <label className={classes.section}>
+        <strong>Loading Place</strong>
+      </label>
+      <div className={classes.section}>
+        <Date dateTitle="Loading date" />
         <Time timeTitle="From " />
         <Time timeTitle="To " />
         <FixedTerm />
-        <Address addressTitle="Loading Address"/>
+        <Address addressTitle="Loading Address" />
         <Coordinates />
       </div>
-      <div className={classes["div-sections"]}>
-      <Address addressTitle="Consignee"/>
+      <div className={classes.section}>
         <Cargo />
-        <Ref refTitle="Loading Reference"/>
+        <Ref refTitle="Loading Reference" />
       </div>
+      <button onClick={handleAddUnloading}>Add</button>
+      <button onClick={handleRemoveUnloading}>Remove</button>
     </form>
   );
 };
