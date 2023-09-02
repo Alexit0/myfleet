@@ -5,7 +5,7 @@ import classes from "./Input.module.css";
 const Ref = (props) => {
   return (
     <form className={classes.form}>
-      <label>{props.refTitle}</label>
+      <label className={classes.label}>{props.refTitle}</label>
       <input className={classes.input}></input>
     </form>
   );

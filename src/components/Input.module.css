@@ -1,7 +1,7 @@
 .form {
     /* border: solid 1px; */
-    display: block;
-    justify-content: center;
+    display: inline-block;
+    float: left;
     text-align: left;
 
 }
@@ -11,3 +11,6 @@
 
 }
 
+.label {
+    display: block;
+}

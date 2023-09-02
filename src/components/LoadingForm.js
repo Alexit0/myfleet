@@ -28,6 +28,8 @@ const LoadingForm = () => {
         <Time timeTitle="From " />
         <Time timeTitle="To " />
         <FixedTerm />
+      </div>
+      <div className={classes.section}>
         <Address addressTitle="Loading Address" />
         <Coordinates />
       </div>

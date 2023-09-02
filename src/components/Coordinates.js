@@ -6,7 +6,7 @@ import classes from "./Input.module.css";
 const Coordinates = () => {
   return (
     <form className={classes.form}>
-      <label>Coordinates</label>
+      <label className={classes.label}>Coordinates</label>
       <input className={classes.input}></input>
     </form>
   );
