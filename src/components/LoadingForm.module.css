@@ -1,6 +1,6 @@
 .form {
     border: dotted 1px;
-    width: 35%;
+    width: 34%;
     padding: 0.3rem;
 }
 
@@ -14,4 +14,24 @@
     border: dotted 2px;
     margin: 5px;
     display: flex;
+}
+
+.label {
+    display: inline;
+    /* padding: 0.3rem; */
+    margin: 5px;
+    border: solid;
+
+}
+
+button {
+    /* border-radius: 5px; */
+    height: 30px;
+    width: 80px;
+}
+
+.buttons {
+    border: solid red;
+    float: right;
+    /* display: contents; */
 }

@@ -23,9 +23,14 @@ const LoadingForm = () => {
 
   return (
     <form className={classes.form}>
-      <label className={classes.section}>
+      <label className={classes.label}>
         <strong>Loading Place</strong>
       </label>
+      <div className={classes.buttons}>
+        <button onClick={handleAddUnloading}>Add</button>
+        <button onClick={handleRemoveUnloading}>Remove</button>
+      </div>
+
       <div className={classes.section}>
         <Date dateTitle="Loading date" />
         <Time timeTitle="From " />
@@ -49,8 +54,6 @@ const LoadingForm = () => {
       <div className={classes.section}>
         <Ref refTitle="Loading Reference" />
       </div>
-      <button onClick={handleAddUnloading}>Add</button>
-      <button onClick={handleRemoveUnloading}>Remove</button>
     </form>
   );
 };
