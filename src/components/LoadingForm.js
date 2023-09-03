@@ -3,11 +3,13 @@ import Date from "./Date";
 import Time from "./Time";
 import FixedTerm from "./FixedTerm";
 import Address from "./Address";
+import PostCode from "./PostCode";
 import Coordinates from "./Coordinates";
 import Cargo from "./Cargo";
 import Ref from "./Ref";
 
 import classes from "./LoadingForm.module.css";
+import Country from "./Country";
 
 const LoadingForm = () => {
   const handleRemoveUnloading = (event) => {
@@ -19,7 +21,7 @@ const LoadingForm = () => {
   };
 
   return (
-    <form>
+    <form className={classes.form}>
       <label className={classes.section}>
         <strong>Loading Place</strong>
       </label>
@@ -29,8 +31,14 @@ const LoadingForm = () => {
         <Time timeTitle="To " />
         <FixedTerm />
       </div>
-      <div className={classes.section}>
+      <div className={classes.address}>
         <Address addressTitle="Loading Address" />
+      </div>
+      <div className={classes.section}>
+        <PostCode />
+        <Country />
+      </div>
+      <div className={classes.section}>
         <Coordinates />
       </div>
       <div className={classes.section}>

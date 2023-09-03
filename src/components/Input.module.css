@@ -1,9 +1,13 @@
 .form {
-    /* border: solid 1px; */
-    display: inline-block;
-    float: left;
+    position: relative;
+    border: solid 1px;
     text-align: left;
+    width: 100%;
 
+}
+
+.label {
+    display: block;
 }
 
 .input {
@@ -11,6 +15,7 @@
 
 }
 
-.label {
-    display: block;
+.address {
+    border-radius: 5px;
+    width: 100%;
 }
