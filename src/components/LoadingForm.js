@@ -7,9 +7,10 @@ import PostCode from "./PostCode";
 import Coordinates from "./Coordinates";
 import Cargo from "./Cargo";
 import Ref from "./Ref";
+import Country from "./Country";
+import Distance from "./Distance";
 
 import classes from "./LoadingForm.module.css";
-import Country from "./Country";
 
 const LoadingForm = () => {
   const handleRemoveUnloading = (event) => {
@@ -31,18 +32,21 @@ const LoadingForm = () => {
         <Time timeTitle="To " />
         <FixedTerm />
       </div>
-      <div className={classes.address}>
+      <div className={classes.section}>
         <Address addressTitle="Loading Address" />
       </div>
-      <div className={classes.section}>
+      <div className={classes.address2}>
         <PostCode />
         <Country />
+        <Distance />
       </div>
       <div className={classes.section}>
         <Coordinates />
       </div>
       <div className={classes.section}>
         <Cargo />
+      </div>
+      <div className={classes.section}>
         <Ref refTitle="Loading Reference" />
       </div>
       <button onClick={handleAddUnloading}>Add</button>

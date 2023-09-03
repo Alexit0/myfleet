@@ -5,8 +5,12 @@ import classes from "./Input.module.css";
 const Ref = (props) => {
   return (
     <form className={classes.form}>
-      <label className={classes.label}>{props.refTitle}</label>
-      <input className={classes.input}></input>
+      {/* <label>{props.refTitle}</label> */}
+      <textarea
+        className={classes.comments}
+        type="text"
+        placeholder="Loading reference / comments ..."
+      ></textarea>
     </form>
   );
 };

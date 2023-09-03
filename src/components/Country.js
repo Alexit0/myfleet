@@ -5,7 +5,7 @@ import classes from "./Input.module.css";
 const Country = () => {
   return (
     <form className={classes.form}>
-      <label className={classes.label}>Country</label>
+      {/* <label>Country</label> */}
       <select className={classes.input}>
         <option value="none" selected disabled hidden>
           Select Country

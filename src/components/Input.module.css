@@ -1,21 +1,53 @@
 .form {
     position: relative;
-    border: solid 1px;
+    border: double 5px;
     text-align: left;
     width: 100%;
-
+    border-radius: 5px;
+    padding: 2px;
 }
 
-.label {
+label {
     display: block;
+}
+
+.label-no-block {
+    display:inline;
+    padding-right: 0.2rem;
 }
 
 .input {
     border-radius: 5px;
+}
 
+.postcode {
+    border-radius: 5px;
+    display: inline;
+    width: 100%;
+}
+
+.coordinates {
+    border-radius: 5px;
+    width: 75%;
 }
 
 .address {
     border-radius: 5px;
     width: 100%;
+}
+
+.distance {
+    border-radius: 5px;
+    width: 40%;
+}
+
+.cargo {
+    border-radius: 5px;
+    width: 100%;
+}
+
+.comments {
+    border-radius: 5px;
+    width: 100%;
+    height:50px;
 }

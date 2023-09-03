@@ -2,12 +2,11 @@ import React from "react";
 
 import classes from "./Input.module.css";
 
-
 const Cargo = () => {
   return (
     <form className={classes.form}>
-      <label className={classes.label}>Cargo Details</label>
-      <input className={classes.input} type="text"></input>
+      {/* <label>Cargo Details</label> */}
+      <input className={classes.cargo} type="text" placeholder="Enter cargo details"></input>
     </form>
   );
 };
