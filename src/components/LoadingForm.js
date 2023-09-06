@@ -23,35 +23,39 @@ const LoadingForm = () => {
 
   return (
     <form className={classes.form}>
-      <label className={classes.label}>
-        <strong>Loading Place</strong>
-      </label>
-      <div className={classes.buttons}>
-        <button onClick={handleAddUnloading}>Add</button>
-        <button onClick={handleRemoveUnloading}>Remove</button>
+      <div className={classes["label-bar"]}>
+        <label>
+          <strong>Loading Place</strong>
+        </label>
+        <div className={classes.buttons}>
+          <button onClick={handleAddUnloading}>Add</button>
+          <button onClick={handleRemoveUnloading}>Remove</button>
+        </div>
       </div>
 
-      <div className={classes.section}>
+      <div className={classes.date}>
         <Date dateTitle="Loading date" />
         <Time timeTitle="From " />
         <Time timeTitle="To " />
         <FixedTerm />
       </div>
-      <div className={classes.section}>
+
+      <div className={classes.address1}>
         <Address addressTitle="Loading Address" />
       </div>
+
       <div className={classes.address2}>
         <PostCode />
         <Country />
         <Distance />
       </div>
-      <div className={classes.section}>
+      <div className={classes.coordinates}>
         <Coordinates />
       </div>
-      <div className={classes.section}>
+      <div className={classes.cargo}>
         <Cargo />
       </div>
-      <div className={classes.section}>
+      <div className={classes.ref}>
         <Ref refTitle="Loading Reference" />
       </div>
     </form>

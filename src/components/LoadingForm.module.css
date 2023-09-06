@@ -1,37 +1,59 @@
+button {
+    /* border-radius: 5px; */
+    margin: 4px 1px;
+    height: 20px;
+    width: 75px;
+}
+
 .form {
-    border: dotted 1px;
+    /* border: dotted 1px; */
     width: 34%;
     padding: 0.3rem;
 }
 
-.section {
-    border: dotted 2px;
+.label-bar {
+    /* border: dotted 2px; */
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.date {
+    /* border: solid 1px; */
     display: flex;
     margin: 5px;
+    float: left;
+}
+
+.address1 {
+    /* border: solid 1px; */
+    clear: both;
+    margin: 5px;
+    
 }
 
 .address2 {
-    border: dotted 2px;
+    /* border: dotted 2px; */
     margin: 5px;
+    display:flex;
+    float: left;
+}
+
+.coordinates {
+    clear: both;
+    display: block;
+    justify-content: center;
+    margin: 5px;
+}
+
+.cargo {
     display: flex;
-}
-
-.label {
-    display: inline;
-    /* padding: 0.3rem; */
     margin: 5px;
-    border: solid;
-
 }
 
-button {
-    /* border-radius: 5px; */
-    height: 30px;
-    width: 80px;
+.ref {
+    display: flex;
+    margin: 10px 5px;
 }
 
-.buttons {
-    border: solid red;
-    float: right;
-    /* display: contents; */
-}
+

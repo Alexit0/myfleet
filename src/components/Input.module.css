@@ -1,6 +1,6 @@
 .form {
     position: relative;
-    border: double 5px;
+    /* border: double 5px; */
     text-align: left;
     width: 100%;
     border-radius: 5px;
@@ -22,13 +22,17 @@ label {
 
 .postcode {
     border-radius: 5px;
-    display: inline;
     width: 100%;
+}
+
+.country {
+    border-radius: 4px;
+    margin: 3px 2px;
 }
 
 .coordinates {
     border-radius: 5px;
-    width: 75%;
+    width: 80%;
 }
 
 .address {
@@ -38,7 +42,7 @@ label {
 
 .distance {
     border-radius: 5px;
-    width: 40%;
+    width: 40px;
 }
 
 .cargo {

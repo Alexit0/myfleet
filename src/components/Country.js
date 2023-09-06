@@ -6,7 +6,7 @@ const Country = () => {
   return (
     <form className={classes.form}>
       {/* <label>Country</label> */}
-      <select className={classes.input}>
+      <select className={classes.country}>
         <option value="none" selected disabled hidden>
           Select Country
         </option>
