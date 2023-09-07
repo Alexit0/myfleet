@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import Date from "./Date";
 import Time from "./Time";
 import FixedTerm from "./FixedTerm";
@@ -10,9 +10,13 @@ import Ref from "./Ref";
 import Country from "./Country";
 import Distance from "./Distance";
 
+import loadingFormReducer from "../reducers/loadingFormReducer";
+
 import classes from "./LoadingForm.module.css";
 
 const LoadingForm = () => {
+  const [loadingFormData, dispatch] = useReducer(loadingFormReducer, []);
+
   const handleRemoveUnloading = (event) => {
     event.preventDefault();
   };
