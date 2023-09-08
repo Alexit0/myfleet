@@ -1,14 +1,14 @@
 button {
     /* border-radius: 5px; */
-    margin: 4px 1px;
-    height: 20px;
-    width: 75px;
+    margin: 0px 1px;
+    /* height: 20px; */
+    /* width: 75px; */
 }
 
 .form {
     border: dotted 1px; 
     width: 34%;
-    padding: 0.3rem;
+    padding: 0.5rem;
 }
 
 .label-bar {
@@ -26,23 +26,23 @@ button {
 }
 
 .address1 {
-    /* border: solid 1px; */
+    /* border: dotted 1px; */
     clear: both;
     margin: 5px;
     
 }
 
 .address2 {
-    /* border: dotted 2px; */
+    
+    /* border: dotted 1px; */
     margin: 5px;
     display:flex;
-    float: left;
 }
 
 .coordinates {
+    /* border: dotted 1px; */
     clear: both;
-    display: block;
-    justify-content: center;
+    display: flex;
     margin: 5px;
 }
 
