@@ -6,7 +6,6 @@ import Coordinates from "./Coordinates";
 
 import classes from "./LoadingForm.module.css";
 
-
 const AddressBlock = (props) => {
   return (
     <>
@@ -19,6 +18,7 @@ const AddressBlock = (props) => {
         <Country />
         <Distance />
       </div>
+
       <div className={classes.coordinates}>
         <Coordinates />
       </div>

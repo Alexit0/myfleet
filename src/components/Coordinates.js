@@ -5,8 +5,8 @@ import classes from "./Input.module.css";
 const Coordinates = () => {
   return (
     <form className={classes.form}>
-      <label className={classes["label-no-block"]}>GPS</label>
-      <input className={classes.coordinates}></input>
+      {/* <label className={classes["label-no-block"]}>GPS</label> */}
+      <input className={classes.coordinates} placeholder="Enter GPS coordinates"></input>
     </form>
   );
 };
