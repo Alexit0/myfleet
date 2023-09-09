@@ -6,7 +6,7 @@ function App() {
   return (
     <div className={classes.main}>
       MY FLEET
-      <LoadingForm dateTitle="Loading Date" addressTitle="loading address" />
+      <LoadingForm />
     </div>
   );
 }

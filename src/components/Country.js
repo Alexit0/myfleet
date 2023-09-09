@@ -1,11 +1,9 @@
 import React from "react";
 
-import classes from "./Input.module.css";
-
 const Country = () => {
   return (
-    <form className={classes.form}>
-      <select className={classes.country}>
+    <form>
+      <select>
         <option value="none" selected disabled hidden>
           Select Country
         </option>

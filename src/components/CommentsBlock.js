@@ -5,14 +5,14 @@ import classes from "./LoadingForm.module.css";
 
 const CommentsBlock = () => {
   return (
-    <>
-      <div className={classes.cargo}>
+    <div>
+      <div>
         <Cargo />
       </div>
-      <div className={classes.ref}>
+      <div>
         <Ref refTitle="Loading Reference" />
       </div>
-    </>
+    </div>
   );
 };
 

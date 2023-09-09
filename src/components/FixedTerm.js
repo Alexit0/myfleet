@@ -1,12 +1,10 @@
 import React from "react";
 
-import classes from "./Input.module.css";
-
 const FixedTerm = () => {
   return (
-    <form className={classes.form}>
+    <form>
       <label>FIX</label>
-      <input className={classes.input} type="checkbox"></input>
+      <input type="checkbox"></input>
     </form>
   );
 };
