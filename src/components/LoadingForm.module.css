@@ -1,11 +1,15 @@
 input,
 select,
-textarea, button {
-    border-radius: 4px;
-    margin: 2px;
-}
+textarea,
 button {
-    margin: 0px 1px;
+    border-radius: 4px;
+    margin: 2px 0px;
+    width: 100%;
+}
+
+button {
+    margin: 5px 1px;
+    width: 75px
 }
 
 label {
@@ -14,8 +18,7 @@ label {
 
 .loading-block {
     border: solid 1px white;
-    width: fit-content;
-
+    width: 32%;
     padding: 10px;
 }
 
@@ -24,11 +27,29 @@ label {
     justify-content: space-between;
 }
 
-.date-time {
+.date-time-block {
     display: flex;
-
 }
 
 .address2 {
     display: flex;
+
+}
+
+.select {
+    margin: 0px 2px;
+
+}
+
+.post-code {
+    width: 35%
+}
+
+.country {
+    width: 35%;
+
+}
+
+.distance {
+    width: 30%
 }

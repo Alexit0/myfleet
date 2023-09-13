@@ -9,7 +9,7 @@ import classes from "./LoadingForm.module.css";
 const AddressBlock = (props) => {
   return (
     <>
-      <div className={classes.address1}>
+      <div>
         <Address addressTitle={props.addressTitle} />
       </div>
 
@@ -19,7 +19,7 @@ const AddressBlock = (props) => {
         <Distance />
       </div>
 
-      <div className={classes.coordinates}>
+      <div>
         <Coordinates />
       </div>
     </>

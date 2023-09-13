@@ -1,10 +1,12 @@
 import React from "react";
 
+import classes from "./LoadingForm.module.css";
+
 const Distance = () => {
   return (
-    <form>
+    <span className={classes.distance}>
       <input type="number" placeholder="km"></input>
-    </form>
+    </span>
   );
 };
 

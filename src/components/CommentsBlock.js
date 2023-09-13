@@ -1,8 +1,6 @@
 import Cargo from "./Cargo";
 import Ref from "./Ref";
 
-import classes from "./LoadingForm.module.css";
-
 const CommentsBlock = () => {
   return (
     <div>

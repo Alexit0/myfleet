@@ -1,8 +1,10 @@
 import React from "react";
 
+import classes from "./LoadingForm.module.css";
+
 const Country = () => {
   return (
-    <form>
+    <span className={classes.country}>
       <select>
         <option value="none" selected disabled hidden>
           Select Country
@@ -18,7 +20,7 @@ const Country = () => {
         <option>Czech Republic</option>
         <option>Lithuania</option>
       </select>
-    </form>
+    </span>
   );
 };
 

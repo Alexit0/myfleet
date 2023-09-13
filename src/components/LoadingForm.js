@@ -10,6 +10,7 @@ const LoadingForm = (props) => {
       <div>
         <LoadingBlock />
       </div>
+      
     </form>
   );
 };
