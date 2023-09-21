@@ -16,11 +16,27 @@ label {
     display: block;
 }
 
+main {
+    border: dotted ;
+    /* margin: 10px 20%; */
+    display: flex;
+    justify-content: center;
+}
+
 .loading-block {
+    /* float: left; */
     border: solid 1px white;
     width: 32%;
     padding: 10px;
 }
+
+.unloading-block {
+    /* float: right; */
+    border: solid 1px white;
+    width: 32%;
+    padding: 10px;
+}
+
 
 .label-bar {
     display: flex;
