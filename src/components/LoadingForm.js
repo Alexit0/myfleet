@@ -6,11 +6,20 @@ import UnloadingBlock from "./UnloadingBlock";
 import classes from "./LoadingForm.module.css";
 
 const LoadingForm = (props) => {
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <main>
         <LoadingBlock />
-        <UnloadingBlock />
+        <div className={classes["unloading-block"]}>
+          <UnloadingBlock />
+          <UnloadingBlock />
+          {/* <UnloadingBlock /> */}
+        </div>
+        <button className={classes['submit-button']}>Submit</button>
       </main>
     </form>
   );

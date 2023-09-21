@@ -15,7 +15,7 @@ const UnloadingBlock = () => {
     event.preventDefault();
   };
   return (
-    <div className={classes["unloading-block"]}>
+    <div >
       <div className={classes["label-bar"]}>
         <label>
           <strong>Unloading Place</strong>

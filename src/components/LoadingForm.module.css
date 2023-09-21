@@ -9,12 +9,22 @@ button {
 
 button {
     margin: 5px 1px;
-    width: 75px
+    width: 75px;
 }
+
+.submit-button {
+    height: 22px;
+    margin: auto 10px 10px 10px;
+
+
+}
+
 
 label {
     display: block;
 }
+
+
 
 main {
     border: dotted ;
@@ -24,15 +34,15 @@ main {
 }
 
 .loading-block {
-    /* float: left; */
-    border: solid 1px white;
+    /* border: solid 1px white; */
     width: 32%;
     padding: 10px;
 }
 
 .unloading-block {
-    /* float: right; */
-    border: solid 1px white;
+    /* border: solid 1px white; */
+    margin-top: 5px;
+
     width: 32%;
     padding: 10px;
 }
