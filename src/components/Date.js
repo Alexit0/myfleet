@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Date = (props) => {
+  const [enteredDate, setEnteredDate] = useState();
+
+  const handleDateInput = (event) => {
+    setEnteredDate(event.target.value);
+  };
   return (
-    <form>
+    <span>
       <label>{props.dateTitle}</label>
-      <input type="date"></input>
-    </form>
+      <input type="date" onChange={handleDateInput}></input>
+    </span>
   );
 };
 

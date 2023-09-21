@@ -2,10 +2,10 @@ import React from "react";
 
 const Time = (props) => {
   return (
-    <form>
+    <span>
       <label>{props.timeTitle}</label>
       <input type="time"></input>
-    </form>
+    </span>
   );
 };
 

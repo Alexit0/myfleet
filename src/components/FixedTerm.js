@@ -2,10 +2,10 @@ import React from "react";
 
 const FixedTerm = () => {
   return (
-    <form>
+    <span>
       <label>FIX</label>
       <input type="checkbox"></input>
-    </form>
+    </span>
   );
 };
 
