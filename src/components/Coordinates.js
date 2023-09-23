@@ -2,9 +2,9 @@ import React from "react";
 
 const Coordinates = () => {
   return (
-    <form>
+    <span>
       <input placeholder="Enter GPS coordinates"></input>
-    </form>
+    </span>
   );
 };
 

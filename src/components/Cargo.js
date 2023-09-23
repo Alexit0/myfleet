@@ -2,9 +2,9 @@ import React from "react";
 
 const Cargo = () => {
   return (
-    <form>
+    <span>
       <input type="text" placeholder="Enter cargo details"></input>
-    </form>
+    </span>
   );
 };
 

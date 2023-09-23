@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Date = (props) => {
-  const [enteredDate, setEnteredDate] = useState();
-
-  const handleDateInput = (event) => {
-    setEnteredDate(event.target.value);
+  const handleDateInput = () => {
+    props.loadingDate();
   };
   return (
     <span>

@@ -9,6 +9,7 @@ const LoadingForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log('piu')
   };
   return (
     <form onSubmit={handleSubmit}>

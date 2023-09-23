@@ -2,9 +2,9 @@ import React from "react";
 
 const Address = (props) => {
   return (
-    <form>
+    <span>
       <input placeholder={`Enter ${props.addressTitle}`}></input>
-    </form>
+    </span>
   );
 };
 

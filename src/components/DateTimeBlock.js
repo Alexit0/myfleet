@@ -7,7 +7,7 @@ import classes from "./LoadingForm.module.css";
 const DateTimeBlock = (props) => {
     return ( 
         <div className={classes['date-time-block']}>
-          <Date dateTitle={props.dateTitle} />
+          <Date dateTitle={props.dateTitle} loadingDate={props.loadingDate}/>
           <Time timeTitle="From " />
           <Time timeTitle="To " />
           <FixedTerm />

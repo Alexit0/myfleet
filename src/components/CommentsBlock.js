@@ -1,14 +1,14 @@
 import Cargo from "./Cargo";
 import Ref from "./Ref";
 
-const CommentsBlock = () => {
+const CommentsBlock = (props) => {
   return (
     <div>
       <div>
         <Cargo />
       </div>
       <div>
-        <Ref refTitle="Loading Reference" />
+        <Ref refTitle="Loading Reference" loadingRef={props.loadingRef} />
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ const Country = () => {
   return (
     <span className={classes.country}>
       <select>
-        <option value="none" selected disabled hidden>
+        <option value="none" hidden>
           Select Country
         </option>
         <option>Germany</option>
