@@ -10,17 +10,20 @@ const AddressBlock = (props) => {
   return (
     <>
       <div>
-        <Address addressTitle={props.addressTitle} />
+        <Address
+          addressTitle={props.addressTitle}
+          generalInput={props.generalInput}
+        />
       </div>
 
       <div className={classes.address2}>
-        <PostCode />
-        <Country />
-        <Distance />
+        <PostCode generalInput={props.generalInput} />
+        <Country generalInput={props.generalInput} />
+        <Distance generalInput={props.generalInput} />
       </div>
 
       <div>
-        <Coordinates />
+        <Coordinates generalInput={props.generalInput} />
       </div>
     </>
   );

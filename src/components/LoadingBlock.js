@@ -1,33 +1,12 @@
-import React, { useReducer } from "react";
+import React from "react";
 
 import DateTimeBlock from "./DateTimeBlock";
 import AddressBlock from "./AddressBlock";
 import CommentsBlock from "./CommentsBlock";
 
-import {
-  INITIAL_STATE,
-  loadingBlockReducer,
-} from "../reducers/loadingBlockReducer";
-
-import { ACTION_TYPES } from "../reducers/loadingBlockActionTypes";
-
 import classes from "./LoadingForm.module.css";
 
-const LoadingBlock = () => {
-  const [loadingBlockData, dispatch] = useReducer(
-    loadingBlockReducer,
-    INITIAL_STATE
-  );
-
-  const getLoadingDate = (event) => {
-    dispatch({ type: ACTION_TYPES.DATE_INPUT, payload: event.target.value });
-  };
-
-  const getRef = (event) => {
-    dispatch({ type: ACTION_TYPES.REF_INPUT, payload: event.target.value });
-    console.log(loadingBlockData.comments)
-  };
-
+const LoadingBlock = (props) => {
   const handleRemoveUnloading = (event) => {
     event.preventDefault();
   };
@@ -48,9 +27,15 @@ const LoadingBlock = () => {
         </div>
       </div>
 
-      <DateTimeBlock dateTitle="Loading Date" loadingDate={getLoadingDate} />
-      <AddressBlock addressTitle="loading address" />
-      <CommentsBlock loadingRef={getRef}/>
+      <DateTimeBlock
+        dateTitle="Loading Date"
+        generalInput={props.generalInput}
+      />
+      <AddressBlock
+        addressTitle="loading address"
+        generalInput={props.generalInput}
+      />
+      <CommentsBlock generalInput={props.generalInput} />
     </div>
   );
 };

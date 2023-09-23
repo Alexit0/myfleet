@@ -1,10 +1,13 @@
 import React from "react";
 
 const Time = (props) => {
+  const handleTime = (event) => {
+    props.generalInput(event);
+  };
   return (
     <span>
       <label>{props.timeTitle}</label>
-      <input type="time"></input>
+      <input name={props.name} type="time" onChange={handleTime}></input>
     </span>
   );
 };

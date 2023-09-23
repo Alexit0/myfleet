@@ -2,10 +2,13 @@ import React from "react";
 
 import classes from "./LoadingForm.module.css";
 
-const Country = () => {
+const Country = (props) => {
+  const handleCountry = (event) => {
+    props.generalInput(event);
+  };
   return (
     <span className={classes.country}>
-      <select>
+      <select name="country" onChange={handleCountry}>
         <option value="none" hidden>
           Select Country
         </option>

@@ -1,9 +1,17 @@
 import React from "react";
 
-const Cargo = () => {
+const Cargo = (props) => {
+  const handleCargoInput = (event) => {
+    props.generalInput(event);
+  };
   return (
     <span>
-      <input type="text" placeholder="Enter cargo details"></input>
+      <input
+        name="cargoDetails"
+        type="text"
+        placeholder="Enter cargo details"
+        onChange={handleCargoInput}
+      ></input>
     </span>
   );
 };

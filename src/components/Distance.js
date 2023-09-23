@@ -2,10 +2,18 @@ import React from "react";
 
 import classes from "./LoadingForm.module.css";
 
-const Distance = () => {
+const Distance = (props) => {
+  const handleDistance = (event) => {
+    props.generalInput(event);
+  };
   return (
     <span className={classes.distance}>
-      <input type="number" placeholder="km"></input>
+      <input
+        name="distance"
+        type="number"
+        placeholder="km"
+        onChange={handleDistance}
+      ></input>
     </span>
   );
 };

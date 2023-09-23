@@ -1,13 +1,13 @@
 import React from "react";
 
 const Date = (props) => {
-  const handleDateInput = () => {
-    props.loadingDate();
+  const handleDateInput = (event) => {
+    props.generalInput(event);
   };
   return (
     <span>
       <label>{props.dateTitle}</label>
-      <input type="date" onChange={handleDateInput}></input>
+      <input name="date" type="date" onChange={handleDateInput}></input>
     </span>
   );
 };

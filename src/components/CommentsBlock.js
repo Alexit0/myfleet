@@ -5,10 +5,13 @@ const CommentsBlock = (props) => {
   return (
     <div>
       <div>
-        <Cargo />
+        <Cargo generalInput={props.generalInput} />
       </div>
       <div>
-        <Ref refTitle="Loading Reference" loadingRef={props.loadingRef} />
+        <Ref
+          refTitle="Loading Reference"
+          generalInput={props.generalInput}
+        />
       </div>
     </div>
   );

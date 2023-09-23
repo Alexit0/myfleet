@@ -1,10 +1,17 @@
 import React from "react";
 
-const FixedTerm = () => {
+const FixedTerm = (props) => {
+  const handleFixedTerm = (event) => {
+    props.generalInput(event);
+  };
   return (
     <span>
       <label>FIX</label>
-      <input type="checkbox"></input>
+      <input
+        name="fixedTime"
+        type="checkbox"
+        onChange={handleFixedTerm}
+      ></input>
     </span>
   );
 };
