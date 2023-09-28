@@ -26,6 +26,13 @@ const LoadingForm = () => {
     console.log(loadingBlockData);
   };
 
+  const handleAddUnloadingPlace = (event) => {
+    event.preventDefault();
+    dispatch({
+      type: ACTION_TYPES.ADD_UNLOADING,
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("=> ", loadingBlockData);
