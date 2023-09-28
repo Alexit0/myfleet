@@ -66,24 +66,31 @@ export const loadingBlockReducer = (state, action) => {
     case ACTION_TYPES.ADD_UNLOADING:
       return {
         ...state,
-        unloadingPlace: [
-          { ...state.unloadingPlace },
-          {
-            unloadingPlace: {
-              date: "",
-              timeFrom: "",
-              timeTo: "",
-              fixedTime: false,
-              loadingAddress: "",
-              postCode: "",
-              country: "",
-              distance: "",
-              coordinates: "",
-              cargoDetails: "",
-              comments: "",
-            },
+        unloadingPlace: state[0].unloadingPlace.push({
+          unloadingPlace: {
+            date: "",
+            timeFrom: "",
+            timeTo: "",
+            fixedTime: false,
+            loadingAddress: "",
+            postCode: "",
+            country: "",
+            distance: "",
+            coordinates: "",
+            cargoDetails: "",
+            comments: "",
           },
-        ],
+        }),
+      };
+
+    case ACTION_TYPES.REMOVE_UNLOADING:
+      const list = [...state[0].unloadingPlace];
+      list.splice(+action.payload, 1);
+      console.log('action => ', action.payload)
+
+      return {
+        ...state,
+        unloadingPlace: [...list],
       };
 
     default:
