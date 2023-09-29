@@ -28,10 +28,9 @@ const LoadingForm = () => {
   const handleAddUnloadingPlace = (event, index) => {
     event.preventDefault();
     dispatch({ type: ACTION_TYPES.ADD_UNLOADING });
-    console.log(+index);
   };
 
-  const handleRemoveUnloadingPlace = (index) => {
+  const handleRemoveUnloadingPlace = (event, index) => {
     dispatch({ type: ACTION_TYPES.REMOVE_UNLOADING, payload: index });
   };
 
@@ -58,7 +57,7 @@ const LoadingForm = () => {
                       <button onClick={handleAddUnloadingPlace}>Add</button>
                     )}
                     <button
-                      onClick={(event) => {
+                      onClick={() => {
                         handleRemoveUnloadingPlace(index);
                       }}
                     >

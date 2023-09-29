@@ -1,18 +1,5 @@
 import { ACTION_TYPES } from "./loadingBlockActionTypes.js";
 
-export const INITIAL_STATE = {
-  date: "",
-  timeFrom: "",
-  timeTo: "",
-  fixedTime: false,
-  loadingAddress: "",
-  postCode: "",
-  country: "",
-  distance: "",
-  coordinates: "",
-  cargoDetails: "",
-  comments: "",
-};
 
 export const FULL_INITIAL_STATE = [
   {
@@ -87,6 +74,7 @@ export const loadingBlockReducer = (state, action) => {
       const list = [...state[0].unloadingPlace];
       list.splice(+action.payload, 1);
       console.log('action => ', action.payload)
+      console.log(list)
 
       return {
         ...state,
