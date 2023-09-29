@@ -1,85 +1,60 @@
 import { ACTION_TYPES } from "./loadingBlockActionTypes.js";
 
+// Loading or unloading general initial state//
 
-export const FULL_INITIAL_STATE = [
+const generalState = {
+  date: "",
+  timeFrom: "",
+  timeTo: "",
+  fixedTime: false,
+  address: "",
+  postCode: "",
+  country: "",
+  distance: "",
+  coordinates: "",
+  cargoDetails: "",
+  comments: "",
+};
+
+export const INITIAL_STATE = [
   {
-    date: "",
-    timeFrom: "",
-    timeTo: "",
-    fixedTime: false,
-    loadingAddress: "",
-    postCode: "",
-    country: "",
-    distance: "",
-    coordinates: "",
-    cargoDetails: "",
-    comments: "",
-    unloadingPlace: [
-      {
-        unloadingPlace: {
-          date: "",
-          timeFrom: "",
-          timeTo: "",
-          fixedTime: false,
-          loadingAddress: "",
-          postCode: "",
-          country: "",
-          distance: "",
-          coordinates: "",
-          cargoDetails: "",
-          comments: "",
-        },
-      },
-    ],
+    ...generalState,
+    unloadingPlace: [generalState],
   },
 ];
 
 export const loadingBlockReducer = (state, action) => {
   switch (action.type) {
-    case ACTION_TYPES.GENERAL_INPUT:
+    case ACTION_TYPES.FULL_GENERAL_INPUT:
       return {
         ...state,
         [action.payload.name]: action.payload.value,
       };
 
-    case ACTION_TYPES.FULL_GENERAL_INPUT:
+    case ACTION_TYPES.ADD_UNLOADING:
+      const loadingList = [...state[0].unloadingPlace];
+      loadingList.splice(+action.payload + 1, 0, generalState);
+      // loadingList.push(generalState)
+      console.log("state => ", state);
+      console.log("loadingList =>", loadingList);
+
       return [
         {
-          ...state,
-          [action.payload.name]: action.payload.value,
+          ...state[0],
+          unloadingPlace: loadingList,
         },
       ];
-
-    case ACTION_TYPES.ADD_UNLOADING:
-      return {
-        ...state,
-        unloadingPlace: state[0].unloadingPlace.push({
-          unloadingPlace: {
-            date: "",
-            timeFrom: "",
-            timeTo: "",
-            fixedTime: false,
-            loadingAddress: "",
-            postCode: "",
-            country: "",
-            distance: "",
-            coordinates: "",
-            cargoDetails: "",
-            comments: "",
-          },
-        }),
-      };
 
     case ACTION_TYPES.REMOVE_UNLOADING:
       const list = [...state[0].unloadingPlace];
       list.splice(+action.payload, 1);
-      console.log('action => ', action.payload)
-      console.log(list)
 
-      return {
-        ...state,
-        unloadingPlace: [...list],
-      };
+      return [
+        {
+          ...state[0],
+          unloadingPlace: [...list],
+        },
+      ];
 
     default:
       return state;

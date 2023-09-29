@@ -4,7 +4,7 @@ import LoadingBlock from "./LoadingBlock";
 import UnloadingBlock from "./UnloadingBlock";
 
 import {
-  FULL_INITIAL_STATE,
+  INITIAL_STATE,
   loadingBlockReducer,
 } from "../reducers/loadingBlockReducer";
 
@@ -15,7 +15,7 @@ import classes from "./LoadingForm.module.css";
 const LoadingForm = () => {
   const [loadingBlockData, dispatch] = useReducer(
     loadingBlockReducer,
-    FULL_INITIAL_STATE
+    INITIAL_STATE
   );
 
   const handleGeneralInput = (event) => {
@@ -26,8 +26,7 @@ const LoadingForm = () => {
   };
 
   const handleAddUnloadingPlace = (event, index) => {
-    event.preventDefault();
-    dispatch({ type: ACTION_TYPES.ADD_UNLOADING });
+    dispatch({ type: ACTION_TYPES.ADD_UNLOADING, payload: index });
   };
 
   const handleRemoveUnloadingPlace = (event, index) => {
@@ -44,18 +43,18 @@ const LoadingForm = () => {
         <LoadingBlock generalInput={handleGeneralInput} />
 
         <div className={classes["unloading-block"]}>
-          {loadingBlockData[0].unloadingPlace.map(
-            (singleUnloadingPlace, index) => (
-              <div key={index}>
-                <div className={classes["label-bar"]}>
-                  <label>
-                    <strong>Unloading Place</strong>
-                  </label>
-                  <div>
-                    {loadingBlockData[0].unloadingPlace.length - 1 ===
-                      index && (
-                      <button onClick={handleAddUnloadingPlace}>Add</button>
-                    )}
+          {loadingBlockData[0].unloadingPlace.map((unloadingPlace, index) => (
+            <div key={index}>
+              <div className={classes["label-bar"]}>
+                <label>
+                  <strong>Unloading Place</strong>
+                </label>
+                <div>
+                  <button onClick={() => handleAddUnloadingPlace(index)}>
+                    Add
+                  </button>
+
+                  {loadingBlockData[0].unloadingPlace.length > 1 && (
                     <button
                       onClick={() => {
                         handleRemoveUnloadingPlace(index);
@@ -63,12 +62,12 @@ const LoadingForm = () => {
                     >
                       Remove
                     </button>
-                  </div>
+                  )}
                 </div>
-                <UnloadingBlock />
               </div>
-            )
-          )}
+              <UnloadingBlock />
+            </div>
+          ))}
         </div>
 
         <button className={classes["submit-button"]}>Submit</button>
