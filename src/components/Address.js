@@ -7,7 +7,7 @@ const Address = (props) => {
   return (
     <span>
       <input
-        name="loadingAddress"
+        name="address"
         placeholder={`Enter ${props.addressTitle}`}
         onChange={handleAddressInput}
       ></input>

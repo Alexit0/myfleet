@@ -25,11 +25,23 @@ export const INITIAL_STATE = [
 
 export const loadingBlockReducer = (state, action) => {
   switch (action.type) {
-    case ACTION_TYPES.FULL_GENERAL_INPUT:
-      return {
-        ...state,
-        [action.payload.name]: action.payload.value,
-      };
+    case ACTION_TYPES.LOADING_INPUT:
+      return [
+        {
+          ...state[0],
+          [action.payload.name]: action.payload.value,
+        },
+      ];
+
+    case ACTION_TYPES.UNLOADING_INPUT:
+      const input = { [action.payload.name]: action.payload.value };
+      return [
+        {
+          ...state[0],
+          unloadingPlace: [...state[0].unloadingPlace],
+        },
+        ,
+      ];
 
     case ACTION_TYPES.ADD_UNLOADING:
       const loadingList = [...state[0].unloadingPlace];

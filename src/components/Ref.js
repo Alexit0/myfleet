@@ -14,6 +14,7 @@ const Ref = (props) => {
         type="text"
         placeholder="Loading reference / comments ..."
         onChange={handleRefInput}
+        index={props.index}
       ></textarea>
     </span>
   );

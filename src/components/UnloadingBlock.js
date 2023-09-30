@@ -4,12 +4,12 @@ import DateTimeBlock from "./DateTimeBlock";
 import AddressBlock from "./AddressBlock";
 import CommentsBlock from "./CommentsBlock";
 
-const UnloadingBlock = () => {
+const UnloadingBlock = (props) => {
   return (
     <div>
       <DateTimeBlock dateTitle="Unloading Date" />
       <AddressBlock addressTitle="unloading address" />
-      <CommentsBlock />
+      <CommentsBlock generalInput={props.generalInput} index={props.index}/>
     </div>
   );
 };

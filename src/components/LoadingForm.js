@@ -18,10 +18,22 @@ const LoadingForm = () => {
     INITIAL_STATE
   );
 
-  const handleGeneralInput = (event) => {
+  const handleLoadingInput = (event, index) => {
     dispatch({
-      type: ACTION_TYPES.GENERAL_INPUT,
+      type: ACTION_TYPES.LOADING_INPUT,
       payload: { name: event.target.name, value: event.target.value },
+    });
+  };
+
+  const handleUnloadingInput = (event, index) => {
+    console.log("typing => ", event.target);
+    dispatch({
+      type: ACTION_TYPES.UNLOADING_INPUT,
+      payload: {
+        name: event.target.name,
+        value: event.target.value,
+        index,
+      },
     });
   };
 
@@ -29,7 +41,7 @@ const LoadingForm = () => {
     dispatch({ type: ACTION_TYPES.ADD_UNLOADING, payload: index });
   };
 
-  const handleRemoveUnloadingPlace = (event, index) => {
+  const handleRemoveUnloadingPlace = (index) => {
     dispatch({ type: ACTION_TYPES.REMOVE_UNLOADING, payload: index });
   };
 
@@ -40,7 +52,7 @@ const LoadingForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <main>
-        <LoadingBlock generalInput={handleGeneralInput} />
+        <LoadingBlock generalInput={handleLoadingInput} />
 
         <div className={classes["unloading-block"]}>
           {loadingBlockData[0].unloadingPlace.map((unloadingPlace, index) => (
@@ -65,7 +77,10 @@ const LoadingForm = () => {
                   )}
                 </div>
               </div>
-              <UnloadingBlock />
+              <UnloadingBlock
+                generalInput={handleUnloadingInput}
+                index={index}
+              />
             </div>
           ))}
         </div>

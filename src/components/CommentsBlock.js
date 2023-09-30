@@ -11,6 +11,7 @@ const CommentsBlock = (props) => {
         <Ref
           refTitle="Loading Reference"
           generalInput={props.generalInput}
+          index={props.index}
         />
       </div>
     </div>
