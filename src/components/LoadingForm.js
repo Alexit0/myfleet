@@ -25,14 +25,14 @@ const LoadingForm = () => {
     });
   };
 
-  const handleUnloadingInput = (event, index) => {
-    console.log("typing => ", event.target);
+  const handleUnloadingInput = (event) => {
+    // console.log("typing => ", event.target.attributes.index.value);
     dispatch({
       type: ACTION_TYPES.UNLOADING_INPUT,
       payload: {
         name: event.target.name,
         value: event.target.value,
-        index,
+        index: event.target.attributes.index.value
       },
     });
   };
