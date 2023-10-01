@@ -8,7 +8,7 @@ const Country = (props) => {
   };
   return (
     <span className={classes.country}>
-      <select name="country" onChange={handleCountry}>
+      <select name="country" onChange={handleCountry} index={props.index}>
         <option value="none" hidden>
           Select Country
         </option>

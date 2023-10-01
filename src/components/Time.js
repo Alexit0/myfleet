@@ -7,7 +7,12 @@ const Time = (props) => {
   return (
     <span>
       <label>{props.timeTitle}</label>
-      <input name={props.name} type="time" onChange={handleTime}></input>
+      <input
+        name={props.name}
+        type="time"
+        onChange={handleTime}
+        index={props.index}
+      ></input>
     </span>
   );
 };

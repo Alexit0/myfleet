@@ -35,19 +35,25 @@ export const loadingBlockReducer = (state, action) => {
 
     case ACTION_TYPES.UNLOADING_INPUT:
       console.log("typing => ", action.payload.index);
+      const input = { [action.payload.name]: action.payload.value };
+      const unloadingList = [...state[0].unloadingPlace];
+      unloadingList[action.payload.index] = {
+        ...unloadingList[+action.payload.index],
+        ...input,
+      };
 
       return [
         {
           ...state[0],
-          unloadingPlace: [...state[0].unloadingPlace],
+          unloadingPlace: unloadingList,
         },
       ];
 
     case ACTION_TYPES.ADD_UNLOADING:
       const loadingList = [...state[0].unloadingPlace];
       // supposed to add fields in between existing unloadings but doesnt work ...
-      loadingList.splice(+action.payload + 1, 0, generalState);
-      // loadingList.push(generalState)
+      // loadingList.splice(+action.payload + 1, 0, generalState);
+      loadingList.push(generalState)
       console.log("state => ", state);
       console.log("loadingList =>", loadingList);
 

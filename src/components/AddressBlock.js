@@ -13,17 +13,18 @@ const AddressBlock = (props) => {
         <Address
           addressTitle={props.addressTitle}
           generalInput={props.generalInput}
+          index={props.index}
         />
       </div>
 
       <div className={classes.address2}>
-        <PostCode generalInput={props.generalInput} />
-        <Country generalInput={props.generalInput} />
-        <Distance generalInput={props.generalInput} />
+        <PostCode generalInput={props.generalInput} index={props.index} />
+        <Country generalInput={props.generalInput} index={props.index} />
+        <Distance generalInput={props.generalInput} index={props.index} />
       </div>
 
       <div>
-        <Coordinates generalInput={props.generalInput} />
+        <Coordinates generalInput={props.generalInput} index={props.index} />
       </div>
     </>
   );

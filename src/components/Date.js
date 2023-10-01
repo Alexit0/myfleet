@@ -7,7 +7,12 @@ const Date = (props) => {
   return (
     <span>
       <label>{props.dateTitle}</label>
-      <input name="date" type="date" onChange={handleDateInput}></input>
+      <input
+        name="date"
+        type="date"
+        onChange={handleDateInput}
+        index={props.index}
+      ></input>
     </span>
   );
 };

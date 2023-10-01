@@ -11,6 +11,7 @@ const Cargo = (props) => {
         type="text"
         placeholder="Enter cargo details"
         onChange={handleCargoInput}
+        index={props.index}
       ></input>
     </span>
   );

@@ -10,6 +10,7 @@ const Address = (props) => {
         name="address"
         placeholder={`Enter ${props.addressTitle}`}
         onChange={handleAddressInput}
+        index={props.index}
       ></input>
     </span>
   );

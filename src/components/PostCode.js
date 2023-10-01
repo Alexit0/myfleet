@@ -12,6 +12,7 @@ const PostCode = (props) => {
         name="postCode"
         placeholder="Post code"
         onChange={handlePostCode}
+        index={props.index}
       ></input>
     </span>
   );

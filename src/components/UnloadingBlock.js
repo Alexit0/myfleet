@@ -7,9 +7,17 @@ import CommentsBlock from "./CommentsBlock";
 const UnloadingBlock = (props) => {
   return (
     <div>
-      <DateTimeBlock dateTitle="Unloading Date" />
-      <AddressBlock addressTitle="unloading address" />
-      <CommentsBlock generalInput={props.generalInput} index={props.index}/>
+      <DateTimeBlock
+        dateTitle="Unloading Date"
+        generalInput={props.generalInput}
+        index={props.index}
+      />
+      <AddressBlock
+        addressTitle="unloading address"
+        generalInput={props.generalInput}
+        index={props.index}
+      />
+      <CommentsBlock generalInput={props.generalInput} index={props.index} />
     </div>
   );
 };

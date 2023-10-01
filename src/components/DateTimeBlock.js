@@ -10,14 +10,21 @@ const DateTimeBlock = (props) => {
       <Date
         dateTitle={props.dateTitle}
         generalInput={props.generalInput}
+        index={props.index}
       />
       <Time
         name="timeFrom"
         timeTitle="From "
         generalInput={props.generalInput}
+        index={props.index}
       />
-      <Time name="timeTo" timeTitle="To " generalInput={props.generalInput} />
-      <FixedTerm generalInput={props.generalInput} />
+      <Time
+        name="timeTo"
+        timeTitle="To "
+        generalInput={props.generalInput}
+        index={props.index}
+      />
+      <FixedTerm generalInput={props.generalInput} index={props.index} />
     </div>
   );
 };

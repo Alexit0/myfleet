@@ -5,7 +5,7 @@ const CommentsBlock = (props) => {
   return (
     <div>
       <div>
-        <Cargo generalInput={props.generalInput} />
+        <Cargo generalInput={props.generalInput} index={props.index} />
       </div>
       <div>
         <Ref

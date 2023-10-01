@@ -13,6 +13,7 @@ const Distance = (props) => {
         type="number"
         placeholder="km"
         onChange={handleDistance}
+        index={props.index}
       ></input>
     </span>
   );

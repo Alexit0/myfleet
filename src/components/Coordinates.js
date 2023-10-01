@@ -10,6 +10,7 @@ const Coordinates = (props) => {
         name="coordinates"
         placeholder="Enter GPS coordinates"
         onChange={handleCoordinates}
+        index={props.index}
       ></input>
     </span>
   );

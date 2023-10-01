@@ -11,6 +11,7 @@ const FixedTerm = (props) => {
         name="fixedTime"
         type="checkbox"
         onChange={handleFixedTerm}
+        index={props.index}
       ></input>
     </span>
   );
