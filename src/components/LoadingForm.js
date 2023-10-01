@@ -26,7 +26,6 @@ const LoadingForm = () => {
   };
 
   const handleUnloadingInput = (event) => {
-    // console.log("typing => ", event.target.attributes.index.value);
     dispatch({
       type: ACTION_TYPES.UNLOADING_INPUT,
       payload: {
