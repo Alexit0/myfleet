@@ -2,6 +2,7 @@ import React, { useReducer } from "react";
 
 import LoadingBlock from "./LoadingBlock";
 import UnloadingBlock from "./UnloadingBlock";
+import Ref from "./Ref";
 
 import {
   INITIAL_STATE,
@@ -25,18 +26,19 @@ const LoadingForm = () => {
     });
   };
 
-  const handleUnloadingInput = (event) => {
+  const handleUnloadingInput = (event, index) => {
     dispatch({
       type: ACTION_TYPES.UNLOADING_INPUT,
       payload: {
         name: event.target.name,
         value: event.target.value,
-        index: event.target.attributes.index.value
+        index
+        // index: event.target.attributes.index.value,
       },
     });
   };
 
-  const handleAddUnloadingPlace = (event, index) => {
+  const handleAddUnloadingPlace = (index) => {
     dispatch({ type: ACTION_TYPES.ADD_UNLOADING, payload: index });
   };
 
@@ -79,6 +81,7 @@ const LoadingForm = () => {
               <UnloadingBlock
                 generalInput={handleUnloadingInput}
                 index={index}
+                inputData={unloadingPlace}
               />
             </div>
           ))}

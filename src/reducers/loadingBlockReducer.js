@@ -40,6 +40,12 @@ export const loadingBlockReducer = (state, action) => {
         ...unloadingList[+action.payload.index],
         ...input,
       };
+      console.log(action.payload.name)
+      console.log(action.payload.value)
+      console.log(action.payload.index)
+
+
+
 
       return [
         {
@@ -64,6 +70,7 @@ export const loadingBlockReducer = (state, action) => {
     case ACTION_TYPES.REMOVE_UNLOADING:
       const list = [...state[0].unloadingPlace];
       list.splice(+action.payload, 1);
+      console.log('action.payload => ', action.payload)
 
       return [
         {

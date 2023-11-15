@@ -17,7 +17,12 @@ const UnloadingBlock = (props) => {
         generalInput={props.generalInput}
         index={props.index}
       />
-      <CommentsBlock generalInput={props.generalInput} index={props.index} />
+      <CommentsBlock
+        generalInput={props.generalInput}
+        index={props.index}
+        comments={props.inputData.comments}
+        cargoDetails={props.inputData.cargoDetails}
+      />
     </div>
   );
 };

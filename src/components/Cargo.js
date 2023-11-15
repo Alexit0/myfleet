@@ -1,8 +1,8 @@
 import React from "react";
 
 const Cargo = (props) => {
-  const handleCargoInput = (event) => {
-    props.generalInput(event);
+  const handleCargoInput = (event, index) => {
+    props.generalInput(event, index);
   };
   return (
     <span>
@@ -10,8 +10,8 @@ const Cargo = (props) => {
         name="cargoDetails"
         type="text"
         placeholder="Enter cargo details"
-        onChange={handleCargoInput}
-        index={props.index}
+        onChange={(event) => handleCargoInput(event, props.index)}
+        value={props.cargoDetails}
       ></input>
     </span>
   );
