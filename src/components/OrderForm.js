@@ -1,8 +1,7 @@
 import React, { useReducer } from "react";
 
-import LoadingBlock from "./LoadingBlock";
-import UnloadingBlock from "./UnloadingBlock";
-import Ref from "./Ref";
+import LoadingPlaceBlock from "./LoadingPlaceBlock";
+import UnloadingPlaceBlock from "./UnloadingPlaceBlock";
 
 import {
   INITIAL_STATE,
@@ -11,9 +10,9 @@ import {
 
 import { ACTION_TYPES } from "../reducers/loadingBlockActionTypes";
 
-import classes from "./LoadingForm.module.css";
+import classes from "./OrderForm.module.css";
 
-const LoadingForm = () => {
+const OrderForm = () => {
   const [loadingBlockData, dispatch] = useReducer(
     loadingBlockReducer,
     INITIAL_STATE
@@ -22,7 +21,11 @@ const LoadingForm = () => {
   const handleLoadingInput = (event, index) => {
     dispatch({
       type: ACTION_TYPES.LOADING_INPUT,
-      payload: { name: event.target.name, value: event.target.value },
+      payload: {
+        name: event.target.name,
+        value: event.target.value,
+        index,
+      },
     });
   };
 
@@ -32,8 +35,7 @@ const LoadingForm = () => {
       payload: {
         name: event.target.name,
         value: event.target.value,
-        index
-        // index: event.target.attributes.index.value,
+        index,
       },
     });
   };
@@ -53,7 +55,7 @@ const LoadingForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <main>
-        <LoadingBlock generalInput={handleLoadingInput} />
+        <LoadingPlaceBlock generalInput={handleLoadingInput} />
 
         <div className={classes["unloading-block"]}>
           {loadingBlockData[0].unloadingPlace.map((unloadingPlace, index) => (
@@ -78,10 +80,11 @@ const LoadingForm = () => {
                   )}
                 </div>
               </div>
-              <UnloadingBlock
+
+              <UnloadingPlaceBlock
                 generalInput={handleUnloadingInput}
                 index={index}
-                inputData={unloadingPlace}
+                value={unloadingPlace}
               />
             </div>
           ))}
@@ -93,4 +96,4 @@ const LoadingForm = () => {
   );
 };
 
-export default LoadingForm;
+export default OrderForm;

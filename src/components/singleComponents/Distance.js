@@ -1,10 +1,10 @@
 import React from "react";
 
-import classes from "./LoadingForm.module.css";
+import classes from "../OrderForm.module.css";
 
 const Distance = (props) => {
-  const handleDistance = (event) => {
-    props.generalInput(event);
+  const handleDistance = (event, index) => {
+    props.generalInput(event, index);
   };
   return (
     <span className={classes.distance}>
@@ -12,8 +12,8 @@ const Distance = (props) => {
         name="distance"
         type="number"
         placeholder="km"
-        onChange={handleDistance}
-        index={props.index}
+        onChange={(event) => handleDistance(event, props.index)}
+        value={props.value}
       ></input>
     </span>
   );

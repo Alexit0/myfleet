@@ -11,7 +11,7 @@ const Cargo = (props) => {
         type="text"
         placeholder="Enter cargo details"
         onChange={(event) => handleCargoInput(event, props.index)}
-        value={props.cargoDetails}
+        value={props.value}
       ></input>
     </span>
   );

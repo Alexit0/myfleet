@@ -1,4 +1,4 @@
-import LoadingForm from "./components/LoadingForm";
+import OrderForm from "./components/OrderForm";
 
 import classes from "./App.module.css";
 
@@ -6,7 +6,7 @@ function App() {
   return (
     <div className={classes.main}>
       MY FLEET
-      <LoadingForm />
+      <OrderForm />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React from "react";
 
-import classes from "./CommentsBlock.module.css";
 
 const Ref = (props) => {
   const handleRefInput = (event, index) => {
@@ -10,11 +9,10 @@ const Ref = (props) => {
     <span>
       <textarea
         name="comments"
-        className={classes.input}
         type="text"
         placeholder={"Loading reference / comments ..."}
         onChange={(event) => handleRefInput(event, props.index)}
-        value={props.comments}
+        value={props.value}
       ></textarea>
     </span>
   );

@@ -1,16 +1,16 @@
 import React from "react";
 
 const Coordinates = (props) => {
-  const handleCoordinates = (event) => {
-    props.generalInput(event);
+  const handleCoordinates = (event, index) => {
+    props.generalInput(event, index);
   };
   return (
     <span>
       <input
         name="coordinates"
         placeholder="Enter GPS coordinates"
-        onChange={handleCoordinates}
-        index={props.index}
+        onChange={(event) => handleCoordinates(event, props.index)}
+        value={props.value}
       ></input>
     </span>
   );

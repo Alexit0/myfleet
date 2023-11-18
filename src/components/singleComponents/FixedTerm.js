@@ -1,8 +1,8 @@
 import React from "react";
 
 const FixedTerm = (props) => {
-  const handleFixedTerm = (event) => {
-    props.generalInput(event);
+  const handleFixedTerm = (event, index) => {
+    props.generalInput(event, index);
   };
   return (
     <span>
@@ -10,8 +10,8 @@ const FixedTerm = (props) => {
       <input
         name="fixedTime"
         type="checkbox"
-        onChange={handleFixedTerm}
-        index={props.index}
+        onChange={(event) => handleFixedTerm(event, props.index)}
+        value={props.value}
       ></input>
     </span>
   );

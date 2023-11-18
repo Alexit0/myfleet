@@ -1,5 +1,5 @@
-import Cargo from "./Cargo";
-import Ref from "./Ref";
+import Cargo from "./singleComponents/Cargo";
+import Ref from "./singleComponents/Ref";
 
 const CommentsBlock = (props) => {
   return (

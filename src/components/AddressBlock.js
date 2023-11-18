@@ -1,30 +1,47 @@
-import Address from "./Address";
-import PostCode from "./PostCode";
-import Country from "./Country";
-import Distance from "./Distance";
-import Coordinates from "./Coordinates";
+import Address from "./singleComponents/Address";
+import PostCode from "./singleComponents/PostCode";
+import Country from "./singleComponents/Country";
+import Distance from "./singleComponents/Distance";
+import Coordinates from "./singleComponents/Coordinates";
 
-import classes from "./LoadingForm.module.css";
+import classes from "./OrderForm.module.css";
 
 const AddressBlock = (props) => {
   return (
     <>
       <div>
         <Address
-          addressTitle={props.addressTitle}
+          addressTitle="unloading address"
           generalInput={props.generalInput}
           index={props.index}
+          value={props.address}
         />
       </div>
 
       <div className={classes.address2}>
-        <PostCode generalInput={props.generalInput} index={props.index} />
-        <Country generalInput={props.generalInput} index={props.index} />
-        <Distance generalInput={props.generalInput} index={props.index} />
+        <PostCode
+          generalInput={props.generalInput}
+          index={props.index}
+          value={props.postCode}
+        />
+        <Country
+          generalInput={props.generalInput}
+          index={props.index}
+          value={props.country}
+        />
+        <Distance
+          generalInput={props.generalInput}
+          index={props.index}
+          value={props.distance}
+        />
       </div>
 
       <div>
-        <Coordinates generalInput={props.generalInput} index={props.index} />
+        <Coordinates
+          generalInput={props.generalInput}
+          index={props.index}
+          value={props.coordinates}
+        />
       </div>
     </>
   );

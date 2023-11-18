@@ -1,16 +1,16 @@
 import React from "react";
 
 const Address = (props) => {
-  const handleAddressInput = (event) => {
-    props.generalInput(event);
+  const handleAddressInput = (event, index) => {
+    props.generalInput(event, index);
   };
   return (
     <span>
       <input
         name="address"
         placeholder={`Enter ${props.addressTitle}`}
-        onChange={handleAddressInput}
-        index={props.index}
+        onChange={(event) => handleAddressInput(event, props.index)}
+        value={props.value}
       ></input>
     </span>
   );

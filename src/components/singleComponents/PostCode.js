@@ -1,18 +1,18 @@
 import React from "react";
 
-import classes from "./LoadingForm.module.css";
+import classes from "../OrderForm.module.css";
 
 const PostCode = (props) => {
-  const handlePostCode = (event) => {
-    props.generalInput(event);
+  const handlePostCode = (event, index) => {
+    props.generalInput(event, index);
   };
   return (
     <span className={classes["post-code"]}>
       <input
         name="postCode"
         placeholder="Post code"
-        onChange={handlePostCode}
-        index={props.index}
+        onChange={(event) => handlePostCode(event, props.index)}
+        value={props.value}
       ></input>
     </span>
   );

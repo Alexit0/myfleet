@@ -1,8 +1,8 @@
 import React from "react";
 
 const Date = (props) => {
-  const handleDateInput = (event) => {
-    props.generalInput(event);
+  const handleDateInput = (event, index) => {
+    props.generalInput(event, index);
   };
   return (
     <span>
@@ -10,8 +10,8 @@ const Date = (props) => {
       <input
         name="date"
         type="date"
-        onChange={handleDateInput}
-        index={props.index}
+        onChange={(event) => handleDateInput(event, props.index)}
+        value={props.value}
       ></input>
     </span>
   );

@@ -1,8 +1,8 @@
 import React from "react";
 
 const Time = (props) => {
-  const handleTime = (event) => {
-    props.generalInput(event);
+  const handleTime = (event, index) => {
+    props.generalInput(event, index);
   };
   return (
     <span>
@@ -10,8 +10,8 @@ const Time = (props) => {
       <input
         name={props.name}
         type="time"
-        onChange={handleTime}
-        index={props.index}
+        onChange={(event) => handleTime(event, props.index)}
+        value={props.value}
       ></input>
     </span>
   );

@@ -26,6 +26,12 @@ export const INITIAL_STATE = [
 export const loadingBlockReducer = (state, action) => {
   switch (action.type) {
     case ACTION_TYPES.LOADING_INPUT:
+      const loadingPlaceInput = { [action.payload.name]: action.payload.value };
+      const loadingPlaceList = [...state[0].unloadingPlace];
+      loadingPlaceList[action.payload.index] = {
+        ...loadingPlaceList[+action.payload.index],
+        ...loadingPlaceInput,
+      };
       return [
         {
           ...state[0],
@@ -33,32 +39,32 @@ export const loadingBlockReducer = (state, action) => {
         },
       ];
 
+    case ACTION_TYPES.ADD_LOADING:
+      return;
+
+    case ACTION_TYPES.REMOVE_LOADING:
+      return;
+
     case ACTION_TYPES.UNLOADING_INPUT:
-      const input = { [action.payload.name]: action.payload.value };
-      const unloadingList = [...state[0].unloadingPlace];
-      unloadingList[action.payload.index] = {
-        ...unloadingList[+action.payload.index],
-        ...input,
+      const unloadingPlaceInput = {
+        [action.payload.name]: action.payload.value,
       };
-      console.log(action.payload.name)
-      console.log(action.payload.value)
-      console.log(action.payload.index)
-
-
-
+      const unloadingPlaceList = [...state[0].unloadingPlace];
+      unloadingPlaceList[action.payload.index] = {
+        ...unloadingPlaceList[+action.payload.index],
+        ...unloadingPlaceInput,
+      };
 
       return [
         {
           ...state[0],
-          unloadingPlace: unloadingList,
+          unloadingPlace: unloadingPlaceList,
         },
       ];
 
     case ACTION_TYPES.ADD_UNLOADING:
       const loadingList = [...state[0].unloadingPlace];
-      // supposed to add fields in between existing unloadings but doesnt work ...
-      // loadingList.splice(+action.payload + 1, 0, generalState);
-      loadingList.push(generalState);
+      loadingList.splice(+action.payload + 1, 0, generalState);
 
       return [
         {
@@ -70,7 +76,6 @@ export const loadingBlockReducer = (state, action) => {
     case ACTION_TYPES.REMOVE_UNLOADING:
       const list = [...state[0].unloadingPlace];
       list.splice(+action.payload, 1);
-      console.log('action.payload => ', action.payload)
 
       return [
         {

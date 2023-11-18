@@ -3,10 +3,11 @@ import React from "react";
 import DateTimeBlock from "./DateTimeBlock";
 import AddressBlock from "./AddressBlock";
 import CommentsBlock from "./CommentsBlock";
+// import OrderFields from "./OrderFields";
 
-import classes from "./LoadingForm.module.css";
+import classes from "./OrderForm.module.css";
 
-const LoadingBlock = (props) => {
+const LoadingPlaceBlock = (props) => {
   const handleRemoveUnloading = (event) => {
     event.preventDefault();
   };
@@ -36,8 +37,9 @@ const LoadingBlock = (props) => {
         generalInput={props.generalInput}
       />
       <CommentsBlock generalInput={props.generalInput} />
+      
     </div>
   );
 };
 
-export default LoadingBlock;
+export default LoadingPlaceBlock;
