@@ -1,5 +1,7 @@
 import React, { useReducer } from "react";
 
+import { useSelector } from "react-redux";
+
 import LoadingPlaceBlock from "./LoadingPlaceBlock";
 import UnloadingPlaceBlock from "./UnloadingPlaceBlock";
 
@@ -13,6 +15,8 @@ import { ACTION_TYPES } from "../reducers/loadingBlockActionTypes";
 import classes from "./OrderForm.module.css";
 
 const OrderForm = () => {
+  const orderData = useSelector((state) => state.order);
+
   const [loadingBlockData, dispatch] = useReducer(
     loadingBlockReducer,
     INITIAL_STATE
@@ -55,7 +59,13 @@ const OrderForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <main>
-        <LoadingPlaceBlock generalInput={handleLoadingInput} />
+        {orderData.map((loadingPlace, index) => (
+          <LoadingPlaceBlock
+            key={index}
+            index={index}
+            generalInput={handleLoadingInput}
+          />
+        ))}
 
         <div className={classes["unloading-block"]}>
           {loadingBlockData[0].unloadingPlace.map((unloadingPlace, index) => (
