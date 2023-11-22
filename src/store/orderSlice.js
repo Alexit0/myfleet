@@ -25,8 +25,13 @@ export const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    loadingInput: (state) => {
-      state.value += 1;
+    loadingInput: (state, action) => {
+      const loadingData = { [action.payload.name]: action.payload.value };
+      state[action.payload.index] = {
+        ...state[action.payload.index],
+        ...loadingData,
+      };
+      console.log(loadingData);
     },
     addLoading: (state, action) => {
       state.splice(+action.payload + 1, 0, ...initialState);

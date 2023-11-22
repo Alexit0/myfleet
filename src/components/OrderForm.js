@@ -59,13 +59,15 @@ const OrderForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <main>
-        {orderData.map((loadingPlace, index) => (
-          <LoadingPlaceBlock
-            key={index}
-            index={index}
-            generalInput={handleLoadingInput}
-          />
-        ))}
+        <div className={classes["loading-block"]}>
+          {orderData.map((loadingPlace, index) => (
+            <LoadingPlaceBlock
+              key={index}
+              index={index}
+              generalInput={handleLoadingInput}
+            />
+          ))}
+        </div>
 
         <div className={classes["unloading-block"]}>
           {loadingBlockData[0].unloadingPlace.map((unloadingPlace, index) => (

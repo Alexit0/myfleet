@@ -27,17 +27,18 @@ label {
 
 
 main {
-    border: dotted ;
+    border: dotted;
     /* margin: 10px 20%; */
     display: flex;
     justify-content: center;
 }
 
 .loading-block {
-    /* border: solid 1px white; */
-    width: 32%;
+    border: solid 1px white;
+    /* width: 32%; */
     padding: 10px;
 }
+
 
 .unloading-block {
     /* border: solid 1px white; */

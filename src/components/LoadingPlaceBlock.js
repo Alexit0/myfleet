@@ -3,6 +3,7 @@ import React from "react";
 import DateTimeBlock from "./DateTimeBlock";
 import AddressBlock from "./AddressBlock";
 import CommentsBlock from "./CommentsBlock";
+import Comments from "./singleComponents/Comments";
 // import OrderFields from "./OrderFields";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +13,7 @@ import classes from "./OrderForm.module.css";
 
 const LoadingPlaceBlock = (props) => {
   const dispatch = useDispatch();
-  const showRemove = useSelector((state) => state.order);
+  const orderData = useSelector((state) => state.order);
 
   const handleRemoveLoading = () => {
     dispatch(removeLoading(props.index));
@@ -30,7 +31,7 @@ const LoadingPlaceBlock = (props) => {
         </label>
         <div className={classes.buttons}>
           <button onClick={() => handleAddLoading()}>Add</button>
-          {showRemove.length > 1 && (
+          {orderData.length > 1 && (
             <button onClick={() => handleRemoveLoading()}>Remove</button>
           )}
         </div>
@@ -44,7 +45,8 @@ const LoadingPlaceBlock = (props) => {
         addressTitle="loading address"
         generalInput={props.generalInput}
       />
-      <CommentsBlock generalInput={props.generalInput} />
+      {/* <CommentsBlock generalInput={props.generalInput} /> */}
+      <Comments generalInput={props.generalInput} index={props.index} />
     </div>
   );
 };
