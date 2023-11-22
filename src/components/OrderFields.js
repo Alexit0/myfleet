@@ -4,6 +4,7 @@ import Cargo from "./singleComponents/Cargo";
 import Ref from "./singleComponents/Ref";
 import DateTimeBlock from "./DateTimeBlock";
 import AddressBlock from "./AddressBlock";
+import Comments from "./singleComponents/Comments";
 
 
 const OrderFields = (props) => {

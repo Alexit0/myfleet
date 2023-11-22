@@ -37,6 +37,7 @@ const LoadingPlaceBlock = (props) => {
         </div>
       </div>
 
+            
       <DateTimeBlock
         dateTitle="Loading Date"
         generalInput={props.generalInput}
@@ -45,8 +46,10 @@ const LoadingPlaceBlock = (props) => {
         addressTitle="loading address"
         generalInput={props.generalInput}
       />
-      {/* <CommentsBlock generalInput={props.generalInput} /> */}
-      <Comments generalInput={props.generalInput} index={props.index} />
+      <Comments
+        index={props.index}
+        value={props.value.comments}
+      />
     </div>
   );
 };

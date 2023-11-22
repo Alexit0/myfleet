@@ -65,6 +65,7 @@ const OrderForm = () => {
               key={index}
               index={index}
               generalInput={handleLoadingInput}
+              value={loadingPlace}
             />
           ))}
         </div>
