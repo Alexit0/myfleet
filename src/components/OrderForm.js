@@ -94,11 +94,11 @@ const OrderForm = () => {
                 </div>
               </div>
 
-              <UnloadingPlaceBlock
+              {/* <UnloadingPlaceBlock
                 generalInput={handleUnloadingInput}
                 index={index}
                 value={unloadingPlace}
-              />
+              /> */}
             </div>
           ))}
         </div>
