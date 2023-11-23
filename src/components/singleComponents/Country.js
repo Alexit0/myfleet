@@ -1,17 +1,27 @@
 import React from "react";
 
+import { useDispatch } from "react-redux";
+import { loadingInput } from "../../store/orderSlice";
+
 import classes from "../OrderForm.module.css";
 
-const Country = (props) => {
-  const handleCountry = (event, index) => {
-    props.generalInput(event, index);
+const Country = ({ index, value }) => {
+  const dispatch = useDispatch();
+  const handleCountry = (event) => {
+    dispatch(
+      loadingInput({
+        name: event.target.name,
+        value: event.target.value,
+        index,
+      })
+    );
   };
   return (
     <span className={classes.country}>
       <select
         name="country"
-        onChange={(event) => handleCountry(event, props.index)}
-        value={props.value}
+        onChange={(event) => handleCountry(event)}
+        value={value}
       >
         <option value="none" hidden>
           Select Country

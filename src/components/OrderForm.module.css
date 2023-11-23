@@ -28,7 +28,7 @@ label {
 
 main {
     border: dotted;
-    /* margin: 10px 20%; */
+    margin: 10px 20%;
     display: flex;
     justify-content: center;
 }

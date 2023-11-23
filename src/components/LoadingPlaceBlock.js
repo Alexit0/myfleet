@@ -1,14 +1,7 @@
 import React from "react";
-
-import DateTimeBlock from "./DateTimeBlock";
-import AddressBlock from "./AddressBlock";
-import CargoDetails from "./singleComponents/CargoDetails";
-import Comments from "./singleComponents/Comments";
-import OrderFields from "./OrderFields";
-
 import { useDispatch, useSelector } from "react-redux";
-import { addLoading, removeLoading, loadingInput } from "../store/orderSlice";
-
+import { addLoading, removeLoading } from "../store/orderSlice";
+import OrderFields from "./OrderFields";
 import classes from "./OrderForm.module.css";
 
 const LoadingPlaceBlock = (props) => {
@@ -36,18 +29,13 @@ const LoadingPlaceBlock = (props) => {
           )}
         </div>
       </div>
-      <OrderFields value={props.value} />
 
-      <DateTimeBlock
+      <OrderFields
+        index={props.index}
+        value={props.value}
         dateTitle="Loading Date"
-        generalInput={props.generalInput}
-      />
-      <AddressBlock
         addressTitle="loading address"
-        generalInput={props.generalInput}
       />
-      <CargoDetails index={props.index} value={props.value.cargoDetails} />
-      <Comments index={props.index} value={props.value.comments} />
     </div>
   );
 };

@@ -1,17 +1,28 @@
 import React from "react";
 
-const Date = (props) => {
-  const handleDateInput = (event, index) => {
-    props.generalInput(event, index);
+import { useDispatch } from "react-redux";
+import { loadingInput } from "../../store/orderSlice";
+
+const Date = ({ index, value, dateTitle }) => {
+  const dispatch = useDispatch();
+
+  const handleDateInput = (event) => {
+    dispatch(
+      loadingInput({
+        name: event.target.name,
+        value: event.target.value,
+        index,
+      })
+    );
   };
   return (
     <span>
-      <label>{props.dateTitle}</label>
+      <label>{dateTitle}</label>
       <input
         name="date"
         type="date"
-        onChange={(event) => handleDateInput(event, props.index)}
-        value={props.value}
+        onChange={(event) => handleDateInput(event)}
+        value={value}
       ></input>
     </span>
   );

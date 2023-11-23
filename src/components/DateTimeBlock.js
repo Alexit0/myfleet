@@ -4,34 +4,18 @@ import FixedTerm from "./singleComponents/FixedTerm";
 
 import classes from "./OrderForm.module.css";
 
-const DateTimeBlock = (props) => {
+const DateTimeBlock = ({ index, value, dateTitle }) => {
   return (
     <div className={classes["date-time-block"]}>
-      <Date
-        dateTitle={props.dateTitle}
-        generalInput={props.generalInput}
-        index={props.index}
-        value={props.date}
-      />
+      <Date dateTitle={dateTitle} index={index} value={value.date} />
       <Time
         name="timeFrom"
         timeTitle="From "
-        generalInput={props.generalInput}
-        index={props.index}
-        value={props.timeFrom}
+        index={index}
+        value={value.timeFrom}
       />
-      <Time
-        name="timeTo"
-        timeTitle="To "
-        generalInput={props.generalInput}
-        index={props.index}
-        value={props.timeTo}
-      />
-      <FixedTerm
-        generalInput={props.generalInput}
-        index={props.index}
-        value={props.fixedTime}
-      />
+      <Time name="timeTo" timeTitle="To " index={index} value={value.timeTo} />
+      <FixedTerm index={index} value={value.fixedTime} />
     </div>
   );
 };

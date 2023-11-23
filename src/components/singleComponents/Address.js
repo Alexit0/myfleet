@@ -1,16 +1,27 @@
 import React from "react";
 
-const Address = (props) => {
-  const handleAddressInput = (event, index) => {
-    props.generalInput(event, index);
+import { useDispatch } from "react-redux";
+import { loadingInput } from "../../store/orderSlice";
+
+const Address = ({ index, value, addressTitle }) => {
+  const dispatch = useDispatch();
+
+  const handleAddressInput = (event) => {
+    dispatch(
+      loadingInput({
+        name: event.target.name,
+        value: event.target.value,
+        index,
+      })
+    );
   };
   return (
     <span>
       <input
         name="address"
-        placeholder={`Enter ${props.addressTitle}`}
-        onChange={(event) => handleAddressInput(event, props.index)}
-        value={props.value}
+        placeholder={`Enter ${addressTitle}`}
+        onChange={(event) => handleAddressInput(event)}
+        value={value}
       ></input>
     </span>
   );

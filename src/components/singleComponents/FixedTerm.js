@@ -1,8 +1,19 @@
 import React from "react";
 
-const FixedTerm = (props) => {
-  const handleFixedTerm = (event, index) => {
-    props.generalInput(event, index);
+import { useDispatch } from "react-redux";
+import { loadingInput } from "../../store/orderSlice";
+
+const FixedTerm = ({ index, value }) => {
+  const dispatch = useDispatch();
+
+  const handleFixedTerm = (event) => {
+    dispatch(
+      loadingInput({
+        name: event.target.name,
+        value: event.target.value,
+        index,
+      })
+    );
   };
   return (
     <span>
@@ -10,8 +21,8 @@ const FixedTerm = (props) => {
       <input
         name="fixedTime"
         type="checkbox"
-        onChange={(event) => handleFixedTerm(event, props.index)}
-        value={props.value}
+        onChange={(event) => handleFixedTerm(event)}
+        value={value}
       ></input>
     </span>
   );
