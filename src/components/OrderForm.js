@@ -3,7 +3,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import LoadingPlaceBlock from "./LoadingPlaceBlock";
-import UnloadingPlaceBlock from "./UnloadingPlaceBlock";
 
 import classes from "./OrderForm.module.css";
 

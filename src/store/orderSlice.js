@@ -41,9 +41,16 @@ export const orderSlice = createSlice({
       state.splice(action.payload, 1);
       console.log("action.payload => ", action.payload);
     },
+
+    addUnloading: (state, action) => {
+      
+
+    },
+
+    removeUnloading: (state, action) => {},
   },
 });
 
-export const { loadingInput, addLoading, removeLoading } = orderSlice.actions;
+export const { loadingInput, addLoading, removeLoading, addUnloading, removeUnloading } = orderSlice.actions;
 
 export default orderSlice;

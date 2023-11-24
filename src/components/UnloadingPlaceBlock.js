@@ -1,21 +1,21 @@
 import React from "react";
 
 import OrderFields from "./OrderFields";
-import { useDispatch, useSelector } from "react-redux";
-import { addLoading, removeLoading } from "../store/orderSlice";
+import { useDispatch } from "react-redux";
+import { addUnloading, removeUnloading } from "../store/orderSlice";
 
 import classes from "./OrderForm.module.css";
 
-const UnloadingPlaceBlock = (props, { index }) => {
+const UnloadingPlaceBlock = ({ value, index }) => {
   const dispatch = useDispatch();
-  const orderData = useSelector((state) => state.order);
 
-  const handleRemoveLoading = () => {
-    dispatch(removeLoading(index));
+  const handleAddUnloading = () => {
+    dispatch(addUnloading(index));
+    console.log('huj')
   };
 
-  const handleAddLoading = () => {
-    dispatch(addLoading(index));
+  const handleRemoveUnloading = () => {
+    dispatch(removeUnloading(index));
   };
   return (
     <div className={classes["unloading-block"]}>
@@ -25,10 +25,10 @@ const UnloadingPlaceBlock = (props, { index }) => {
             <strong>Unloading Place</strong>
           </label>
           <div>
-            <button onClick={() => handleAddLoading(index)}>Add</button>
+            <button onClick={() => handleAddUnloading()}>Add</button>
             <button
               onClick={() => {
-                handleRemoveLoading(index);
+                handleRemoveUnloading();
               }}
             >
               Remove
@@ -39,7 +39,7 @@ const UnloadingPlaceBlock = (props, { index }) => {
         <OrderFields
           key={index}
           index={index}
-          value={props.value}
+          value={value}
           dateTitle="Unolading Date"
           addressTitle="Unloading address"
         />
