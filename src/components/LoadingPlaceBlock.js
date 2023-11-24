@@ -6,18 +6,18 @@ import classes from "./OrderForm.module.css";
 
 import UnloadingPlaceBlock from "./UnloadingPlaceBlock";
 
-const LoadingPlaceBlock = ({ index, value }) => {
+const LoadingPlaceBlock = (props) => {
   const dispatch = useDispatch();
   const orderData = useSelector((state) => state.order);
-  const unloadingData = orderData[index].unloadingPlace;
+  const unloadingData = orderData[props.index].unloadingPlace;
+  const parentIndex = props.index;
 
   const handleRemoveLoading = () => {
-    dispatch(removeLoading(index));
+    dispatch(removeLoading(props.index));
   };
 
   const handleAddLoading = () => {
-    dispatch(addLoading(index));
-    console.log("unloadingData => ", unloadingData);
+    dispatch(addLoading(props.index));
   };
 
   return (
@@ -35,8 +35,8 @@ const LoadingPlaceBlock = ({ index, value }) => {
       </div>
 
       <OrderFields
-        index={index}
-        value={value}
+        index={props.index}
+        value={props.value}
         dateTitle="Loading Date"
         addressTitle="loading address"
       />
@@ -44,6 +44,7 @@ const LoadingPlaceBlock = ({ index, value }) => {
       <React.Fragment>
         {unloadingData.map((unloadingPlace, index) => (
           <UnloadingPlaceBlock
+            parentIndex={parentIndex}
             key={index}
             index={index}
             value={unloadingPlace}

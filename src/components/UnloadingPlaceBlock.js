@@ -6,44 +6,45 @@ import { addUnloading, removeUnloading } from "../store/orderSlice";
 
 import classes from "./OrderForm.module.css";
 
-const UnloadingPlaceBlock = ({ value, index }) => {
+const UnloadingPlaceBlock = ({ value, index, parentIndex }) => {
   const dispatch = useDispatch();
 
   const handleAddUnloading = () => {
-    dispatch(addUnloading(index));
-    console.log('huj')
+    dispatch(addUnloading({ index, parentIndex }));
   };
 
   const handleRemoveUnloading = () => {
-    dispatch(removeUnloading(index));
+    dispatch(removeUnloading({ index, parentIndex }));
   };
   return (
     <div className={classes["unloading-block"]}>
-      <div key={index}>
-        <div className={classes["label-bar"]}>
-          <label>
-            <strong>Unloading Place</strong>
-          </label>
-          <div>
-            <button onClick={() => handleAddUnloading()}>Add</button>
-            <button
-              onClick={() => {
-                handleRemoveUnloading();
-              }}
-            >
-              Remove
-            </button>
+      {
+        <div key={index}>
+          <div className={classes["label-bar"]}>
+            <label>
+              <strong>Unloading Place</strong>
+            </label>
+            <div>
+              <button onClick={() => handleAddUnloading()}>Add</button>
+              <button
+                onClick={() => {
+                  handleRemoveUnloading();
+                }}
+              >
+                Remove
+              </button>
+            </div>
           </div>
-        </div>
 
-        <OrderFields
-          key={index}
-          index={index}
-          value={value}
-          dateTitle="Unolading Date"
-          addressTitle="Unloading address"
-        />
-      </div>
+          <OrderFields
+            key={index}
+            index={index}
+            value={value}
+            dateTitle="Unolading Date"
+            addressTitle="Unloading address"
+          />
+        </div>
+      }
     </div>
   );
 };

@@ -43,14 +43,28 @@ export const orderSlice = createSlice({
     },
 
     addUnloading: (state, action) => {
-      
-
+      state[action.payload.parentIndex].unloadingPlace.splice(
+        action.payload.index + 1,
+        0,
+        generalState
+      );
     },
 
-    removeUnloading: (state, action) => {},
+    removeUnloading: (state, action) => {
+      state[action.payload.parentIndex].unloadingPlace.splice(
+        action.payload.index,
+        1
+      );
+    },
   },
 });
 
-export const { loadingInput, addLoading, removeLoading, addUnloading, removeUnloading } = orderSlice.actions;
+export const {
+  loadingInput,
+  addLoading,
+  removeLoading,
+  addUnloading,
+  removeUnloading,
+} = orderSlice.actions;
 
 export default orderSlice;
