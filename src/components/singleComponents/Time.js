@@ -1,19 +1,12 @@
 import React from "react";
 
-import { useDispatch } from "react-redux";
-import { loadingInput } from "../../store/orderSlice";
-
-const Time = ({ index, value, timeTitle, name }) => {
-  const dispatch = useDispatch();
-
+const Time = ({ index, value, timeTitle, name, handleInput }) => {
   const handleTime = (event) => {
-    dispatch(
-      loadingInput({
-        name: event.target.name,
-        value: event.target.value,
-        index,
-      })
-    );
+    handleInput({
+      name: event.target.name,
+      value: event.target.value,
+      index,
+    });
   };
   return (
     <span>

@@ -1,20 +1,14 @@
 import React from "react";
 
-import { useDispatch } from "react-redux";
-import { loadingInput } from "../../store/orderSlice";
-
 import classes from "../OrderForm.module.css";
 
-const Country = ({ index, value }) => {
-  const dispatch = useDispatch();
+const Country = ({ index, value, handleInput }) => {
   const handleCountry = (event) => {
-    dispatch(
-      loadingInput({
-        name: event.target.name,
-        value: event.target.value,
-        index,
-      })
-    );
+    handleInput({
+      name: event.target.name,
+      value: event.target.value,
+      index,
+    });
   };
   return (
     <span className={classes.country}>

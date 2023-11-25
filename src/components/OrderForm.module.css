@@ -29,13 +29,13 @@ label {
 main {
     border: dotted;
     margin: 10px 20%;
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
 }
 
 .loading-block {
-    border: solid 1px white;
-    /* width: 32%; */
+    border: solid 7px white;
+    width: 32%;
     padding: 10px;
 }
 
@@ -79,4 +79,10 @@ main {
 
 .distance {
     width: 30%
+}
+
+.order-fields {
+    border: solid 7px white;
+    width: 32%;
+    padding: 10px;
 }

@@ -1,19 +1,12 @@
 import React from "react";
 
-import { useDispatch } from "react-redux";
-import { loadingInput } from "../../store/orderSlice";
-
-const Address = ({ index, value, addressTitle }) => {
-  const dispatch = useDispatch();
-
+const Address = ({ index, value, addressTitle, handleInput }) => {
   const handleAddressInput = (event) => {
-    dispatch(
-      loadingInput({
-        name: event.target.name,
-        value: event.target.value,
-        index,
-      })
-    );
+    handleInput({
+      name: event.target.name,
+      value: event.target.value,
+      index,
+    });
   };
   return (
     <span>

@@ -1,21 +1,14 @@
 import React from "react";
 
-import { useDispatch } from "react-redux";
-import { loadingInput } from "../../store/orderSlice";
-
 import classes from "../OrderForm.module.css";
 
-const PostCode = ({ index, value }) => {
-  const dispatch = useDispatch();
-
+const PostCode = ({ index, value, handleInput }) => {
   const handlePostCode = (event) => {
-    dispatch(
-      loadingInput({
-        name: event.target.name,
-        value: event.target.value,
-        index,
-      })
-    );
+    handleInput({
+      name: event.target.name,
+      value: event.target.value,
+      index,
+    });
   };
   return (
     <span className={classes["post-code"]}>

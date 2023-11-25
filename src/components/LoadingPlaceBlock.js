@@ -1,16 +1,25 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addLoading, removeLoading } from "../store/orderSlice";
+import {
+  addLoading,
+  removeLoading,
+  loadingInput,
+} from "../store/orderSlice";
 import OrderFields from "./OrderFields";
 import classes from "./OrderForm.module.css";
 
 import UnloadingPlaceBlock from "./UnloadingPlaceBlock";
 
 const LoadingPlaceBlock = (props) => {
-  const dispatch = useDispatch();
   const orderData = useSelector((state) => state.order);
   const unloadingData = orderData[props.index].unloadingPlace;
   const parentIndex = props.index;
+
+  const dispatch = useDispatch();
+
+  const loadingInputHandle = ({ name, value, index }) => {
+    dispatch(loadingInput({ name, value, index }));
+  };
 
   const handleRemoveLoading = () => {
     dispatch(removeLoading(props.index));
@@ -21,7 +30,7 @@ const LoadingPlaceBlock = (props) => {
   };
 
   return (
-    <div className={classes["loading-block"]}>
+    <div>
       <div className={classes["label-bar"]}>
         <label>
           <strong>Loading Place</strong>
@@ -35,6 +44,7 @@ const LoadingPlaceBlock = (props) => {
       </div>
 
       <OrderFields
+        handleInput={loadingInputHandle}
         index={props.index}
         value={props.value}
         dateTitle="Loading Date"
@@ -48,6 +58,7 @@ const LoadingPlaceBlock = (props) => {
             key={index}
             index={index}
             value={unloadingPlace}
+            className={classes["unloading-block"]}
           />
         ))}
       </React.Fragment>

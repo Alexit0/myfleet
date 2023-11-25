@@ -1,19 +1,13 @@
 import React from "react";
 
-import { useDispatch } from "react-redux";
-import { loadingInput } from "../../store/orderSlice";
-
-const Comments = ({ index, value }) => {
-  const dispatch = useDispatch();
+const Comments = ({ index, value, handleInput }) => {
   console.log("value ==> ", value);
   const handleRefInput = (event) => {
-    dispatch(
-      loadingInput({
-        name: event.target.name,
-        value: event.target.value,
-        index,
-      })
-    );
+    handleInput({
+      name: event.target.name,
+      value: event.target.value,
+      index,
+    });
   };
   return (
     <span>

@@ -42,6 +42,14 @@ export const orderSlice = createSlice({
       console.log("action.payload => ", action.payload);
     },
 
+    unloadingInput: (state, action) => {
+      const unloadingData = { [action.payload.name]: action.payload.value };
+      state[action.payload.parentIndex].unloadingPlace[action.payload.index] = {
+        ...unloadingData,
+      };
+      console.log(action.payload)
+    },
+
     addUnloading: (state, action) => {
       state[action.payload.parentIndex].unloadingPlace.splice(
         action.payload.index + 1,
@@ -63,6 +71,7 @@ export const {
   loadingInput,
   addLoading,
   removeLoading,
+  unloadingInput,
   addUnloading,
   removeUnloading,
 } = orderSlice.actions;

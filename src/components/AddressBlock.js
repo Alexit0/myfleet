@@ -6,7 +6,7 @@ import Coordinates from "./singleComponents/Coordinates";
 
 import classes from "./OrderForm.module.css";
 
-const AddressBlock = ({ index, value, addressTitle }) => {
+const AddressBlock = ({ index, value, addressTitle, handleInput }) => {
   return (
     <>
       <div>
@@ -14,17 +14,34 @@ const AddressBlock = ({ index, value, addressTitle }) => {
           addressTitle={addressTitle}
           index={index}
           value={value.address}
+          handleInput={handleInput}
         />
       </div>
 
       <div className={classes.address2}>
-        <PostCode index={index} value={value.postCode} />
-        <Country index={index} value={value.country} />
-        <Distance index={index} value={value.distance} />
+        <PostCode
+          index={index}
+          value={value.postCode}
+          handleInput={handleInput}
+        />
+        <Country
+          index={index}
+          value={value.country}
+          handleInput={handleInput}
+        />
+        <Distance
+          index={index}
+          value={value.distance}
+          handleInput={handleInput}
+        />
       </div>
 
       <div>
-        <Coordinates index={index} value={value.coordinates} />
+        <Coordinates
+          index={index}
+          value={value.coordinates}
+          handleInput={handleInput}
+        />
       </div>
     </>
   );
