@@ -27,11 +27,11 @@ const DateTimeBlock = ({ index, value, dateTitle, handleInput }) => {
         value={value.timeTo}
         handleInput={handleInput}
       />
-      <FixedTerm
+      {/* <FixedTerm
         index={index}
         value={value.fixedTime}
         handleInput={handleInput}
-      />
+      /> */}
     </div>
   );
 };

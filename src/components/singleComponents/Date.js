@@ -1,5 +1,7 @@
 import React from "react";
 
+import classes from "../OrderForm.module.css"
+
 const Date = ({ index, value, dateTitle, handleInput }) => {
   const handleDateInput = (event) => {
     handleInput({
@@ -9,7 +11,7 @@ const Date = ({ index, value, dateTitle, handleInput }) => {
     });
   };
   return (
-    <span>
+    <span className={classes.datetime}>
       <label>{dateTitle}</label>
       <input
         name="date"

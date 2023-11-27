@@ -1,5 +1,8 @@
 import React from "react";
 
+import classes from "../OrderForm.module.css"
+
+
 const Time = ({ index, value, timeTitle, name, handleInput }) => {
   const handleTime = (event) => {
     handleInput({
@@ -9,7 +12,7 @@ const Time = ({ index, value, timeTitle, name, handleInput }) => {
     });
   };
   return (
-    <span>
+    <span className={classes.datetime}>
       <label>{timeTitle}</label>
       <input
         name={name}

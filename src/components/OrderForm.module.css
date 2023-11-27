@@ -1,15 +1,24 @@
 input,
 select,
-textarea,
-button {
+textarea {
     border-radius: 4px;
     margin: 2px 0px;
     width: 100%;
+    border: none;
+    max-width: 100%;
+    background-color: rgb(214, 214, 214);
+}
+
+:focus {
+    background-color: rgb(243, 243, 243);
+    outline: none;
+
 }
 
 button {
     margin: 5px 1px;
     width: 75px;
+    background-color: default;
 }
 
 .submit-button {
@@ -19,41 +28,56 @@ button {
 
 
 label {
-    /* display: flex; */
     font-weight: bold;
+    color: antiquewhite;
 }
 
 main {
-    border: double white;
+    border-radius: 4px;
     margin: 10px 0px;
+    background-color: rgb(99, 99, 99);
 }
 
 .loading-fields {
-    width:300px;
-    min-width: 20%;
+    width: 340px;
+    min-width: 340px;
     display: inline;
     margin: 7px;
-    /* border: solid white 3px; */
-    padding: 2px;
+    background-color: rgb(55, 56, 56);
+    border-radius: 8px;
+    box-shadow: 4px 4px 10px rgb(53, 52, 52);
+    padding: 6px;
+
 }
+
 .unloading-block {
     /* border: solid white 3px; */
     margin: 7px;
     width: max-content;
-    padding: 2px;
+    /* padding: 2px; */
     display: flex;
 
 }
+
 .unloading-fields {
-    width:300px;
-    min-width: 25%;
+    width: 340px;
+    min-width: 340px;
     display: block;
-    margin: 0px 7px
+    margin: 0px 7px;
+    background-color: rgb(55, 56, 56);
+    border-radius: 8px;
+    padding: 6px;
+    box-shadow: 4px 4px 10px rgb(53, 52, 52);
+
 }
 
 .label-bar {
     display: flex;
     justify-content: space-between;
+    border-radius: 4px;
+    background-color: rgba(100, 119, 155, 0.658);
+    padding: 4px;
+    font-size: large;
 
 }
 
@@ -72,11 +96,15 @@ main {
 }
 
 .post-code {
-    width: 35%
+    width: 35%;
+    margin: 0px 3px 0px 0px;
+
 }
 
 .country {
     width: 35%;
+    margin: 0px 3px 0px 0px;
+
 
 }
 
@@ -86,4 +114,8 @@ main {
 
 .fields {
     display: flex;
+}
+
+.datetime {
+    margin: 0px 3px 0px 0px;
 }
