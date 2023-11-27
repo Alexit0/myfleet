@@ -15,11 +15,9 @@ const OrderForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <main>
-        <div >
           {orderData.map((loadingPlace, index) => (
             <LoadingPlaceBlock key={index} index={index} value={loadingPlace} />
           ))}
-        </div>
 
         <button className={classes["submit-button"]}>Submit</button>
       </main>

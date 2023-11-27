@@ -15,43 +15,46 @@ button {
 .submit-button {
     height: 22px;
     margin: auto 10px 10px 10px;
-
-
 }
 
 
 label {
-    display: block;
+    /* display: flex; */
+    font-weight: bold;
 }
-
-
 
 main {
-    border: dotted;
-    margin: 10px 20%;
-    /* display: flex; */
-    /* justify-content: center; */
+    border: double white;
+    margin: 10px 0px;
 }
 
-.loading-block {
-    border: solid 7px white;
-    width: 32%;
-    padding: 10px;
+.loading-fields {
+    width:300px;
+    min-width: 20%;
+    display: inline;
+    margin: 7px;
+    /* border: solid white 3px; */
+    padding: 2px;
 }
-
-
 .unloading-block {
-    /* border: solid 1px white; */
-    margin-top: 5px;
+    /* border: solid white 3px; */
+    margin: 7px;
+    width: max-content;
+    padding: 2px;
+    display: flex;
 
-    width: 32%;
-    padding: 10px;
 }
-
+.unloading-fields {
+    width:300px;
+    min-width: 25%;
+    display: block;
+    margin: 0px 7px
+}
 
 .label-bar {
     display: flex;
     justify-content: space-between;
+
 }
 
 .date-time-block {
@@ -81,8 +84,6 @@ main {
     width: 30%
 }
 
-.order-fields {
-    border: solid 7px white;
-    width: 32%;
-    padding: 10px;
+.fields {
+    display: flex;
 }

@@ -31,23 +31,22 @@ export const orderSlice = createSlice({
         ...state[action.payload.index],
         ...loadingData,
       };
-      console.log(loadingData);
     },
     addLoading: (state, action) => {
       state.splice(+action.payload + 1, 0, ...initialState);
-      console.log("action.payload => ", action.payload);
     },
     removeLoading: (state, action) => {
       state.splice(action.payload, 1);
-      console.log("action.payload => ", action.payload);
     },
 
     unloadingInput: (state, action) => {
       const unloadingData = { [action.payload.name]: action.payload.value };
       state[action.payload.parentIndex].unloadingPlace[action.payload.index] = {
+        ...state[action.payload.parentIndex].unloadingPlace[
+          action.payload.index
+        ],
         ...unloadingData,
       };
-      console.log(action.payload)
     },
 
     addUnloading: (state, action) => {

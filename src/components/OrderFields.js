@@ -5,10 +5,9 @@ import AddressBlock from "./AddressBlock";
 import Comments from "./singleComponents/Comments";
 import CargoDetails from "./singleComponents/CargoDetails";
 
-import classes from "./OrderForm.module.css";
 const OrderFields = (props) => {
   return (
-    <div className={classes["order-fields"]}>
+    <div>
       <DateTimeBlock
         value={props.value}
         index={props.index}

@@ -1,7 +1,6 @@
 import React from "react";
 
 const Comments = ({ index, value, handleInput }) => {
-  console.log("value ==> ", value);
   const handleRefInput = (event) => {
     handleInput({
       name: event.target.name,

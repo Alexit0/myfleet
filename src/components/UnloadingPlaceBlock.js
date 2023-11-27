@@ -20,7 +20,6 @@ const UnloadingPlaceBlock = ({ value, index, parentIndex }) => {
 
   const handleAddUnloading = () => {
     dispatch(addUnloading({ index, parentIndex }));
-    console.log(unloadingData[parentIndex]);
   };
 
   const handleRemoveUnloading = () => {
@@ -29,13 +28,10 @@ const UnloadingPlaceBlock = ({ value, index, parentIndex }) => {
   return (
     <div>
       {
-        <div key={index}>
+        <div key={index} className={classes["unloading-fields"]}>
           <div className={classes["label-bar"]}>
-            <label>
-              <strong>Unloading Place</strong>
-            </label>
+            <label>Unloading place {index + 1}</label>
             <div>
-              <button onClick={() => handleAddUnloading()}>Add</button>
               {unloadingData[parentIndex].unloadingPlace.length > 1 && (
                 <button
                   onClick={() => {
@@ -45,6 +41,7 @@ const UnloadingPlaceBlock = ({ value, index, parentIndex }) => {
                   Remove
                 </button>
               )}
+              <button onClick={() => handleAddUnloading()}>Add</button>
             </div>
           </div>
 
@@ -54,7 +51,7 @@ const UnloadingPlaceBlock = ({ value, index, parentIndex }) => {
             index={index}
             value={value}
             dateTitle="Unolading Date"
-            addressTitle="Unloading address"
+            addressTitle="unloading address"
           />
         </div>
       }

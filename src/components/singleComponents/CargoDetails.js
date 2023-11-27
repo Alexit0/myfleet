@@ -1,7 +1,6 @@
 import React from "react";
 
 const CargoDetails = ({ index, value, handleInput }) => {
-  console.log("value ==> ", value);
   const handleCargoInput = (event) => {
     handleInput({
       name: event.target.name,

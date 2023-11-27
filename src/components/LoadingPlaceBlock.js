@@ -1,10 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addLoading,
-  removeLoading,
-  loadingInput,
-} from "../store/orderSlice";
+import { addLoading, removeLoading, loadingInput } from "../store/orderSlice";
 import OrderFields from "./OrderFields";
 import classes from "./OrderForm.module.css";
 
@@ -30,38 +26,37 @@ const LoadingPlaceBlock = (props) => {
   };
 
   return (
-    <div>
-      <div className={classes["label-bar"]}>
-        <label>
-          <strong>Loading Place</strong>
-        </label>
-        <div className={classes.buttons}>
-          <button onClick={() => handleAddLoading()}>Add</button>
-          {orderData.length > 1 && (
-            <button onClick={() => handleRemoveLoading()}>Remove</button>
-          )}
+    <div className={classes.fields}>
+      <div className={classes["loading-fields"]}>
+        <div className={classes["label-bar"]}>
+          <label>Loading Place</label>
+          <div className={classes.buttons}>
+            {orderData.length > 1 && (
+              <button onClick={() => handleRemoveLoading()}>Remove</button>
+            )}
+            <button onClick={() => handleAddLoading()}>Add</button>
+          </div>
         </div>
+
+        <OrderFields
+          handleInput={loadingInputHandle}
+          index={props.index}
+          value={props.value}
+          dateTitle="Loading Date"
+          addressTitle="loading address"
+        />
       </div>
 
-      <OrderFields
-        handleInput={loadingInputHandle}
-        index={props.index}
-        value={props.value}
-        dateTitle="Loading Date"
-        addressTitle="loading address"
-      />
-
-      <React.Fragment>
+      <div className={classes["unloading-block"]}>
         {unloadingData.map((unloadingPlace, index) => (
           <UnloadingPlaceBlock
             parentIndex={parentIndex}
             key={index}
             index={index}
             value={unloadingPlace}
-            className={classes["unloading-block"]}
           />
         ))}
-      </React.Fragment>
+      </div>
     </div>
   );
 };
