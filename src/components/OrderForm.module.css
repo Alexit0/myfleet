@@ -9,7 +9,9 @@ textarea {
     background-color: rgb(214, 214, 214);
 }
 
-:focus {
+input:focus,
+select:focus,
+textarea:focus {
     background-color: rgb(243, 243, 243);
     outline: none;
 
@@ -32,9 +34,14 @@ label {
     color: antiquewhite;
 }
 
+form {
+    text-align: center;
+}
+
 main {
+    display: inline-block;
     border-radius: 4px;
-    margin: 10px 0px;
+    margin: 10px auto;
     background-color: rgb(99, 99, 99);
 }
 
@@ -83,6 +90,7 @@ main {
 
 .date-time-block {
     display: flex;
+    text-align: left;
 }
 
 .address2 {
