@@ -1,0 +1,8 @@
+.div {
+    width: 170px;
+    display: inline-block;
+}
+
+.button {
+    display: block;
+}

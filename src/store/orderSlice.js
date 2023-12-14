@@ -4,7 +4,7 @@ const generalState = {
   date: "",
   timeFrom: "",
   timeTo: "",
-  fixedTime: false,
+  // fixedTime: false,
   address: "",
   postCode: "",
   country: "",

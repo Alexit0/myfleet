@@ -21,8 +21,9 @@ const LoadingPlaceBlock = (props) => {
     dispatch(removeLoading(props.index));
   };
 
-  const handleAddLoading = () => {
+  const handleAddLoading = (event) => {
     dispatch(addLoading(props.index));
+    event.preventDefault();
   };
 
   return (
@@ -34,7 +35,7 @@ const LoadingPlaceBlock = (props) => {
             {orderData.length > 1 && (
               <button onClick={() => handleRemoveLoading()}>Remove</button>
             )}
-            <button onClick={() => handleAddLoading()}>Add</button>
+            <button onClick={(event) => handleAddLoading(event)}>Add</button>
           </div>
         </div>
 

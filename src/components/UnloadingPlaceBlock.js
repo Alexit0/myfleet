@@ -18,8 +18,9 @@ const UnloadingPlaceBlock = ({ value, index, parentIndex }) => {
     dispatch(unloadingInput({ name, value, index, parentIndex }));
   };
 
-  const handleAddUnloading = () => {
+  const handleAddUnloading = (event) => {
     dispatch(addUnloading({ index, parentIndex }));
+    event.preventDefault();
   };
 
   const handleRemoveUnloading = () => {
@@ -41,7 +42,9 @@ const UnloadingPlaceBlock = ({ value, index, parentIndex }) => {
                   Remove
                 </button>
               )}
-              <button onClick={() => handleAddUnloading()}>Add</button>
+              <button onClick={(event) => handleAddUnloading(event)}>
+                Add
+              </button>
             </div>
           </div>
 

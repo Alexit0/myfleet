@@ -20,18 +20,16 @@ const MainNavigation = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="trucks">TRUCKS</NavLink>
-          </li>
-          <li>
             <NavLink
-              to="neworder"
+              to="trucks"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
             >
-              NEW ORDER
+              TRUCKS
             </NavLink>
           </li>
+          
         </ul>
       </nav>
     </header>

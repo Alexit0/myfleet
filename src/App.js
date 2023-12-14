@@ -4,10 +4,15 @@ import HomePage from "./pages/Home";
 import RootLayout from "./pages/Root";
 import ErrorPage from "./pages/Error";
 
-import classes from "./App.module.css";
-import TrucksPage from "./pages/Trucks";
-import TruckDetailsPage from "./pages/TruckDetails";
-import { DUMMY_TRUCKS } from "./components/helpers/dummyData.js";
+import TrucksPage, { loader as trucksLoader } from "./pages/Trucks";
+import TruckDetailsPage, {
+  loader as truckDetailsLoader,
+} from "./pages/TruckDetails";
+import { NewTruck } from "./pages/NewTruck.js";
+import { addTruckAction } from "./utils/actions/addTruckAction.js";
+import { deleteTruckAction } from "./utils/actions/deleteTruckAction.js";
+import { addOrderAction } from "./utils/actions/addOrderAction.js";
+import { NewOrderPage } from "./pages/NewOrder.js";
 
 const router = createBrowserRouter([
   {
@@ -19,15 +24,32 @@ const router = createBrowserRouter([
       {
         path: "trucks",
         id: "trucks",
-        element: <TrucksPage />,
-        loader: () => {
-          return DUMMY_TRUCKS;
+        children: [
+          { index: true, element: <TrucksPage />, loader: trucksLoader },
+          {
+            path: ":truckId",
+            id: "truck-details",
+            loader: truckDetailsLoader,
+            children: [
+              {
+                index: true,
+                element: <TruckDetailsPage />,
+                action: deleteTruckAction,
+              },
+              {
+                path: "neworder",
+                element: <NewOrderPage />,
+                action: addOrderAction,
+              },
+            ],
+          },
+          { path: "new", 
+          element: <NewTruck />, 
+          action: addTruckAction, 
         },
+        ],
       },
-      {
-        path: "trucks/:truckId",
-        element: <TruckDetailsPage />,
-      },
+
       { path: "neworder", element: <OrderForm /> },
     ],
   },
