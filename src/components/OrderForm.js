@@ -1,18 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LoadingPlaceBlock from "./LoadingPlaceBlock";
 import classes from "./OrderForm.module.css";
-import {
-  useRouteLoaderData,
-  json,
-  useNavigate,
-  redirect,
-  useSubmit,
-} from "react-router-dom";
+import { useRouteLoaderData, json, useNavigate } from "react-router-dom";
+import { resetForm } from "../store/orderSlice";
+import { useDispatch } from "react-redux";
 
 const OrderForm = ({ data }) => {
   const navigate = useNavigate();
-
-  const sumbit = useSubmit();
+  const dispatch = useDispatch();
 
   const truckData = useRouteLoaderData("truck-details");
   const orderData = {
@@ -37,15 +32,15 @@ const OrderForm = ({ data }) => {
       throw json({ message: "Could not save order ..." });
     }
 
-    // return redirect("/");
-    navigate('/')
+    navigate("/");
+    dispatch(resetForm());  
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(orderData);
-    // sumbit(orderData, {})
     addOrderAction(orderData);
+    
   };
 
   return (
