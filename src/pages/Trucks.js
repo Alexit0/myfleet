@@ -19,17 +19,4 @@ export default function TrucksPage() {
   );
 }
 
-export async function loader() {
-  const response = await fetch("http://localhost:5000/trucks");
 
-  if (!response.ok) {
-    throw json(
-      {
-        message: "Sorry.. Couldn't not fetch trucks from database.",
-      },
-      { status: 500 }
-    );
-  } else {
-    return response;
-  }
-}

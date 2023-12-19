@@ -29,6 +29,16 @@ const MainNavigation = () => {
               TRUCKS
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="orders"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              ORDERS
+            </NavLink>
+          </li>
           
         </ul>
       </nav>

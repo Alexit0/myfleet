@@ -3,7 +3,7 @@ import React from "react";
 import classes from "./NewTruck.module.css";
 import { Form, Link } from "react-router-dom";
 
-export function NewTruck() {
+export default function NewTruck() {
   return (
     <Form method="post" className={classes.form}>
       <h1>Enter truck details</h1>

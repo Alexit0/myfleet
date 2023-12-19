@@ -3,7 +3,7 @@ import OrderForm from "../components/OrderForm";
 import { useRouteLoaderData, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-export function NewOrderPage() {
+export default function NewOrderPage() {
   const data = useSelector((state) => state.order);
   const truckNumber = useRouteLoaderData("truck-details").truckNumber;
 

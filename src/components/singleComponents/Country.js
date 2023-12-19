@@ -30,6 +30,8 @@ const Country = ({ index, value, handleInput }) => {
         <option>Switzerland</option>
         <option>Czech Republic</option>
         <option>Lithuania</option>
+        <option>Latvia</option>
+        <option>UK</option>
       </select>
     </span>
   );
