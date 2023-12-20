@@ -1,15 +1,8 @@
 import DataTable from "react-data-table-component";
-import {
-  useRouteLoaderData,
-  useSubmit,
-  Form,
-  redirect,
-  useNavigate,
-} from "react-router-dom";
+import { useRouteLoaderData, useNavigate, json } from "react-router-dom";
 
 export default function OrderTable() {
   const ordersData = useRouteLoaderData("orders");
-  const submit = useSubmit();
   const navigate = useNavigate();
 
   // An expandable component.
@@ -17,46 +10,60 @@ export default function OrderTable() {
     <pre>{JSON.stringify(data, null, 10)}</pre>
   );
 
+  // Filter orders by days (not finished)
   const selectedDateOrders = [];
   ordersData.forEach((element) => {
+    // const valid = element.order.filter((el) => el.date == "2023-12-19");
+    //Temporary solution
     const valid = element.order.filter((el) => el);
     if (valid.length !== 0) {
       selectedDateOrders.push(element);
     }
   });
 
+  // Filter out loading cities
   function outputArray(data) {
     const array = data.map((element) => element.address);
     return array.join(" + ");
   }
 
+  // Filter out unloading cities
   function outputArray2(data) {
     const array = data.map((element) =>
       element.unloadingPlace.map((e) => e.address)
     );
     const results = [];
     array.forEach((element) => {
-      if (element.join("") != false) {
+      if (element.join("") !== false) {
         results.push(element.join(" + "));
       }
     });
     return results.filter((element) => element !== "").join(" + ");
   }
 
-  const handleDeleteOrder = (event) => {
-    console.log("clicked");
-    console.log(event.target.id);
+  // Using function instead of action as row._id is not passed correctly to deleteOrderAction resulting in removing wrong rows of data in the table.
+  const handleDeleteOrder = async (event) => {
     const proceed = window.confirm("Are you sure?");
-
     if (proceed) {
-      submit(
-        { orderId: event.target.id },
+      const response = await fetch(
+        "http://localhost:5000/orders/" + event.target.id,
         {
-          method: "delete",
-          action: event.target.id,
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
         }
       );
-      return navigate("orders");
+
+      if (!response.ok) {
+        throw json(
+          { message: "Could not delete order." },
+          {
+            status: 500,
+          }
+        );
+      }
+      return navigate("/orders");
     }
   };
 
@@ -78,13 +85,13 @@ export default function OrderTable() {
       name: "Action",
       button: true,
       cell: (row) => (
-        <Form>
-          <input name="orderId" defaultValue={row._id} hidden />
+        <>
+          {/* <input name="orderId" defaultValue={row._id} hidden /> */}
           <button>Edit</button>
           <button onClick={handleDeleteOrder} id={row._id} type="submit">
             Delete
           </button>
-        </Form>
+        </>
       ),
     },
   ];

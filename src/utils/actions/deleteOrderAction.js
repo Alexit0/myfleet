@@ -1,10 +1,12 @@
-import { json, redirect, useNavigate } from "react-router-dom";
+import { json, redirect } from "react-router-dom";
 
 export async function deleteOrderAction({ request }) {
   const formData = await request.formData();
   const orderId = formData.get("orderId");
+
   const method = request.method;
-//   const navigate = useNavigate();
+  console.log("ACTION orderId => ", orderId);
+  console.log("ACTION formData => ", formData);
 
   const response = await fetch("http://localhost:5000/orders/" + orderId, {
     method: method,
@@ -22,5 +24,5 @@ export async function deleteOrderAction({ request }) {
       }
     );
   }
-  return redirect("/");
+  return redirect("/orders");
 }

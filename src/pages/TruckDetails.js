@@ -2,18 +2,14 @@ import React from "react";
 
 import {
   Link,
-  useLoaderData,
   useRouteLoaderData,
-  useParams,
   useSubmit,
-  json,
 } from "react-router-dom";
 
 import classes from "./TruckDetails.module.css";
 
 export default function TruckDetailsPage() {
   const truckData = useRouteLoaderData("truck-details");
-  const params = useParams();
   const submit = useSubmit();
 
   function handleDelete() {
@@ -37,8 +33,6 @@ export default function TruckDetailsPage() {
       <button type="submit" onClick={handleDelete}>
         Delete truck
       </button>
-      
     </div>
   );
 }
-

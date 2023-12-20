@@ -16,7 +16,7 @@ import { ordersLoader } from "./utils/actions/loaders/ordersLoader.js";
 import { addTruckAction } from "./utils/actions/addTruckAction.js";
 import { deleteTruckAction } from "./utils/actions/deleteTruckAction.js";
 import { addOrderAction } from "./utils/actions/addOrderAction.js";
-import { deleteOrderAction } from "./utils/actions/deleteOrderAction.js";
+// import { deleteOrderAction } from "./utils/actions/deleteOrderAction.js";
 
 const router = createBrowserRouter([
   {
@@ -57,16 +57,10 @@ const router = createBrowserRouter([
         path: "orders",
         element: <OrdersPage />,
         loader: ordersLoader,
-        children: [
-          {
-            path: ":orderId",
-            action: deleteOrderAction,
-          },
-        ],
+        // action: deleteOrderAction,
       },
     ],
   },
-  ,
 ]);
 
 function App() {

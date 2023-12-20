@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import LoadingPlaceBlock from "./LoadingPlaceBlock";
 import classes from "./OrderForm.module.css";
 import { useRouteLoaderData, json, useNavigate } from "react-router-dom";
@@ -32,7 +32,7 @@ const OrderForm = ({ data }) => {
       throw json({ message: "Could not save order ..." });
     }
 
-    navigate("/");
+    navigate("/trucks");
     dispatch(resetForm());  
   }
 
