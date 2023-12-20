@@ -37,6 +37,7 @@ export default function TruckDetailsPage() {
       <button type="submit" onClick={handleDelete}>
         Delete truck
       </button>
+      
     </div>
   );
 }
