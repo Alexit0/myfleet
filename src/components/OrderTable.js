@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { useRouteLoaderData, useNavigate, json } from "react-router-dom";
+import { CustomLoader } from "./singleComponents/SpinnerTable";
 
 export default function OrderTable() {
   const ordersData = useRouteLoaderData("orders");
@@ -12,6 +14,7 @@ export default function OrderTable() {
 
   // Filter orders by days (not finished)
   const selectedDateOrders = [];
+
   ordersData.forEach((element) => {
     // const valid = element.order.filter((el) => el.date == "2023-12-19");
     //Temporary solution
@@ -41,9 +44,23 @@ export default function OrderTable() {
     return results.filter((element) => element !== "").join(" + ");
   }
 
-  // Using function instead of action as row._id is not passed correctly to deleteOrderAction resulting in removing wrong rows of data in the table.
   const handleDeleteOrder = async (event) => {
     const proceed = window.confirm("Are you sure?");
+
+    // Wont refresh order page after deleting the element on deleteOrderAction
+    //
+    //
+    // const formData = new FormData();
+    // formData.set("orderId", event.target.id);
+    //
+    // if (proceed) {
+    //   submit(formData, {
+    //     method: "DELETE",
+    //   });
+    //
+    //   return navigate("");
+    // }
+
     if (proceed) {
       const response = await fetch(
         "http://localhost:5000/orders/" + event.target.id,
@@ -54,7 +71,6 @@ export default function OrderTable() {
           },
         }
       );
-
       if (!response.ok) {
         throw json(
           { message: "Could not delete order." },
@@ -66,6 +82,18 @@ export default function OrderTable() {
       return navigate("/orders");
     }
   };
+
+  // Loading spinner
+  const [pending, setPending] = useState(true);
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setRows(selectedDateOrders);
+      setPending(false);
+    }, 300);
+    return () => clearTimeout(timeout);
+  });
 
   const columns = [
     {
@@ -86,11 +114,13 @@ export default function OrderTable() {
       button: true,
       cell: (row) => (
         <>
-          {/* <input name="orderId" defaultValue={row._id} hidden /> */}
           <button>Edit</button>
+          {/* <Form> */}
+          {/* <input name="orderId" defaultValue={row._id} hidden /> */}
           <button onClick={handleDeleteOrder} id={row._id} type="submit">
             Delete
           </button>
+          {/* </Form> */}
         </>
       ),
     },
@@ -99,9 +129,11 @@ export default function OrderTable() {
   return (
     <DataTable
       columns={columns}
-      data={selectedDateOrders}
+      data={rows}
       expandableRows
       expandableRowsComponent={ExpandedComponent}
+      progressPending={pending}
+      progressComponent={<CustomLoader />}
       defaultSortFieldId={1}
     />
   );

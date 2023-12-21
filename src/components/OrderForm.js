@@ -1,7 +1,11 @@
 import React from "react";
 import LoadingPlaceBlock from "./LoadingPlaceBlock";
 import classes from "./OrderForm.module.css";
-import { useRouteLoaderData, json, useNavigate } from "react-router-dom";
+import {
+  useRouteLoaderData,
+  json,
+  useNavigate,
+} from "react-router-dom";
 import { resetForm } from "../store/orderSlice";
 import { useDispatch } from "react-redux";
 
@@ -33,14 +37,13 @@ const OrderForm = ({ data }) => {
     }
 
     navigate("/trucks");
-    dispatch(resetForm());  
+    dispatch(resetForm());
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(orderData);
     addOrderAction(orderData);
-    
   };
 
   return (
