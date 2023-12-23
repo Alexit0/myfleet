@@ -67,6 +67,11 @@ export const orderSlice = createSlice({
     resetForm: () => {
       return initialState;
     },
+
+    editOrderDetails: (state, action) => {
+      console.log("action IN SLICE", action.payload);
+      return [...action.payload];
+    },
   },
 });
 
@@ -78,6 +83,7 @@ export const {
   addUnloading,
   removeUnloading,
   resetForm,
+  editOrderDetails,
 } = orderSlice.actions;
 
 export default orderSlice;

@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import OrderForm from "./components/OrderForm";
 import HomePage from "./pages/Home";
 import RootLayout from "./pages/Root";
 import ErrorPage from "./pages/Error";
@@ -8,10 +7,12 @@ import NewOrderPage from "./pages/NewOrder.js";
 import TrucksPage from "./pages/Trucks";
 import TruckDetailsPage from "./pages/TruckDetails";
 import NewTruck from "./pages/NewTruck.js";
+import EditOrderPage from "./pages/EditOrder.js";
 
-import { trucksLoader } from "./utils/actions/loaders/trucksLoader.js";
-import { truckDetailsLoader } from "./utils/actions/loaders/truckDetailsLoader.js";
-import { ordersLoader } from "./utils/actions/loaders/ordersLoader.js";
+import { trucksLoader } from "./utils/loaders/trucksLoader.js";
+import { truckDetailsLoader } from "./utils/loaders/truckDetailsLoader.js";
+import { ordersLoader } from "./utils/loaders/ordersLoader.js";
+import { orderDetailsLoader } from "./utils/loaders/orderDetailsLoader.js";
 
 import { addTruckAction } from "./utils/actions/addTruckAction.js";
 import { deleteTruckAction } from "./utils/actions/deleteTruckAction.js";
@@ -51,19 +52,21 @@ const router = createBrowserRouter([
         ],
       },
 
-      { path: "neworder", element: <OrderForm /> },
       {
         id: "orders",
         path: "orders",
         loader: ordersLoader,
-        element: <OrdersPage />,
-
-        action: deleteOrderAction,
         children: [
           {
-            // index: true,
-            // element: <OrdersPage />,
-            // action: deleteOrderAction,
+            index: true,
+            element: <OrdersPage />,
+            action: deleteOrderAction,
+          },
+          {
+            id: "order-details",
+            path: ":orderId",
+            element: <EditOrderPage />,
+            loader: orderDetailsLoader,
           },
         ],
       },

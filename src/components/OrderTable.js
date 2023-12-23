@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
-import { useRouteLoaderData, useNavigate, json } from "react-router-dom";
+import { useRouteLoaderData, useNavigate } from "react-router-dom";
 import { CustomLoader } from "./singleComponents/SpinnerTable";
 
 export default function OrderTable() {
   const ordersData = useRouteLoaderData("orders");
+  // Loading spinner
+  const [pending, setPending] = useState(true);
+  const [rows, setRows] = useState([]);
+  // Responsive delete button
+  const [deletingRows, setDeletingRows] = useState([]);
   const navigate = useNavigate();
 
   // An expandable component.
@@ -32,19 +37,18 @@ export default function OrderTable() {
 
   // Filter out unloading cities
   function outputArray2(data) {
-    const array = data.map((element) =>
-      element.unloadingPlace.map((e) => e.address)
-    );
-    const results = [];
-    array.forEach((element) => {
-      if (element.join("") !== false) {
-        results.push(element.join(" + "));
-      }
-    });
-    return results.filter((element) => element !== "").join(" + ");
+    return data
+      .flatMap((element) => element.unloadingPlace.map((e) => e.address))
+      .filter((element) => element !== "")
+      .join(" + ");
   }
 
   const handleDeleteOrder = async (event) => {
+    const orderId = event.target.id;
+    // Check if the row is already in the process of being deleted
+    if (deletingRows.includes(orderId)) {
+      return;
+    }
     const proceed = window.confirm("Are you sure?");
 
     // Wont refresh order page after deleting the element on deleteOrderAction
@@ -62,30 +66,39 @@ export default function OrderTable() {
     // }
 
     if (proceed) {
-      const response = await fetch(
-        "http://localhost:5000/orders/" + event.target.id,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
-      if (!response.ok) {
-        throw json(
-          { message: "Could not delete order." },
+      setDeletingRows((prev) => [...prev, orderId]);
+
+      try {
+        const response = await fetch(
+          `http://localhost:5000/orders/${orderId}`,
           {
-            status: 500,
+            method: "DELETE",
+            headers: {
+              "Content-type": "application/json",
+            },
           }
         );
+
+        if (!response.ok) {
+          throw new Error("Could not delete order.");
+        }
+
+        // After successful deletion, remove the row from the state
+        setRows((prevRows) => prevRows.filter((row) => row._id !== orderId));
+      } catch (error) {
+        // Handle the error if the deletion fails
+        console.error(error);
+      } finally {
+        // Remove the row from the deletingRows state
+        setDeletingRows((prev) => prev.filter((id) => id !== orderId));
       }
       return navigate("/orders");
     }
   };
 
-  // Loading spinner
-  const [pending, setPending] = useState(true);
-  const [rows, setRows] = useState([]);
+  const handleEditOrder = (event) => {
+    navigate(`${event.target.id}`);
+  };
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -114,13 +127,17 @@ export default function OrderTable() {
       button: true,
       cell: (row) => (
         <>
-          <button>Edit</button>
-          {/* <Form> */}
-          {/* <input name="orderId" defaultValue={row._id} hidden /> */}
-          <button onClick={handleDeleteOrder} id={row._id} type="submit">
-            Delete
+          <button onClick={handleEditOrder} id={row._id}>
+            Edit
           </button>
-          {/* </Form> */}
+
+          <button
+            onClick={handleDeleteOrder}
+            id={row._id}
+            disabled={deletingRows.includes(row._id)}
+          >
+            {deletingRows.includes(row._id) ? "..." : "Delete"}
+          </button>
         </>
       ),
     },

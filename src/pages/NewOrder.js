@@ -12,7 +12,7 @@ export default function NewOrderPage() {
       <h3>Truck details:</h3>
       <h1>{truckNumber}</h1>
       <p />
-      <OrderForm data={data} />
+      <OrderForm data={data} truckNumber={truckNumber} method="post" />
       <p />
       <Link to="/trucks">back to the list</Link>
       <p />

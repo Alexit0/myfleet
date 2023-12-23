@@ -1,27 +1,27 @@
 import React from "react";
 import LoadingPlaceBlock from "./LoadingPlaceBlock";
 import classes from "./OrderForm.module.css";
-import {
-  useRouteLoaderData,
-  json,
-  useNavigate,
-} from "react-router-dom";
+import { json, useNavigate, useParams } from "react-router-dom";
 import { resetForm } from "../store/orderSlice";
 import { useDispatch } from "react-redux";
 
-const OrderForm = ({ data }) => {
+const OrderForm = ({ data, truckNumber, method }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const params = useParams();
 
-  const truckData = useRouteLoaderData("truck-details");
   const orderData = {
-    truckNumber: truckData.truckNumber,
+    truckNumber: truckNumber,
     order: [...data],
   };
 
   async function addOrderAction(data) {
-    const response = await fetch("http://localhost:5000/orders", {
-      method: "POST",
+    let url = `http://localhost:5000/orders`;
+    if (method === "put") {
+      url = `http://localhost:5000/orders/${params.orderId}`;
+    }
+    const response = await fetch(url, {
+      method,
       headers: {
         "Content-type": "application/json",
       },
@@ -42,12 +42,11 @@ const OrderForm = ({ data }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(orderData);
     addOrderAction(orderData);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} method={method}>
       <main>
         {data.map((loadingPlace, index) => (
           <LoadingPlaceBlock key={index} index={index} value={loadingPlace} />
