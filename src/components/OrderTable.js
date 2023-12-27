@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { useRouteLoaderData, useNavigate } from "react-router-dom";
 import { CustomLoader } from "./singleComponents/SpinnerTable";
 
 export default function OrderTable() {
   const ordersData = useRouteLoaderData("orders");
-  // Loading spinner
   const [pending, setPending] = useState(true);
-  const [rows, setRows] = useState([]);
-  // Responsive delete button
   const [deletingRows, setDeletingRows] = useState([]);
   const navigate = useNavigate();
 
@@ -17,53 +14,13 @@ export default function OrderTable() {
     <pre>{JSON.stringify(data, null, 10)}</pre>
   );
 
-  // Filter orders by days (not finished)
-  const selectedDateOrders = [];
-
-  ordersData.forEach((element) => {
-    // const valid = element.order.filter((el) => el.date == "2023-12-19");
-    //Temporary solution
-    const valid = element.order.filter((el) => el);
-    if (valid.length !== 0) {
-      selectedDateOrders.push(element);
-    }
-  });
-
-  // Filter out loading cities
-  function outputArray(data) {
-    const array = data.map((element) => element.address);
-    return array.join(" + ");
-  }
-
-  // Filter out unloading cities
-  function outputArray2(data) {
-    return data
-      .flatMap((element) => element.unloadingPlace.map((e) => e.address))
-      .filter((element) => element !== "")
-      .join(" + ");
-  }
-
+  // Delete event handler
   const handleDeleteOrder = async (event) => {
     const orderId = event.target.id;
-    // Check if the row is already in the process of being deleted
     if (deletingRows.includes(orderId)) {
       return;
     }
     const proceed = window.confirm("Are you sure?");
-
-    // Wont refresh order page after deleting the element on deleteOrderAction
-    //
-    //
-    // const formData = new FormData();
-    // formData.set("orderId", event.target.id);
-    //
-    // if (proceed) {
-    //   submit(formData, {
-    //     method: "DELETE",
-    //   });
-    //
-    //   return navigate("");
-    // }
 
     if (proceed) {
       setDeletingRows((prev) => [...prev, orderId]);
@@ -82,31 +39,23 @@ export default function OrderTable() {
         if (!response.ok) {
           throw new Error("Could not delete order.");
         }
-
-        // After successful deletion, remove the row from the state
-        setRows((prevRows) => prevRows.filter((row) => row._id !== orderId));
       } catch (error) {
-        // Handle the error if the deletion fails
         console.error(error);
       } finally {
-        // Remove the row from the deletingRows state
         setDeletingRows((prev) => prev.filter((id) => id !== orderId));
+        navigate("/orders");
       }
-      return navigate("/orders");
     }
   };
 
+  // Edit event handler
   const handleEditOrder = (event) => {
     navigate(`${event.target.id}`);
   };
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setRows(selectedDateOrders);
-      setPending(false);
-    }, 300);
-    return () => clearTimeout(timeout);
-  });
+    setPending(false);
+  }, []);
 
   const columns = [
     {
@@ -116,11 +65,11 @@ export default function OrderTable() {
     },
     {
       name: "Loading place",
-      selector: (row) => outputArray(row.order),
+      selector: (row) => row.loadingPlace,
     },
     {
       name: "Unloading place",
-      selector: (row) => outputArray2(row.order),
+      selector: (row) => row.unloadingPlace,
     },
     {
       name: "Action",
@@ -143,15 +92,61 @@ export default function OrderTable() {
     },
   ];
 
-  return (
-    <DataTable
-      columns={columns}
-      data={rows}
-      expandableRows
-      expandableRowsComponent={ExpandedComponent}
-      progressPending={pending}
-      progressComponent={<CustomLoader />}
-      defaultSortFieldId={1}
-    />
-  );
+  // Invoke groupOrdersByDate function to get the grouped orders
+  const groupedOrders = groupOrdersByDate(ordersData);
+
+  const tables = Object.entries(groupedOrders).map(([date, orders]) => (
+    <div key={date}>
+      <h2>{date}</h2>
+      <div
+        style={{ borderRadius: "10px" }} // Add inline styling
+      >
+        <DataTable
+          columns={columns}
+          data={orders}
+          expandableRows
+          expandableRowsComponent={ExpandedComponent}
+          progressPending={pending}
+          progressComponent={<CustomLoader />}
+          defaultSortFieldId={1}
+        />
+      </div>
+    </div>
+  ));
+
+  return <React.Fragment>{tables}</React.Fragment>;
+}
+
+// Filter out loading cities
+function outputArray(data) {
+  const array = data.map((element) => element.address);
+  return array.join(" + ");
+}
+
+// Filter out unloading cities
+function outputArray2(data) {
+  return data
+    .flatMap((element) => element.unloadingPlace.map((e) => e.address))
+    .filter((element) => element !== "")
+    .join(" + ");
+}
+
+function groupOrdersByDate(ordersData) {
+  const groupedOrders = {};
+  ordersData.forEach((element) => {
+    const validOrders = element.order.filter((el) => el);
+    if (validOrders.length !== 0) {
+      const date = validOrders[0].date;
+      if (!groupedOrders[date]) {
+        groupedOrders[date] = [];
+      }
+      groupedOrders[date].push({
+        _id: element._id,
+        truckNumber: element.truckNumber,
+        loadingPlace: outputArray(element.order),
+        unloadingPlace: outputArray2(element.order),
+      });
+    }
+  });
+  return groupedOrders;
 }
