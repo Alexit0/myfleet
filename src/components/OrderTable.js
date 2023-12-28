@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { useRouteLoaderData, useNavigate } from "react-router-dom";
 import { CustomLoader } from "./singleComponents/SpinnerTable";
+import toast from "react-hot-toast";
 
 export default function OrderTable() {
   const ordersData = useRouteLoaderData("orders");
@@ -25,25 +26,26 @@ export default function OrderTable() {
     if (proceed) {
       setDeletingRows((prev) => [...prev, orderId]);
 
-      try {
-        const response = await fetch(
-          `http://localhost:5000/orders/${orderId}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-type": "application/json",
-            },
-          }
-        );
+      const deletePromise = fetch(`http://localhost:5000/orders/${orderId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
 
-        if (!response.ok) {
-          throw new Error("Could not delete order.");
-        }
+      toast.promise(deletePromise, {
+        loading: "Deleting...",
+        success: "Order deleted successfully",
+        error: "Error deleting order",
+      });
+
+      try {
+        await deletePromise;
+        navigate("/orders"); // Navigate on successful deletion
       } catch (error) {
         console.error(error);
       } finally {
         setDeletingRows((prev) => prev.filter((id) => id !== orderId));
-        navigate("/orders");
       }
     }
   };
@@ -95,24 +97,28 @@ export default function OrderTable() {
   // Invoke groupOrdersByDate function to get the grouped orders
   const groupedOrders = groupOrdersByDate(ordersData);
 
-  const tables = Object.entries(groupedOrders).map(([date, orders]) => (
-    <div key={date}>
-      <h2>{date}</h2>
-      <div
-        style={{ borderRadius: "10px" }} // Add inline styling
-      >
-        <DataTable
-          columns={columns}
-          data={orders}
-          expandableRows
-          expandableRowsComponent={ExpandedComponent}
-          progressPending={pending}
-          progressComponent={<CustomLoader />}
-          defaultSortFieldId={1}
-        />
-      </div>
-    </div>
-  ));
+  // Sort entries by date in descending order
+const sortedTables = Object.entries(groupedOrders)
+.sort(([dateA], [dateB]) => dateB.localeCompare(dateA));
+
+const tables = sortedTables.map(([date, orders]) => (
+<div key={date}>
+  <h2>{date}</h2>
+  <div
+    style={{ borderRadius: "10px" }} // Add inline styling
+  >
+    <DataTable
+      columns={columns}
+      data={orders}
+      expandableRows
+      expandableRowsComponent={ExpandedComponent}
+      progressPending={pending}
+      progressComponent={<CustomLoader />}
+      defaultSortFieldId={1}
+    />
+  </div>
+</div>
+));
 
   return <React.Fragment>{tables}</React.Fragment>;
 }

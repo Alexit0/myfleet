@@ -1,15 +1,14 @@
-import { json, redirect } from "react-router-dom";
+import { redirect } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export async function addTruckAction({ request, params }) {
   const data = await request.formData();
 
   const enteredData = { truckNumber: data.get("truckNumber").trim() };
-  console.log(enteredData);
-  console.log("addTruckAction engaged")
 
   let url = "http://localhost:5000/trucks/";
 
-  const response = await fetch(url, {
+  const savePromise = fetch(url, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -17,13 +16,28 @@ export async function addTruckAction({ request, params }) {
     body: JSON.stringify(enteredData),
   });
 
-  if (response.status === 422) {
-    return response;
-  }
+  toast.promise(savePromise, {
+    loading: "Saving...",
+    success: "Truck saved successfully!",
+    error: "An error occurred while saving the truck.",
+  });
 
-  if (!response.ok) {
-    throw json({ message: "Could not save truck" });
-  }
+  try {
+    const response = await savePromise;
 
-  return redirect("/trucks");
+    if (response.status === 422) {
+      // Handle validation error
+      return response;
+    }
+
+    if (!response.ok) {
+      throw new Error("Could not save truck");
+    }
+
+    // Redirect on successful save
+    return redirect("/trucks");
+  } catch (error) {
+    // Log the error to the console
+    console.error(error);
+  }
 }

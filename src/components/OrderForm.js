@@ -4,6 +4,7 @@ import classes from "./OrderForm.module.css";
 import { json, useNavigate, useParams } from "react-router-dom";
 import { resetForm } from "../store/orderSlice";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 const OrderForm = ({ data, truckNumber, method }) => {
   const navigate = useNavigate();
@@ -20,7 +21,8 @@ const OrderForm = ({ data, truckNumber, method }) => {
     if (method === "put") {
       url = `http://localhost:5000/orders/${params.orderId}`;
     }
-    const response = await fetch(url, {
+
+    const savePromise = fetch(url, {
       method,
       headers: {
         "Content-type": "application/json",
@@ -28,16 +30,31 @@ const OrderForm = ({ data, truckNumber, method }) => {
       body: JSON.stringify(data),
     });
 
-    if (response.status === 422) {
-      return response;
-    }
+    toast.promise(savePromise, {
+      loading: "Saving...",
+      success: "Order saved successfully!",
+      error: "An error occurred while saving the order.",
+    });
 
-    if (!response.ok) {
-      throw json({ message: "Could not save order ..." });
-    }
+    try {
+      const response = await savePromise;
 
-    navigate("/trucks");
-    dispatch(resetForm());
+      if (response.status === 422) {
+        // Handle validation error
+        return response;
+      }
+
+      if (!response.ok) {
+        throw new Error("Could not save order...");
+      }
+
+      // Navigate and reset form on successful save
+      navigate("/trucks");
+      dispatch(resetForm());
+    } catch (error) {
+      // Log the error to the console
+      console.error(error);
+    }
   }
 
   const handleSubmit = (event) => {
