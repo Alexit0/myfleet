@@ -4,16 +4,13 @@ import { useRouteLoaderData, useNavigate } from "react-router-dom";
 import { CustomLoader } from "./singleComponents/SpinnerTable";
 import toast from "react-hot-toast";
 
+import ExpandedComponent from "./singleComponents/ExpandedComponent";
+
 export default function OrderTable() {
   const ordersData = useRouteLoaderData("orders");
   const [pending, setPending] = useState(true);
   const [deletingRows, setDeletingRows] = useState([]);
   const navigate = useNavigate();
-
-  // An expandable component.
-  const ExpandedComponent = ({ data }) => (
-    <pre>{JSON.stringify(data, null, 10)}</pre>
-  );
 
   // Delete event handler
   const handleDeleteOrder = async (event) => {
@@ -64,6 +61,9 @@ export default function OrderTable() {
       name: "Truck number",
       selector: (row) => row.truckNumber,
       sortable: true,
+      style: {
+        fontWeight: "bold",
+      },
     },
     {
       name: "Loading place",
@@ -75,7 +75,7 @@ export default function OrderTable() {
     },
     {
       name: "Action",
-      button: true,
+      button: "true",
       cell: (row) => (
         <>
           <button onClick={handleEditOrder} id={row._id}>
@@ -98,41 +98,44 @@ export default function OrderTable() {
   const groupedOrders = groupOrdersByDate(ordersData);
 
   // Sort entries by date in descending order
-const sortedTables = Object.entries(groupedOrders)
-.sort(([dateA], [dateB]) => dateB.localeCompare(dateA));
+  const sortedTables = Object.entries(groupedOrders).sort(([dateA], [dateB]) =>
+    dateB.localeCompare(dateA)
+  );
 
-const tables = sortedTables.map(([date, orders]) => (
-<div key={date}>
-  <h2>{date}</h2>
-  <div
-    style={{ borderRadius: "10px" }} // Add inline styling
-  >
-    <DataTable
-      columns={columns}
-      data={orders}
-      expandableRows
-      expandableRowsComponent={ExpandedComponent}
-      progressPending={pending}
-      progressComponent={<CustomLoader />}
-      defaultSortFieldId={1}
-    />
-  </div>
-</div>
-));
+  const tables = sortedTables.map(([date, orders]) => (
+    <div key={date}>
+      <h2>{date}</h2>
+      <div
+        style={{ borderRadius: "10px" }} // Add inline styling
+      >
+        <DataTable
+          columns={columns}
+          data={orders}
+          expandableRows
+          expandableRowsComponent={ExpandedComponent}
+          progressPending={pending}
+          progressComponent={<CustomLoader />}
+          defaultSortFieldId={1}
+          highlightOnHover={true}
+          expandOnRowClicked={true}
+        />
+      </div>
+    </div>
+  ));
 
   return <React.Fragment>{tables}</React.Fragment>;
 }
 
-// Filter out loading cities
+// Filter out loading post codes
 function outputArray(data) {
-  const array = data.map((element) => element.address);
+  const array = data.map((element) => element.postCode);
   return array.join(" + ");
 }
 
-// Filter out unloading cities
+// Filter out unloading citiepost codes
 function outputArray2(data) {
   return data
-    .flatMap((element) => element.unloadingPlace.map((e) => e.address))
+    .flatMap((element) => element.unloadingPlace.map((e) => e.postCode))
     .filter((element) => element !== "")
     .join(" + ");
 }
@@ -147,8 +150,7 @@ function groupOrdersByDate(ordersData) {
         groupedOrders[date] = [];
       }
       groupedOrders[date].push({
-        _id: element._id,
-        truckNumber: element.truckNumber,
+        ...element,
         loadingPlace: outputArray(element.order),
         unloadingPlace: outputArray2(element.order),
       });
