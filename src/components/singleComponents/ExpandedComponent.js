@@ -1,4 +1,5 @@
 import React from "react";
+import "./ExpandedComponent.module.css";
 
 // An expandable component.
 const ExpandedComponent = ({ data }) => {
@@ -29,47 +30,44 @@ const ExpandedComponent = ({ data }) => {
 
   return (
     <div>
-      <ul
-        style={{
-          listStyleType: "none",
-          textAlign: "left",
-          fontSize: "small",
-        }}
-      >
+      <ul>
         {Object.entries(groupedPlaces).map(([date, places]) => (
           <li key={date}>
-            {/* <strong>{date}</strong> */}
-            <ul
-              style={{
-                listStyleType: "none",
-              }}
-            >
+            <ul>
               {places.map((place, index) => (
                 <li key={`${place.address}-${index}`}>
                   <strong>{`${place.date} `}</strong>
-                  {`${place.isLoadingPlace ? "Loading" : "Unloading"}: ${
-                    place.address
-                  }, ${place.postCode} (${place.distance}km), GPS: ${
-                    place.coordinates
-                  }`}
+                  {place.isLoadingPlace ? (
+                    <strong>Loading</strong>
+                  ) : (
+                    <strong>Unloading</strong>
+                  )}
+                  :
+                  {`${place.address}, ${place.postCode} (${place.distance}km), GPS: ${place.coordinates}`}
+                  <br />
                   {place.isLoadingPlace && (
-                    <ul
-                      style={{
-                        listStyleType: "none",
-                      }}
-                    >
+                    <ul>
                       {place.unloadingPlace.map(
                         (unloadingPlace, innerIndex) => (
-                          <li key={`${unloadingPlace.address}-${innerIndex}`}>
-                            {`Receiver: ${unloadingPlace.address}, ${unloadingPlace.postCode}`}
-                            <br />
-                            {`cargo: ${unloadingPlace.cargoDetails}`}
-                            <br />
-                            {`ref: ${unloadingPlace.comments}`}
-                          </li>
+                          <>
+                            <li key={`${unloadingPlace.address}-${innerIndex}`}>
+                              {`Receiver: ${unloadingPlace.address}, ${unloadingPlace.postCode}`}
+                            </li>
+                            <li>{`Cargo: ${unloadingPlace.cargoDetails}`}</li>
+                          </>
                         )
                       )}
+                      <li>{`Reference: ${place.comments}`}</li>
                     </ul>
+                  )}
+                  {!place.isLoadingPlace && (
+                    <>
+                      <ul>
+                        <li>
+                          {place.comments && `Reference: ${place.comments}`}
+                        </li>
+                      </ul>
+                    </>
                   )}
                 </li>
               ))}
