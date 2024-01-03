@@ -1,5 +1,5 @@
 import React from "react";
-import "./ExpandedComponent.module.css";
+import classes from "./ExpandedComponent.module.css";
 
 // An expandable component.
 const ExpandedComponent = ({ data }) => {
@@ -30,23 +30,23 @@ const ExpandedComponent = ({ data }) => {
 
   return (
     <div>
-      <ul>
+      <ul className={classes.ul}>
         {Object.entries(groupedPlaces).map(([date, places]) => (
           <li key={date}>
-            <ul>
+            <ul className={classes.ul}>
               {places.map((place, index) => (
                 <li key={`${place.address}-${index}`}>
                   <strong>{`${place.date} `}</strong>
                   {place.isLoadingPlace ? (
-                    <strong>Loading</strong>
+                    <strong>Loading: </strong>
                   ) : (
-                    <strong>Unloading</strong>
+                    <strong>Unloading: </strong>
                   )}
-                  :
+
                   {`${place.address}, ${place.postCode} (${place.distance}km), GPS: ${place.coordinates}`}
                   <br />
                   {place.isLoadingPlace && (
-                    <ul>
+                    <ul className={classes.ul}>
                       {place.unloadingPlace.map(
                         (unloadingPlace, innerIndex) => (
                           <>
@@ -62,7 +62,7 @@ const ExpandedComponent = ({ data }) => {
                   )}
                   {!place.isLoadingPlace && (
                     <>
-                      <ul>
+                      <ul className={classes.ul}>
                         <li>
                           {place.comments && `Reference: ${place.comments}`}
                         </li>
