@@ -10,11 +10,48 @@ html {
 
 body {
   margin: 0;
-  background-color: #151d2c;
-  color: antiquewhite;
+  background-color: #161e2d;
+  color: #e9e9d3;
 }
 
 nav {
   margin-left: -41px;
 
+}
+
+/* Knopf buttons */
+:root {
+  --knopf-hue: 164;
+  --knopf-saturation: 88%;
+  --knopf-luminosity: 28%;
+
+}
+
+.negative {
+  --knopf-hue: 356;
+  --knopf-saturation: 57%;
+  --knopf-luminosity: 51%;
+}
+
+.standard {
+  --knopf-hue: 218;
+  --knopf-saturation: 35%;
+  --knopf-luminosity: 22%;
+}
+
+.reversed {
+  --knopf-hue: 60;
+  --knopf-saturation: 33%;
+  --knopf-luminosity: 87%;
+  --text-decoration-color: #161e2d;
+}
+
+.buttons {
+  text-align: center;
+}
+
+.add {
+  --knopf-hue: 60;
+  --knopf-saturation: 33%;
+  --knopf-luminosity: 87%;
 }

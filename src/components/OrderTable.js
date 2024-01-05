@@ -3,10 +3,12 @@ import DataTable from "react-data-table-component";
 import { useRouteLoaderData, useNavigate } from "react-router-dom";
 import { CustomLoader } from "./singleComponents/SpinnerTable";
 import toast from "react-hot-toast";
-
+import { EditIcon } from "../ui/icons/EditIcon";
+import { DeleteIcon } from "../ui/icons/DeleteIcon";
+import "knopf.css";
 import ExpandedComponent from "./singleComponents/ExpandedComponent";
 
-export default function OrderTable() {
+function OrderTable() {
   const ordersData = useRouteLoaderData("orders");
   const [pending, setPending] = useState(true);
   const [deletingRows, setDeletingRows] = useState([]);
@@ -14,7 +16,8 @@ export default function OrderTable() {
 
   // Delete event handler
   const handleDeleteOrder = async (event) => {
-    const orderId = event.target.id;
+    const orderId = event.currentTarget.id;
+
     if (deletingRows.includes(orderId)) {
       return;
     }
@@ -37,19 +40,19 @@ export default function OrderTable() {
       });
 
       try {
-        await deletePromise;
-        navigate("/orders"); // Navigate on successful deletion
+        const response = await deletePromise;
       } catch (error) {
-        console.error(error);
+        console.error("Delete Error:", error);
       } finally {
         setDeletingRows((prev) => prev.filter((id) => id !== orderId));
+        navigate("/orders"); // Navigate on successful deletion
       }
     }
   };
 
   // Edit event handler
   const handleEditOrder = (event) => {
-    navigate(`${event.target.id}`);
+    navigate(`${event.currentTarget.id}`);
   };
 
   useEffect(() => {
@@ -77,20 +80,37 @@ export default function OrderTable() {
       name: "Action",
       button: "true",
       cell: (row) => (
-        <>
-          <button onClick={handleEditOrder} id={row._id}>
-            Edit
+        <div class="knopf-group buttons pill ">
+          <button
+            class="knopf standard flat outlined small"
+            onClick={handleEditOrder}
+            id={row._id}
+          >
+            <svg class="icon">
+              <EditIcon />
+            </svg>
           </button>
 
           <button
+            class="knopf standard flat outlined small"
             onClick={handleDeleteOrder}
             id={row._id}
             disabled={deletingRows.includes(row._id)}
           >
-            {deletingRows.includes(row._id) ? "..." : "Delete"}
+            <svg class="icon">
+              {deletingRows.includes(row._id) ? "..." : ""}
+              {!deletingRows.includes(row._id) && <DeleteIcon />}
+            </svg>
+            {deletingRows.includes(row._id) && "..."}
           </button>
-        </>
+        </div>
       ),
+      style: {
+        textAlign: "center", // Center the text in the header
+      },
+      headStyle: {
+        textAlign: "center", // Center the heading text
+      },
     },
   ];
 
@@ -132,7 +152,7 @@ function outputArray(data) {
   return array.join(" + ");
 }
 
-// Filter out unloading citiepost codes
+// Filter out unloading city post codes
 function outputArray2(data) {
   return data
     .flatMap((element) => element.unloadingPlace.map((e) => e.postCode))
@@ -158,3 +178,5 @@ function groupOrdersByDate(ordersData) {
   });
   return groupedOrders;
 }
+
+export default OrderTable;

@@ -25,9 +25,9 @@ export default function TruckDetailsPage() {
       <h3>Truck details:</h3>
       <h1>{truckData.truckNumber}</h1>
       <p />
-      <Link to="neworder">Add new order</Link>
+      <Link to="neworder" className="knopf reversed outlined flat">Add new order</Link>
       <p />
-      <Link to="/trucks">back to the list</Link>
+      <Link to="/trucks" className="knopf reversed link">back to the list</Link>
       <p />
 
       <button type="submit" onClick={handleDelete}>

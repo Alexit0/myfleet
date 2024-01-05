@@ -3,6 +3,8 @@ import React from "react";
 import classes from "./NewTruck.module.css";
 import { Form, Link } from "react-router-dom";
 
+import "knopf.css";
+
 export default function NewTruck() {
   return (
     <Form method="post" className={classes.form}>
@@ -13,7 +15,7 @@ export default function NewTruck() {
         <p />
         <input name="truckNumber"></input>
         <p />
-        <button>Save</button>
+        <button class="knopf reversed flat outlined">Save</button>
       </div>
       <br />
       <Link to="/trucks">Back</Link>
