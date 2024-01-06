@@ -13,12 +13,12 @@ export default function NewTruck() {
       <div>
         <label>Truck registration plate</label>
         <p />
-        <input name="truckNumber"></input>
+        <input name="truckNumber" required></input>
         <p />
         <button class="knopf reversed flat outlined">Save</button>
       </div>
       <br />
-      <Link to="/trucks">Back</Link>
+      <Link to="/trucks" className="knopf link reversed">Back</Link>
     </Form>
   );
 }

@@ -7,6 +7,8 @@ import { EditIcon } from "../ui/icons/EditIcon";
 import { DeleteIcon } from "../ui/icons/DeleteIcon";
 import "knopf.css";
 import ExpandedComponent from "./singleComponents/ExpandedComponent";
+import { PiTruckFill } from "react-icons/pi";
+
 
 function OrderTable() {
   const ordersData = useRouteLoaderData("orders");
@@ -80,24 +82,24 @@ function OrderTable() {
       name: "Action",
       button: "true",
       cell: (row) => (
-        <div class="knopf-group buttons pill ">
+        <div className="knopf-group buttons pill ">
           <button
-            class="knopf standard flat outlined small"
+            className="knopf standard flat outlined small"
             onClick={handleEditOrder}
             id={row._id}
           >
-            <svg class="icon">
+            <svg className="icon base">
               <EditIcon />
             </svg>
           </button>
 
           <button
-            class="knopf standard flat outlined small"
+            className="knopf standard flat outlined small"
             onClick={handleDeleteOrder}
             id={row._id}
             disabled={deletingRows.includes(row._id)}
           >
-            <svg class="icon">
+            <svg className="icon base">
               {deletingRows.includes(row._id) ? "..." : ""}
               {!deletingRows.includes(row._id) && <DeleteIcon />}
             </svg>

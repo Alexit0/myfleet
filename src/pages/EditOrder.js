@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import OrderForm from "../components/OrderForm";
 import { editOrderDetails } from "../store/orderSlice";
@@ -21,6 +21,8 @@ export default function EditOrderPage() {
     <div>
       <h1>Edit order</h1>
       <OrderForm data={data} truckNumber={orderData.truckNumber} method="put" />
+      <p />
+      <Link to="/trucks" className="knopf reversed link">Cancel</Link>
     </div>
   );
 }

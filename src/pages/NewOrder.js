@@ -14,7 +14,7 @@ export default function NewOrderPage() {
       <p />
       <OrderForm data={data} truckNumber={truckNumber} method="post" />
       <p />
-      <Link to="/trucks">back to the list</Link>
+      <Link to="/trucks" className="knopf reversed link">Cancel and go back to the list</Link>
       <p />
     </div>
   );

@@ -1,6 +1,5 @@
 import Date from "./singleComponents/Date";
 import Time from "./singleComponents/Time";
-import FixedTerm from "./singleComponents/FixedTerm";
 
 import classes from "./OrderForm.module.css";
 
@@ -27,11 +26,6 @@ const DateTimeBlock = ({ index, value, dateTitle, handleInput }) => {
         value={value.timeTo}
         handleInput={handleInput}
       />
-      {/* <FixedTerm
-        index={index}
-        value={value.fixedTime}
-        handleInput={handleInput}
-      /> */}
     </div>
   );
 };

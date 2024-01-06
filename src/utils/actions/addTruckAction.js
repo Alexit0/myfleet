@@ -4,7 +4,9 @@ import toast from "react-hot-toast";
 export async function addTruckAction({ request, params }) {
   const data = await request.formData();
 
-  const enteredData = { truckNumber: data.get("truckNumber").trim() };
+  const enteredData = {
+    truckNumber: data.get("truckNumber").trim().toUpperCase(),
+  };
 
   let url = "http://localhost:5000/trucks/";
 

@@ -51,7 +51,15 @@ nav {
 }
 
 .add {
-  --knopf-hue: 60;
-  --knopf-saturation: 33%;
-  --knopf-luminosity: 87%;
+
+  --knopf-icon-size-base: 1.125rem;
 }
+
+.delete {
+  justify-content: left;
+}
+
+.submit {
+  height: 22px;
+  margin: auto 10px 10px 10px;
+  --knopf-justify-content: center;}

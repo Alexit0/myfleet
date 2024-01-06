@@ -3,8 +3,6 @@ import classes from "./ExpandedComponent.module.css";
 
 // An expandable component.
 const ExpandedComponent = ({ data }) => {
-  console.log(data);
-
   const loadingPlacesArray = data.order.map((order) => ({
     ...order,
     isLoadingPlace: true,
@@ -26,8 +24,6 @@ const ExpandedComponent = ({ data }) => {
     return grouped;
   }, {});
 
-  console.log("Grouped Places:", groupedPlaces);
-
   return (
     <div>
       <ul className={classes.ul}>
@@ -43,18 +39,22 @@ const ExpandedComponent = ({ data }) => {
                     <strong>Unloading: </strong>
                   )}
 
-                  {`${place.address}, ${place.postCode} (${place.distance}km), GPS: ${place.coordinates}`}
+                  {`${place.address}, ${place.postCode} (${place.distance}km) GPS: ${place.coordinates}`}
                   <br />
                   {place.isLoadingPlace && (
                     <ul className={classes.ul}>
                       {place.unloadingPlace.map(
                         (unloadingPlace, innerIndex) => (
-                          <>
-                            <li key={`${unloadingPlace.address}-${innerIndex}`}>
+                          <React.Fragment
+                            key={`${date}-${index}-${innerIndex}`}
+                          >
+                            <li
+                              key={`${date}-${unloadingPlace.address}-${innerIndex}`}
+                            >
                               {`Receiver: ${unloadingPlace.address}, ${unloadingPlace.postCode}`}
                             </li>
                             <li>{`Cargo: ${unloadingPlace.cargoDetails}`}</li>
-                          </>
+                          </React.Fragment>
                         )
                       )}
                       <li>{`Reference: ${place.comments}`}</li>
