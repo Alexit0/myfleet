@@ -62,4 +62,8 @@ nav {
 .submit {
   height: 22px;
   margin: auto 10px 10px 10px;
-  --knopf-justify-content: center;}
+  --knopf-justify-content: center;
+}
+
+
+@import '~leaflet/dist/leaflet.css';

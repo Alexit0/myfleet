@@ -1,0 +1,17 @@
+.truck-label {
+    position: absolute;
+    /* Adjust this value to control the vertical position of the label */
+    top: 7px;
+    background-color: white;
+    /* Adjust padding for spacing around the text */
+    padding: 7px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid;
+    text-align: center;
+    color: black;
+    /* Adjust this value to vertically center the text */
+    line-height: 0.5;
+
+}
