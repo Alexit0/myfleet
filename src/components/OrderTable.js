@@ -7,8 +7,6 @@ import { EditIcon } from "../ui/icons/EditIcon";
 import { DeleteIcon } from "../ui/icons/DeleteIcon";
 import "knopf.css";
 import ExpandedComponent from "./singleComponents/ExpandedComponent";
-import { PiTruckFill } from "react-icons/pi";
-
 
 function OrderTable() {
   const ordersData = useRouteLoaderData("orders");
@@ -42,7 +40,7 @@ function OrderTable() {
       });
 
       try {
-        const response = await deletePromise;
+        await deletePromise;
       } catch (error) {
         console.error("Delete Error:", error);
       } finally {

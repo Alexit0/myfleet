@@ -1,7 +1,7 @@
 import React from "react";
 import LoadingPlaceBlock from "./LoadingPlaceBlock";
 import classes from "./OrderForm.module.css";
-import { json, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { resetForm } from "../store/orderSlice";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";

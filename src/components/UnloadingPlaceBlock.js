@@ -10,7 +10,7 @@ import {
 
 import classes from "./OrderForm.module.css";
 
-const UnloadingPlaceBlock = ({ value, index, parentIndex }) => {
+const UnloadingPlaceBlock = ({ value, index, parentIndex, onChange }) => {
   const unloadingData = useSelector((state) => state.order);
   const dispatch = useDispatch();
 
@@ -55,6 +55,8 @@ const UnloadingPlaceBlock = ({ value, index, parentIndex }) => {
             value={value}
             dateTitle="Unolading Date"
             addressTitle="unloading address"
+            onChange={onChange}
+
           />
         </div>
       }

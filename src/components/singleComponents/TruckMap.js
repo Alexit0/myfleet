@@ -32,9 +32,7 @@ const TruckMap = ({ data }) => {
           latestOrder.unloadingPlace.length > 0
         ) {
           const latestUnloadingPlace =
-            latestOrder.unloadingPlace[
-              latestOrder.unloadingPlace.length - 1
-            ];
+            latestOrder.unloadingPlace[latestOrder.unloadingPlace.length - 1];
 
           if (latestUnloadingPlace.coordinates) {
             const coordinates = latestUnloadingPlace.coordinates
@@ -55,7 +53,11 @@ const TruckMap = ({ data }) => {
               iconColor = "red"; // Past unloading date
             }
 
-            if (!groupedData[truck.truckNumber] || unloadingDate > new Date(groupedData[truck.truckNumber].unloadingDate)) {
+            if (
+              !groupedData[truck.truckNumber] ||
+              unloadingDate >
+                new Date(groupedData[truck.truckNumber].unloadingDate)
+            ) {
               groupedData[truck.truckNumber] = {
                 coordinates,
                 iconColor,
@@ -67,29 +69,28 @@ const TruckMap = ({ data }) => {
       }
     });
 
-    Object.entries(groupedData).forEach(([truckNumber, { coordinates, iconColor, unloadingDate }]) => {
-      const truckIcon = new L.Icon({
-        iconUrl: `/icons/truck-icon-${iconColor}.svg`,
-        iconSize: [32, 32],
-        iconAnchor: [16, 16],
-      });
-
-      const label = L.divIcon({
-        className: classes["truck-label"],
-        html: `<div style="font-size: 14px; font-weight: bold;">${truckNumber}</div>`,
-      });
-
-      const marker = L.marker(coordinates, { icon: truckIcon })
-        .addTo(mapRef.current)
-        .bindTooltip(truckNumber, {
-          permanent: true,
-          direction: "top",
-          offset: [0, -18],
-          className: classes["truck-label"],
+    Object.entries(groupedData).forEach(
+      ([truckNumber, { coordinates, iconColor, unloadingDate }]) => {
+        const truckIcon = new L.Icon({
+          iconUrl: `/icons/truck-icon-${iconColor}.svg`,
+          iconSize: [32, 32],
+          iconAnchor: [16, 16],
         });
 
-      marker.bindPopup(`Unloading Date: ${unloadingDate.toISOString().split("T")[0]}`);
-    });
+        const marker = L.marker(coordinates, { icon: truckIcon })
+          .addTo(mapRef.current)
+          .bindTooltip(truckNumber, {
+            permanent: true,
+            direction: "top",
+            offset: [0, -18],
+            className: classes["truck-label"],
+          });
+
+        marker.bindPopup(
+          `Unloading Date: ${unloadingDate.toISOString().split("T")[0]}`
+        );
+      }
+    );
 
     return () => {
       if (mapRef.current) {

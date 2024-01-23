@@ -56,6 +56,8 @@ const LoadingPlaceBlock = (props) => {
             key={index}
             index={index}
             value={unloadingPlace}
+            onChange={props.onChange}
+
           />
         ))}
       </div>

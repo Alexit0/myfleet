@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import classes from "./MainNavigation.module.css";
 
@@ -39,7 +39,6 @@ const MainNavigation = () => {
               ORDERS
             </NavLink>
           </li>
-          
         </ul>
       </nav>
     </header>

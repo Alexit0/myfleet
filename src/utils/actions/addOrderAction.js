@@ -1,7 +1,6 @@
 import { json, redirect } from "react-router-dom";
-import { UseSelector } from "react-redux";
 
-export async function addOrderAction({ request, params }) {
+export async function addOrderAction({ request }) {
 
   const data = await request.formData();
   console.log("addOrderAction engaged")

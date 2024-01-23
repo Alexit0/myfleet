@@ -1,62 +1,61 @@
-import React from "react";
+// NewOrderPage.js
+import React, { useEffect } from "react";
 import OrderForm from "../components/OrderForm";
-import { useRouteLoaderData, Link, useBlocker } from "react-router-dom";
+import {
+  useRouteLoaderData,
+  Link,
+  useNavigate,
+  useBlocker,
+} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { resetForm } from "../store/orderSlice";
-
 import { LeavePageModal } from "../ui/icons/Modal";
-
+import { useFormTouched } from "../utils/hooks/useFormTouched";
 export default function NewOrderPage() {
   const data = useSelector((state) => state.order);
   const truckNumber = useRouteLoaderData("truck-details").truckNumber;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { formTouched } = useFormTouched();
 
-  const [formTouched, setFormTouched] = React.useState(false);
+  // Reseting the form on initial render
+  useEffect(() => {
+    dispatch(resetForm());
+  }, [dispatch]);
 
-  const handleFormChange = () => {
-    if (!formTouched) {
-      setFormTouched(true);
-    }
-  };
-
-  // const hasDataEntered = () => {
-  //   return Object.values(data).some((value) => value !== "");
-  // };
-  // console.log("hasDataEntered => ", hasDataEntered());
-  // console.log("data", data)
+  let blocker;
 
   const handleCancel = () => {
     blocker.reset();
   };
+
   const handleConfirm = () => {
-    blocker.proceed();
+    navigate("/trucks");
     dispatch(resetForm());
+    blocker.proceed();
   };
 
-  let blocker = useBlocker(
+  blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
-      currentLocation.pathname !== nextLocation.pathname
+      formTouched && currentLocation.pathname !== nextLocation.pathname
   );
+
+  const isPageBlocked = formTouched && blocker.state === "blocked";
 
   return (
     <div>
       <h3>Truck details:</h3>
       <h1>{truckNumber}</h1>
       <p />
-      {blocker.state === "blocked" && !formTouched ? (
-        <LeavePageModal onCancel={handleCancel} onConfirm={handleConfirm} />
-      ) : null}
-      <OrderForm
-        data={data}
-        truckNumber={truckNumber}
-        method="post"
-        onChange={handleFormChange}
-      />
+      <OrderForm data={data} truckNumber={truckNumber} method="post" />
       <p />
       <Link to="/trucks" className="knopf reversed link">
         Cancel and go back to the list
       </Link>
       <p />
+      {isPageBlocked && (
+        <LeavePageModal onCancel={handleCancel} onConfirm={handleConfirm} />
+      )}
     </div>
   );
 }
