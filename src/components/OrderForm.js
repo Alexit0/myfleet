@@ -6,7 +6,7 @@ import { resetForm } from "../store/orderSlice";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 
-const OrderForm = ({ data, truckNumber, method }) => {
+const OrderForm = ({ data, truckNumber, method, onChange }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
@@ -66,7 +66,12 @@ const OrderForm = ({ data, truckNumber, method }) => {
     <form onSubmit={handleSubmit} method={method}>
       <main>
         {data.map((loadingPlace, index) => (
-          <LoadingPlaceBlock key={index} index={index} value={loadingPlace} />
+          <LoadingPlaceBlock
+            key={index}
+            index={index}
+            value={loadingPlace}
+            onChange={onChange}
+          />
         ))}
 
         <button type="submit" className={classes["submit-button"]}>

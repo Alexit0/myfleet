@@ -3,7 +3,7 @@ import Time from "./singleComponents/Time";
 
 import classes from "./OrderForm.module.css";
 
-const DateTimeBlock = ({ index, value, dateTitle, handleInput }) => {
+const DateTimeBlock = ({ index, value, dateTitle, handleInput, onChange }) => {
   return (
     <div className={classes["date-time-block"]}>
       <Date
@@ -11,6 +11,7 @@ const DateTimeBlock = ({ index, value, dateTitle, handleInput }) => {
         index={index}
         value={value.date}
         handleInput={handleInput}
+        onChange={onChange}
       />
       <Time
         name="timeFrom"
@@ -18,6 +19,7 @@ const DateTimeBlock = ({ index, value, dateTitle, handleInput }) => {
         index={index}
         value={value.timeFrom}
         handleInput={handleInput}
+        onChange={onChange}
       />
       <Time
         name="timeTo"
@@ -25,6 +27,7 @@ const DateTimeBlock = ({ index, value, dateTitle, handleInput }) => {
         index={index}
         value={value.timeTo}
         handleInput={handleInput}
+        onChange={onChange}
       />
     </div>
   );

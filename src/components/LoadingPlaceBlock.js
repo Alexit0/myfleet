@@ -45,6 +45,7 @@ const LoadingPlaceBlock = (props) => {
           value={props.value}
           dateTitle="Loading Date"
           addressTitle="loading address"
+          onChange={props.onChange}
         />
       </div>
 

@@ -13,6 +13,7 @@ const OrderFields = (props) => {
         index={props.index}
         dateTitle={props.dateTitle}
         handleInput={props.handleInput}
+        onChange={props.onChange}
       />
       <div>
         <AddressBlock
@@ -20,6 +21,7 @@ const OrderFields = (props) => {
           index={props.index}
           addressTitle={props.addressTitle}
           handleInput={props.handleInput}
+          onChange={props.onChange}
         />
       </div>
       <div>
@@ -27,11 +29,13 @@ const OrderFields = (props) => {
           value={props.value.cargoDetails}
           index={props.index}
           handleInput={props.handleInput}
+          onChange={props.onChange}
         />
         <Comments
           value={props.value.comments}
           index={props.index}
           handleInput={props.handleInput}
+          onChange={props.onChange}
         />
       </div>
     </div>
