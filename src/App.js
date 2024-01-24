@@ -27,6 +27,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage />, loader: ordersLoader },
+      { path: "success", element: <HomePage />, loader: ordersLoader }, // Route for "/success on adding the order"
 
       {
         path: "trucks",
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
           { path: "new", element: <NewTruck />, action: addTruckAction },
         ],
       },
-      {path: 'success', element: <SuccessPage/>},
+      // {path: 'success', element: <SuccessPage/>},
 
       {
         id: "orders",

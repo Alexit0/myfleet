@@ -35,9 +35,10 @@ export default function EditOrderPage() {
 
   blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
-      formTouched && currentLocation.pathname !== nextLocation.pathname
+      formTouched &&
+      currentLocation.pathname !== nextLocation.pathname &&
+      nextLocation.pathname !== "/success"
   );
-
   const isPageBlocked = formTouched && blocker.state === "blocked";
 
   return (

@@ -43,7 +43,7 @@ export default function NewOrderPage() {
     ({ currentLocation, nextLocation }) =>
       formTouched &&
       currentLocation.pathname !== nextLocation.pathname &&
-      nextLocation.pathname !== "/"
+      nextLocation.pathname !== "/success"
   );
   const isPageBlocked =
     !isSubmitting && formTouched && blocker.state === "blocked";
