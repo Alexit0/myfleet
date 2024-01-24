@@ -5,7 +5,7 @@ import classes from "./Modal.module.css";
 export const LeavePageModal = ({ onCancel, onConfirm }) => {
   return (
     <div className={classes.modal}>
-      <div className={classes.modalContent}>
+      <div className={classes['modal-content']}>
         <p>
           Are you sure you want to leave? Your unsaved changes will be lost.
         </p>
