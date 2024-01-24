@@ -5,6 +5,7 @@ import {
   useRouteLoaderData,
   Link,
   useNavigate,
+  useNavigation,
   useBlocker,
 } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,6 +18,9 @@ export default function NewOrderPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { formTouched } = useFormTouched();
+  const navigaion = useNavigation();
+  const isSubmitting =
+    navigaion.state === "submitting" || navigaion.state === "loading";
 
   // Reseting the form on initial render
   useEffect(() => {
@@ -30,17 +34,19 @@ export default function NewOrderPage() {
   };
 
   const handleConfirm = () => {
-    navigate("/trucks");
     dispatch(resetForm());
     blocker.proceed();
+    navigate("/trucks");
   };
 
   blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
-      formTouched && currentLocation.pathname !== nextLocation.pathname
+      formTouched &&
+      currentLocation.pathname !== nextLocation.pathname &&
+      nextLocation.pathname !== "/"
   );
-
-  const isPageBlocked = formTouched && blocker.state === "blocked";
+  const isPageBlocked =
+    !isSubmitting && formTouched && blocker.state === "blocked";
 
   return (
     <div>

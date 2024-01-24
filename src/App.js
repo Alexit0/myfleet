@@ -8,6 +8,7 @@ import TrucksPage from "./pages/Trucks";
 import TruckDetailsPage from "./pages/TruckDetails";
 import NewTruck from "./pages/NewTruck.js";
 import EditOrderPage from "./pages/EditOrder.js";
+import SuccessPage from "./pages/SuccessPage.js";
 
 import { trucksLoader } from "./utils/loaders/trucksLoader.js";
 import { truckDetailsLoader } from "./utils/loaders/truckDetailsLoader.js";
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage />, loader: ordersLoader },
+
       {
         path: "trucks",
         id: "trucks",
@@ -51,6 +53,7 @@ const router = createBrowserRouter([
           { path: "new", element: <NewTruck />, action: addTruckAction },
         ],
       },
+      {path: 'success', element: <SuccessPage/>},
 
       {
         id: "orders",

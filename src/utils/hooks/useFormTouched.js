@@ -1,18 +1,17 @@
-// useFormTouched.js
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export function useFormTouched() {
   const [formTouched, setFormTouched] = useState(false);
 
-  useEffect(() => {
-    const handleFormChange = () => {
-      if (!formTouched) {
-        setFormTouched(true);
-      }
-    };
+  const handleFormChange = useCallback(() => {
+    if (!formTouched) {
+      setFormTouched(true);
+    }
+  }, [formTouched]);
 
+  useEffect(() => {
     const formElements = document.querySelectorAll(
-      "form input, form textarea, form select"
+      "form input:not([type=button]), form textarea, form select"
     );
 
     const handleInput = () => {
@@ -28,7 +27,7 @@ export function useFormTouched() {
         element.removeEventListener("input", handleInput);
       });
     };
-  }, [formTouched]);
+  }, [handleFormChange]);
 
   return { formTouched, setFormTouched };
 }

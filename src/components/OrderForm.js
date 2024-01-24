@@ -49,8 +49,8 @@ const OrderForm = ({ data, truckNumber, method, onChange }) => {
       }
 
       // Navigate and reset form on successful save
-      navigate("/trucks");
       dispatch(resetForm());
+      navigate("/success");
     } catch (error) {
       // Log the error to the console
       console.error(error);
