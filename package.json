@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@reduxjs/toolkit": "^1.9.7",
+    "framer-motion": "^11.0.3",
     "knopf.css": "^1.1.2",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
