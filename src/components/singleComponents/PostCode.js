@@ -17,6 +17,7 @@ const PostCode = ({ index, value, handleInput }) => {
         placeholder="Post code"
         onChange={(event) => handlePostCode(event)}
         value={value}
+        required
       ></input>
     </span>
   );

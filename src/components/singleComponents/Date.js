@@ -18,6 +18,7 @@ const Date = ({ index, value, dateTitle, handleInput }) => {
         type="date"
         onChange={(event) => handleDateInput(event)}
         value={value}
+        required
       ></input>
     </span>
   );

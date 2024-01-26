@@ -10,7 +10,7 @@ html {
 
 body {
   margin: 0;
-  background-color: #161e2d;
+  background-color: #2d3c58;
   color: #e9e9d3;
 }
 
@@ -60,7 +60,7 @@ nav {
 }
 
 .submit {
-  height: 22px;
+  height: 82px;
   margin: auto 10px 10px 10px;
   --knopf-justify-content: center;
 }

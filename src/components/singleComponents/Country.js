@@ -16,8 +16,9 @@ const Country = ({ index, value, handleInput }) => {
         name="country"
         onChange={(event) => handleCountry(event)}
         value={value}
+        required
       >
-        <option value="none" hidden>
+        <option value="" disabled defaultValue>
           Select Country
         </option>
         <option>Germany</option>

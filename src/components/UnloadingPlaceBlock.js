@@ -31,7 +31,7 @@ const UnloadingPlaceBlock = ({ value, index, parentIndex, onChange }) => {
       {
         <div key={index} className={classes["unloading-fields"]}>
           <div className={classes["label-bar"]}>
-            <label>Unloading place {index + 1}</label>
+            <label>Unloading place {index !== 0 && index + 1}</label>
             <div>
               {unloadingData[parentIndex].unloadingPlace.length > 1 && (
                 <button

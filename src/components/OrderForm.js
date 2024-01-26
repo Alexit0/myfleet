@@ -74,7 +74,7 @@ const OrderForm = ({ data, truckNumber, method, onChange }) => {
           />
         ))}
 
-        <button type="submit" className={classes["submit-button"]}>
+        <button type="submit" className='knopf traced'>
           Submit
         </button>
       </main>
