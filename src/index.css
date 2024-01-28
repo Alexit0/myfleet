@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
+:root {
+  --primary-color: #2d3c58;
+  --secondary-color: #F1F1E6;
+  --accent-color: hsl(211, 95%, 59%);
+  --custom-color: hsl(223, 58%, 83%);
+  --knopf-hue: 164;
+  --knopf-saturation: 88%;
+  --knopf-luminosity: 28%;
+
+}
+
 * {
   box-sizing: border-box;
 }
@@ -10,8 +21,8 @@ html {
 
 body {
   margin: 0;
-  background-color: #2d3c58;
-  color: #e9e9d3;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 nav {
@@ -19,13 +30,10 @@ nav {
 
 }
 
-/* Knopf buttons */
-:root {
-  --knopf-hue: 164;
-  --knopf-saturation: 88%;
-  --knopf-luminosity: 28%;
 
-}
+
+/* Knopf buttons */
+
 
 .negative {
   --knopf-hue: 356;
@@ -37,9 +45,10 @@ nav {
   --knopf-hue: 218;
   --knopf-saturation: 35%;
   --knopf-luminosity: 22%;
+  
 }
 
-.reversed {
+.inverted {
   --knopf-hue: 60;
   --knopf-saturation: 33%;
   --knopf-luminosity: 87%;
@@ -48,22 +57,38 @@ nav {
 
 .buttons {
   text-align: center;
+  color: var(--accent-color);
+  margin: 0 5px; /* Add margin to create space between buttons */
+
 }
 
 .add {
 
   --knopf-icon-size-base: 1.125rem;
+  --knopf-hue: 43;
+  --knopf-saturation: 79%;
+  --knopf-luminosity: 47%;
 }
+
+.add2 {
+  --knopf-icon-size-base: 1.125rem;
+  --knopf-hue: 211;
+  --knopf-saturation: 95%;
+  --knopf-luminosity: 59%;
+}
+
 
 .delete {
   justify-content: left;
 }
 
 .submit {
-  height: 82px;
-  margin: auto 10px 10px 10px;
-  --knopf-justify-content: center;
+  --knopf-hue: 43;
+  --knopf-saturation: 79%;
+  --knopf-luminosity: 47%;
+
 }
+
 
 
 @import '~leaflet/dist/leaflet.css';

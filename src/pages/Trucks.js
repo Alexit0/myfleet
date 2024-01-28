@@ -10,7 +10,7 @@ export default function TrucksPage() {
   const truckData = useLoaderData();
   return (
     <React.Fragment>
-      <Link to="new" className="knopf reversed outlined flat end">
+      <Link to="new" className="knopf pale large m-8 standard">
         <svg className="icon large">
           <IoMdAddCircleOutline className={iClasses.add} />
         </svg>

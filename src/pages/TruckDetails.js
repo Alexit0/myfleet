@@ -23,20 +23,20 @@ export default function TruckDetailsPage() {
       <h3>Truck details:</h3>
       <h1>{truckData.truckNumber}</h1>
       <p />
-      <Link to="neworder" className="knopf reversed flat">
+      <Link to="neworder" className="knopf pale large m-8 standard">
         <TiDocumentAdd className="icon large" />
         Add new order
       </Link>
       <p />
 
-      <button type="submit" onClick={handleDelete} className="knopf standard">
-        <svg className="icon large">
+      <button type="submit" onClick={handleDelete} className="knopf pale medium standard">
+        <svg className="icon">
           <DeleteIcon />
         </svg>
         Delete truck
       </button>
       <p />
-      <Link to="/trucks" className="knopf reversed link">
+      <Link to="/trucks" className="knopf standard link">
         back to the list
       </Link>
     </div>

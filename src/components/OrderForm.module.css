@@ -17,16 +17,16 @@ textarea:focus {
 
 }
 
-button {
+/* button {
     margin: 5px 1px;
     width: 75px;
     background-color: default;
-}
+} */
 
-.submit-button {
+/* .submit-button {
     height: 22px;
     margin: auto 10px 10px 10px;
-}
+} */
 
 
 label {
@@ -42,7 +42,8 @@ main {
     display: inline-block;
     border-radius: 4px;
     margin: 10px auto;
-    background-color: rgb(99, 99, 99);
+    background-color: var(--primary-color);
+    padding: 5px 5px 11px 5px;
 }
 
 .loading-fields {
@@ -50,9 +51,9 @@ main {
     min-width: 340px;
     display: inline;
     margin: 7px;
-    background-color: rgb(55, 56, 56);
+    background-color: var(--secondary-color);
     border-radius: 8px;
-    box-shadow: 4px 4px 10px rgb(53, 52, 52);
+    /* box-shadow: 4px 4px 10px rgb(53, 52, 52); */
     padding: 6px;
 
 }
@@ -71,10 +72,10 @@ main {
     min-width: 340px;
     display: block;
     margin: 0px 7px;
-    background-color: rgb(55, 56, 56);
+    background-color: var(--secondary-color);
     border-radius: 8px;
     padding: 6px;
-    box-shadow: 4px 4px 10px rgb(53, 52, 52);
+    /* box-shadow: 4px 4px 10px rgb(53, 52, 52); */
 
 }
 
@@ -82,10 +83,9 @@ main {
     display: flex;
     justify-content: space-between;
     border-radius: 4px;
-    background-color: rgba(100, 119, 155, 0.658);
+    /* background-color: var(--primary-color); */
     padding: 4px;
-    font-size: large;
-
+    font-size:x-large;
 }
 
 .date-time-block {
@@ -126,4 +126,8 @@ main {
 
 .datetime {
     margin: 0px 3px 0px 0px;
+}
+
+.button {
+    margin: 10px;
 }

@@ -46,7 +46,7 @@ export default function EditOrderPage() {
       <h1>Edit order</h1>
       <OrderForm data={data} truckNumber={orderData.truckNumber} method="put" />
       <p />
-      <Link to="/orders" className="knopf reversed link">
+      <Link to="/orders" className="knopf standard link">
         Cancel
       </Link>
       <p />

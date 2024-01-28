@@ -22,12 +22,18 @@ export default function NewTruck() {
             )}
           </ul>
         )}
-        <input name="truckNumber"></input>
+        <input
+          name="truckNumber"
+          className={classes.input}
+          type="text"
+          maxLength="10"
+          required
+        ></input>
         <p />
-        <button className="knopf reversed flat outlined">Save</button>
+        <button className="knopf pale large standard">Save</button>
       </div>
       <br />
-      <Link to="/trucks" className="knopf link reversed">
+      <Link to="/trucks" className="knopf link standard">
         Back
       </Link>
     </Form>

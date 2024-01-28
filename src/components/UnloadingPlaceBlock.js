@@ -37,12 +37,13 @@ const UnloadingPlaceBlock = ({ value, index, parentIndex, onChange }) => {
                 <button
                   onClick={() => {
                     handleRemoveUnloading();
-                  }}
+                  }} className="knopf small standard pill"
                 >
+                  
                   Remove
                 </button>
               )}
-              <button onClick={(event) => handleAddUnloading(event)}>
+              <button onClick={(event) => handleAddUnloading(event)} className="knopf small standard pill">
                 Add
               </button>
             </div>

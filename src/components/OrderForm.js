@@ -1,6 +1,6 @@
 import React from "react";
 import LoadingPlaceBlock from "./LoadingPlaceBlock";
-import classes from "./OrderForm.module.css";
+// import classes from "./OrderForm.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { resetForm } from "../store/orderSlice";
 import { useDispatch } from "react-redux";
@@ -74,9 +74,7 @@ const OrderForm = ({ data, truckNumber, method, onChange }) => {
           />
         ))}
 
-        <button type="submit" className='knopf traced'>
-          Submit
-        </button>
+        <button type="submit" className="knopf submit">Submit</button>
       </main>
     </form>
   );

@@ -33,9 +33,19 @@ const LoadingPlaceBlock = (props) => {
           <label>Loading Place</label>
           <div className={classes.buttons}>
             {orderData.length > 1 && (
-              <button onClick={() => handleRemoveLoading()}>Remove</button>
+              <button
+                onClick={() => handleRemoveLoading()}
+                className="knopf small pill standard"
+              >
+                Remove
+              </button>
             )}
-            <button onClick={(event) => handleAddLoading(event)}>Add</button>
+            <button
+              onClick={(event) => handleAddLoading(event)}
+              className="knopf small pill standard"
+            >
+              Add
+            </button>
           </div>
         </div>
 
@@ -57,7 +67,6 @@ const LoadingPlaceBlock = (props) => {
             index={index}
             value={unloadingPlace}
             onChange={props.onChange}
-
           />
         ))}
       </div>
