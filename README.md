@@ -11,7 +11,6 @@ more functionality is coming soon.
 
 [![React][React.js]][React-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 Using: 
  node v18.15.0,
@@ -32,6 +31,8 @@ $ npm install
 ```
 $ npm start
 ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
