@@ -1,7 +1,6 @@
 ## Description
 
 <h1>Fleet Desktop Application (FrontEnd)</h1>
-<h3> (Built with React) </h3>
 
 
 Application allowing to enter orders to the database and see the history of the orders.
@@ -30,11 +29,15 @@ $ npm start
 
 ### Built With
 
-* [![React][React.js]][React-url]
-* [![Next][Next.js]][Next-url]
+[![React][React.js]][React-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
 
 
