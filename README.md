@@ -7,6 +7,12 @@ Application allowing to enter orders to the database and see the history of the 
 
 more functionality is coming soon.
 
+### Built With
+
+[![React][React.js]][React-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 Using: 
  node v18.15.0,
  react v18.2.0, 
@@ -27,11 +33,7 @@ $ npm install
 $ npm start
 ```
 
-### Built With
 
-[![React][React.js]][React-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
