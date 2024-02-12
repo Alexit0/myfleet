@@ -2,6 +2,8 @@ import React from "react";
 import TruckMap from "../components/singleComponents/TruckMap";
 import { useLoaderData } from "react-router-dom";
 
+import classes from './Home.module.css'
+
 const HomePage = () => {
   const data = useLoaderData();
 
@@ -11,7 +13,7 @@ const HomePage = () => {
   }
 
   return (
-    <div id="mapid" style={{margin: '0px 1%'}}>
+    <div id="mapid" className={classes.map}>
       <TruckMap data={data} />
     </div>
   );
