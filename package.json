@@ -4,9 +4,15 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
+    "address-rfc2822": "^2.1.0",
+    "addressit": "^1.8.2",
+    "compromise": "^14.11.2",
     "knopf.css": "^1.1.2",
     "leaflet": "^1.9.4",
+    "parse-address": "^1.1.2",
+    "parserjs": "^0.2.0",
     "react": "^18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-data-table-component": "^7.5.4",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
@@ -17,7 +23,8 @@
     "react-router-prompt": "^0.6.1",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
-    "styled-components": "^6.1.6"
+    "styled-components": "^6.1.6",
+    "tesseract.js": "^5.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
