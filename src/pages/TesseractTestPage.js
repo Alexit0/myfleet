@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import Tesseract from "tesseract.js";
 
 const TesseractTestPage = () => {
@@ -50,17 +50,17 @@ const TesseractTestPage = () => {
     reader.readAsDataURL(file);
   };
 
-  const updateTextareaHeight = () => {
+  const updateTextareaHeight = useCallback(() => {
     if (textareaRef.current) {
       const numberOfLines = extractedText.split("\n").length;
       const newHeight = numberOfLines * 1.9 + "em"; // Adjust the multiplier as needed
       textareaRef.current.style.height = newHeight;
     }
-  };
+  }, [extractedText]);
 
   useEffect(() => {
     updateTextareaHeight();
-  }, [extractedText]);
+  }, [extractedText, updateTextareaHeight]);
 
   const handleCopyClick = () => {
     // Copy the content of the textarea to the clipboard
@@ -93,6 +93,7 @@ const TesseractTestPage = () => {
         placeholder="Paste from Clipboard"
         onPaste={handlePaste}
         value={extractedText}
+        spellCheck={false} // Disable spell check
       />
 
       {extractedText && (
