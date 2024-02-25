@@ -13,7 +13,7 @@ const Coordinates = ({ index, value, handleInput }) => {
       <input
         name="coordinates"
         placeholder="Enter GPS coordinates"
-        onChange={(event) => handleCoordinates(event)}
+        // onChange={(event) => handleCoordinates(event)}
         value={value}
       ></input>
     </span>
