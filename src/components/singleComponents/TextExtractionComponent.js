@@ -75,8 +75,8 @@ const TextExtractionComponent = (props) => {
 
   return (
     <div>
-        <h2>{props.title}</h2>
-      {pastedImage && (
+        <label>{props.title}</label>
+      {/* {pastedImage && (
         <div>
           <img
             src={pastedImage}
@@ -89,11 +89,11 @@ const TextExtractionComponent = (props) => {
             }}
           />
         </div>
-      )}
+      )} */}
 
       <textarea
         ref={textareaRef}
-        style={{ width: "200px", padding: "5px", resize: "none" }}
+        style={{ width: "170px", padding: "5px", resize: "none" }}
         placeholder="Paste from Clipboard"
         onPaste={handlePaste}
         value={extractedText}
@@ -102,11 +102,11 @@ const TextExtractionComponent = (props) => {
         readOnly={false} // Make textarea editable
       />
 
-      {extractedText && (
+      {/* {extractedText && (
         <div>
           <button onClick={handleCopyClick}>Copy</button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

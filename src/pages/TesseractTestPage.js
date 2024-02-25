@@ -6,19 +6,25 @@ import Coordinates from "../components/singleComponents/Coordinates";
 
 const YourPage = () => {
   return (
-    <React.Fragment>
-      <div style={{ width: "400px" }}>
+    <div style={{padding: '10px'}}>
+      <div
+        style={{
+          width: "380px",
+          border: "solid",
+          borderRadius: "8px",
+          padding: "10px",
+        }}
+      >
         <TypeSelect />
         <DateAndTimeNew />
-      
 
-      <div style={{ display: "flex", gap: "10px" }}>
-        <TextExtractionComponent title="Address" />
-        <TextExtractionComponent title="Comments" />
+        <div style={{ display: "flex", gap: "13px" }}>
+          <TextExtractionComponent title="Address" />
+          <TextExtractionComponent title="Comments" />
+        </div>
+        <Coordinates />
       </div>
-      <Coordinates />
-</div>
-    </React.Fragment>
+    </div>
   );
 };
 
