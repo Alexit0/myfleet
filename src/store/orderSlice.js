@@ -14,6 +14,20 @@ const generalState = {
   comments: "",
 };
 
+const UniversalForm = {
+  type: "",
+  dateTime: "",
+  address: "",
+  comments: "",
+  coordinates: "",
+};
+
+const UniversalFormState = [
+  {
+    ...UniversalForm,
+  },
+];
+
 const initialState = [
   {
     ...generalState,
@@ -35,6 +49,7 @@ export const orderSlice = createSlice({
     addLoading: (state, action) => {
       state.splice(+action.payload + 1, 0, ...initialState);
     },
+
     removeLoading: (state, action) => {
       state.splice(action.payload, 1);
     },
@@ -84,6 +99,8 @@ export const {
   removeUnloading,
   resetForm,
   editOrderDetails,
+  addUniversalForm,
+  removeUniversalForm,
 } = orderSlice.actions;
 
 export default orderSlice;

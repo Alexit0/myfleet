@@ -1,28 +1,42 @@
 import React from "react";
-import TextExtractionComponent from "../components/singleComponents/TextExtractionComponent";
-import TypeSelect from "../components/singleComponents/TypeSelect";
-import DateAndTimeNew from "../components/singleComponents/DateAndTimeNew";
-import Coordinates from "../components/singleComponents/Coordinates";
+import UniversalForm from "../components/UniversalForm";
+import { addForm, removeForm } from "../store/newOrderSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const YourPage = () => {
-  return (
-    <div style={{padding: '10px'}}>
-      <div
-        style={{
-          width: "380px",
-          border: "solid",
-          borderRadius: "8px",
-          padding: "10px",
-        }}
-      >
-        <TypeSelect />
-        <DateAndTimeNew />
+  const dispatch = useDispatch();
+  const orderData = useSelector((state) => state.newOrder);
 
-        <div style={{ display: "flex", gap: "13px" }}>
-          <TextExtractionComponent title="Address" />
-          <TextExtractionComponent title="Comments" />
-        </div>
-        <Coordinates />
+  const handleAddForm = (index) => {
+    dispatch(addForm({ index }));
+  };
+
+  const handleRemoveForm = (index) => {
+    dispatch(removeForm({ index }));
+  };
+
+  return (
+    <div>
+      <div style={{ display: "flex" }}>
+        {orderData.map((form, index) => (
+          <div key={index}>
+            <UniversalForm />
+            <button
+              onClick={handleAddForm}
+              className="knopf small pill standard"
+            >
+              Add
+            </button>
+            {orderData.length > 1 && (
+              <button
+                onClick={() => handleRemoveForm(index)}
+                className="knopf small pill standard"
+              >
+                Remove
+              </button>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
