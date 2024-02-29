@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Tesseract from "tesseract.js";
 
-const TextExtractionComponent = (props, { index, handleInput, name }) => {
+const TextExtractionComponent = ({ index, handleInput, name, title }) => {
   const [extractedText, setExtractedText] = useState("");
   const [pastedImage, setPastedImage] = useState(null);
   const textareaRef = useRef(null);
@@ -62,11 +62,6 @@ const TextExtractionComponent = (props, { index, handleInput, name }) => {
     updateTextareaHeight();
   }, [extractedText, updateTextareaHeight]);
 
-  const handleCopyClick = () => {
-    // Copy the content of the textarea to the clipboard
-    navigator.clipboard.writeText(extractedText);
-  };
-
   const handleTextareaChange = (event) => {
     // Update the extractedText state when the user edits the textarea
     setExtractedText(event.target.value);
@@ -80,21 +75,21 @@ const TextExtractionComponent = (props, { index, handleInput, name }) => {
 
   return (
     <div>
-      <label>{props.title}</label>
-      {/* {pastedImage && (
+      <label>{title}</label>
+      {pastedImage && (
         <div>
           <img
             src={pastedImage}
             alt="Pasted"
             style={{
-              maxWidth: "300px",
+              maxWidth: "170px",
               maxHeight: "200px",
               border: "solid 1px",
               borderRadius: "8px",
             }}
           />
         </div>
-      )} */}
+      )}
 
       <textarea
         name={name}
@@ -107,12 +102,6 @@ const TextExtractionComponent = (props, { index, handleInput, name }) => {
         onChange={handleTextareaChange} // Handle textarea changes
         readOnly={false} // Make textarea editable
       />
-
-      {/* {extractedText && (
-        <div>
-          <button onClick={handleCopyClick}>Copy</button>
-        </div>
-      )} */}
     </div>
   );
 };

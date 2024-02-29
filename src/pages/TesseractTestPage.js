@@ -43,6 +43,7 @@ const YourPage = () => {
                 Remove
               </button>
             )}
+            <p>Loading info</p>
           </div>
         ))}
       </div>
