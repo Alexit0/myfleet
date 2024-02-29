@@ -13,8 +13,8 @@ const TypeSelect = ({ index, value, handleInput }) => {
   return (
     <span className={classes.country}>
       <select
-        name="datetime"
-        // onChange={(event) => handleType(event)}
+        name="type"
+        onChange={(event) => handleType(event)}
         value={value}
         required
       >

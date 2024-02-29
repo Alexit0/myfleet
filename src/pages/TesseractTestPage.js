@@ -1,11 +1,15 @@
 import React from "react";
 import UniversalForm from "../components/UniversalForm";
-import { addForm, removeForm } from "../store/newOrderSlice";
+import { addForm, removeForm, loadingInput } from "../store/newOrderSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const YourPage = () => {
   const dispatch = useDispatch();
   const orderData = useSelector((state) => state.newOrder);
+
+  const loadingInputHandle = ({ name, value, index }) => {
+    dispatch(loadingInput({ name, value, index }));
+  };
 
   const handleAddForm = (index) => {
     dispatch(addForm({ index }));
@@ -18,9 +22,13 @@ const YourPage = () => {
   return (
     <div>
       <div style={{ display: "flex" }}>
-        {orderData.map((form, index) => (
+        {orderData.map((singleForm, index) => (
           <div key={index}>
-            <UniversalForm />
+            <UniversalForm
+              index={index}
+              handleInput={loadingInputHandle}
+              value={singleForm}
+            />
             <button
               onClick={handleAddForm}
               className="knopf small pill standard"

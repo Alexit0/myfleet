@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Tesseract from "tesseract.js";
 
-const TextExtractionComponent = (props) => {
+const TextExtractionComponent = (props, { index, handleInput, name }) => {
   const [extractedText, setExtractedText] = useState("");
   const [pastedImage, setPastedImage] = useState(null);
   const textareaRef = useRef(null);
@@ -67,15 +67,20 @@ const TextExtractionComponent = (props) => {
     navigator.clipboard.writeText(extractedText);
   };
 
-  const handleTextareaChange = (e) => {
+  const handleTextareaChange = (event) => {
     // Update the extractedText state when the user edits the textarea
-    setExtractedText(e.target.value);
+    setExtractedText(event.target.value);
     updateTextareaHeight();
+    handleInput({
+      name: event.target.name,
+      value: event.target.value,
+      index,
+    });
   };
 
   return (
     <div>
-        <label>{props.title}</label>
+      <label>{props.title}</label>
       {/* {pastedImage && (
         <div>
           <img
@@ -92,6 +97,7 @@ const TextExtractionComponent = (props) => {
       )} */}
 
       <textarea
+        name={name}
         ref={textareaRef}
         style={{ width: "170px", padding: "5px", resize: "none" }}
         placeholder="Paste from Clipboard"

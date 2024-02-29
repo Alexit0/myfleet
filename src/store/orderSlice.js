@@ -19,7 +19,7 @@ const UniversalForm = {
   dateTime: "",
   address: "",
   comments: "",
-  coordinates: "",
+  coordinates: "0",
 };
 
 const UniversalFormState = [

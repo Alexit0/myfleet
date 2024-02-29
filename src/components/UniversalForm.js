@@ -4,9 +4,9 @@ import TypeSelect from "../components/singleComponents/TypeSelect";
 import DateAndTimeNew from "../components/singleComponents/DateAndTimeNew";
 import Coordinates from "../components/singleComponents/Coordinates";
 
-const UniversalForm = () => {
+const UniversalForm = ({ index, value, handleInput }) => {
   return (
-    <div style={{padding: '10px'}}>
+    <div style={{ padding: "10px" }}>
       <div
         style={{
           width: "380px",
@@ -15,14 +15,38 @@ const UniversalForm = () => {
           padding: "10px",
         }}
       >
-        <TypeSelect />
-        <DateAndTimeNew />
+        <TypeSelect
+          index={index}
+          value={value.type}
+          handleInput={handleInput}
+        />
+        <DateAndTimeNew
+          index={index}
+          value={value.dateTime}
+          handleInput={handleInput}
+        />
 
         <div style={{ display: "flex", gap: "13px" }}>
-          <TextExtractionComponent title="Address" />
-          <TextExtractionComponent title="Comments" />
+          <TextExtractionComponent
+            title="Address"
+            name="address"
+            index={index}
+            value={value.address}
+            handleInput={handleInput}
+          />
+          <TextExtractionComponent
+            title="Comments"
+            name="comments"
+            index={index}
+            value={value.comments}
+            handleInput={handleInput}
+          />
         </div>
-        <Coordinates />
+        <Coordinates
+          index={index}
+          value={value.coordinates}
+          handleInput={handleInput}
+        />
       </div>
     </div>
   );

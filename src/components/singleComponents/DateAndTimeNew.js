@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 
-const DateAndTimeNew = () => {
+const DateAndTimeNew = ({ index, value, handleInput }) => {
   const [dateTime, setDateTime] = useState("");
   const [formattedDateTime, setFormattedDateTime] = useState(null);
 
   const maxInputLength = 20; // Adjust the maximum length as needed
 
-  const handleInputChange = (e) => {
-    let inputValue = e.target.value;
+  const handleInputChange = (event) => {
+    let inputValue = event.target.value;
 
     // Ensure the input length doesn't exceed the maximum length
     if (inputValue.length > maxInputLength) {
       inputValue = inputValue.slice(0, maxInputLength);
     }
+
+    handleInput({
+      name: event.target.name,
+      value: event.target.value,
+      index,
+    });
 
     // Restrict input to valid characters (numbers, "/", " ", ":", and "-")
     const sanitizedValue = inputValue.replace(/[^0-9/: -]/g, "");
@@ -63,6 +69,7 @@ const DateAndTimeNew = () => {
     <div>
       <label>Date and Time:</label>
       <input
+        name="dateTime"
         type="text"
         value={dateTime}
         onChange={handleInputChange}
