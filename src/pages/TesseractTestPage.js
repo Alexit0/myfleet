@@ -2,10 +2,13 @@ import React from "react";
 import UniversalForm from "../components/UniversalForm";
 import { addForm, removeForm, loadingInput } from "../store/newOrderSlice";
 import { useDispatch, useSelector } from "react-redux";
+import DisplayConvertedDateTime from "../components/singleComponents/DisplayConvertedDateTime";
+import parseDateTimeString from "../utils/parseDateTimeString";
 
 const YourPage = () => {
   const dispatch = useDispatch();
   const orderData = useSelector((state) => state.newOrder);
+  console.log(orderData);
 
   const loadingInputHandle = ({ name, value, index }) => {
     dispatch(loadingInput({ name, value, index }));
@@ -30,7 +33,7 @@ const YourPage = () => {
               value={singleForm}
             />
             <button
-              onClick={handleAddForm}
+              onClick={() => handleAddForm(index)}
               className="knopf small pill standard"
             >
               Add
@@ -43,10 +46,20 @@ const YourPage = () => {
                 Remove
               </button>
             )}
-            <p>Loading info</p>
           </div>
         ))}
       </div>
+      <p>Order info:</p>
+      {/* Render DisplayConvertedDateTime for each orderData entry */}
+      {orderData.map((singleForm, index) => (
+        <div key={index}>
+          {/* Pass 'type' to DisplayConvertedDateTime */}
+          <DisplayConvertedDateTime
+            formattedDateTime={parseDateTimeString(singleForm.dateTime)}
+            type={singleForm.type}
+          />
+        </div>
+      ))}
     </div>
   );
 };

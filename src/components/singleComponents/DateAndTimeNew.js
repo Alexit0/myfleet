@@ -1,12 +1,32 @@
 import React, { useState } from "react";
+import parseDateTimeString from "../../utils/parseDateTimeString";
+import DisplayConvertedDateTime from "./DisplayConvertedDateTime";
+
+/**
+ * DateAndTimeNew Component
+ *
+ * This component manages date and time input, sanitizes and validates the input,
+ * and displays the formatted date and time using the `DisplayConvertedDateTime` component.
+ */
 
 const DateAndTimeNew = ({ index, value, handleInput }) => {
+  // State for managing input value
   const [dateTime, setDateTime] = useState("");
+  // State for storing the formatted date and time
   const [formattedDateTime, setFormattedDateTime] = useState(null);
 
-  const maxInputLength = 20; // Adjust the maximum length as needed
+  // Maximum length for input
+  const maxInputLength = 20;
+
+  /**
+   * Event handler for input changes
+   *
+   * Handles input changes, sanitizes and validates the input,
+   * and updates the state accordingly.
+   */
 
   const handleInputChange = (event) => {
+    // Get the input value
     let inputValue = event.target.value;
 
     // Ensure the input length doesn't exceed the maximum length
@@ -14,60 +34,42 @@ const DateAndTimeNew = ({ index, value, handleInput }) => {
       inputValue = inputValue.slice(0, maxInputLength);
     }
 
-    handleInput({
-      name: event.target.name,
-      value: event.target.value,
-      index,
-    });
-
-    // Restrict input to valid characters (numbers, "/", " ", ":", and "-")
+    // Sanitize input to allow only valid characters
     const sanitizedValue = inputValue.replace(/[^0-9/: -]/g, "");
+    console.log("sanitizedValue =>", sanitizedValue);
 
-    // Use a regular expression to check if the input matches the expected format
+    // Regular expression to check if the input matches the expected format
     const dateRegex = /^(\d{4}\/\d{2}\/\d{2} \d{4}(-\d{4})?)$/;
 
     if (dateRegex.test(sanitizedValue)) {
+      // Update state with the sanitized input value
       setDateTime(sanitizedValue);
+      console.log("dateTime =>", sanitizedValue);
 
-      // Parse the input string to a Date object
-      const [datePart, timePart] = sanitizedValue.split(" ");
-      const [year, month, day] = datePart.split("/");
-      const [startHour, startMinute, endHour, endMinute] = timePart
-        .replace("-", " ")
-        .match(/\d{2}/g);
 
-      const formattedStartDate = new Date(
-        parseInt(year, 10),
-        parseInt(month, 10) - 1, // months are 0-indexed in JavaScript
-        parseInt(day, 10),
-        parseInt(startHour, 10),
-        parseInt(startMinute, 10)
-      );
-
-      const formattedEndDate =
-        endHour &&
-        endMinute &&
-        new Date(
-          parseInt(year, 10),
-          parseInt(month, 10) - 1,
-          parseInt(day, 10),
-          parseInt(endHour, 10),
-          parseInt(endMinute, 10)
-        );
-
-      setFormattedDateTime({
-        start: formattedStartDate,
-        end: formattedEndDate,
+      // Trigger the handleInput function to update the Redux state
+      handleInput({
+        name: event.target.name,
+        value: event.target.value,
+        index,
       });
+
+      // Parse the sanitized input string to a Date object and update state
+      const parsedDateTime = parseDateTimeString(sanitizedValue);
+      setFormattedDateTime(parsedDateTime);
     } else {
+      // If the input doesn't match the expected format, update state accordingly
       setDateTime(sanitizedValue);
       setFormattedDateTime(null);
     }
   };
 
+  // JSX rendering
   return (
     <div>
+      {/* Label for the input */}
       <label>Date and Time:</label>
+      {/* Input field for date and time */}
       <input
         name="dateTime"
         type="text"
@@ -77,24 +79,8 @@ const DateAndTimeNew = ({ index, value, handleInput }) => {
         maxLength={maxInputLength}
       />
 
-      {formattedDateTime && (
-        <div>
-          <p>
-            Date:{" "}
-            {`${formattedDateTime.start.toLocaleString("en-US", {
-              hour12: false,
-            })}${
-              formattedDateTime.end
-                ? ` - ${formattedDateTime.end
-                    .toLocaleString("en-US", {
-                      hour12: false,
-                    })
-                    .substr(11)}`
-                : ""
-            }`}
-          </p>
-        </div>
-      )}
+      {/* Display the formatted date and time using DisplayConvertedDateTime component */}
+      <DisplayConvertedDateTime formattedDateTime={formattedDateTime} />
     </div>
   );
 };
