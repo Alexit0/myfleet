@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useCallback, useState } from "react";
 import Tesseract from "tesseract.js";
 
 const TextExtractionComponent = ({
@@ -9,9 +9,6 @@ const TextExtractionComponent = ({
   value, // prop for the current value
   onChange, // prop for the change event
 }) => {
-  // State to store the extracted text from the image
-  const [extractedText, setExtractedText] = useState(value || ""); // Initialize with the provided value
-
   // State to store the pasted image file
   const [pastedImage, setPastedImage] = useState(null);
 
@@ -60,12 +57,9 @@ const TextExtractionComponent = ({
   const processImage = (file) => {
     // Use Tesseract to recognize text from the image
     Tesseract.recognize(file, "eng").then(({ data: { text } }) => {
-      // Set the extractedText state with the recognized text
-      setExtractedText(text);
-
       // Dispatch loadingInput action immediately after extracting text
       handleInput({
-        name: name, 
+        name: name,
         value: text,
         index,
       });
@@ -88,15 +82,12 @@ const TextExtractionComponent = ({
     }
   }, []);
 
-  // Effect hook to update textarea height when extractedText changes
+  // Effect hook to update textarea height when value changes
   useEffect(() => {
     updateTextareaHeight();
-  }, [extractedText, updateTextareaHeight]);
+  }, [value, updateTextareaHeight]);
 
   const handleTextareaChange = (event) => {
-    // Update the extractedText state and textarea height
-    setExtractedText(event.target.value);
-
     // Call the provided onChange prop with updated textarea value
     onChange && onChange(event.target.value);
 
@@ -139,7 +130,7 @@ const TextExtractionComponent = ({
         style={{ width: "170px", padding: "5px", resize: "none" }}
         placeholder="Paste from Clipboard"
         onPaste={handlePaste}
-        value={extractedText}
+        value={value}
         spellCheck={false} // Disable spell check
         onChange={handleTextareaChange} // Handle textarea changes
         readOnly={false} // Make textarea editable

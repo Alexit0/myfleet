@@ -8,7 +8,7 @@ import parseDateTimeString from "../utils/parseDateTimeString";
 const YourPage = () => {
   const dispatch = useDispatch();
   const orderData = useSelector((state) => state.newOrder);
-  console.log("orderData => ", orderData);
+  console.log("orderData =>", orderData);
 
   const loadingInputHandle = ({ name, value, index }) => {
     dispatch(loadingInput({ name, value, index }));

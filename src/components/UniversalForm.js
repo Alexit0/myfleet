@@ -4,7 +4,7 @@ import TypeSelect from "../components/singleComponents/TypeSelect";
 import DateAndTimeNew from "../components/singleComponents/DateAndTimeNew";
 import Coordinates from "../components/singleComponents/Coordinates";
 
-const UniversalForm = ({ index, value, handleInput, handleInputChange }) => {
+const UniversalForm = ({ index, value, handleInput }) => {
   return (
     <div style={{ padding: "10px" }}>
       <div
@@ -33,9 +33,6 @@ const UniversalForm = ({ index, value, handleInput, handleInputChange }) => {
             index={index}
             value={value.address}
             handleInput={handleInput}
-            onChange={(newValue) =>
-              handleInputChange({ name: "address", value: newValue, index })
-            }
           />
           <TextExtractionComponent
             title="Comments"
@@ -43,9 +40,6 @@ const UniversalForm = ({ index, value, handleInput, handleInputChange }) => {
             index={index}
             value={value.comments}
             handleInput={handleInput}
-            onChange={(newValue) =>
-              handleInputChange({ name: "comments", value: newValue, index })
-            }
           />
         </div>
         <Coordinates

@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const orderForm = {
   type: "",
   dateTime: "",
@@ -20,20 +19,18 @@ const newOrderSlice = createSlice({
   initialState,
   reducers: {
     loadingInput: (state, action) => {
-      const { name, value, index } = action.payload;
-      state[index] = {
-        ...state[index],
-        [name]: value,
+      const loadingData = { [action.payload.name]: action.payload.value };
+      state[action.payload.index] = {
+        ...state[action.payload.index],
+        ...loadingData,
       };
     },
     addForm: (state, action) => {
-      state.splice(+action.payload.index + 1, 0, ...initialState);
+      state.splice(+action.payload.index + 1, 0, { ...orderForm });
     },
-
     removeForm: (state, action) => {
       state.splice(action.payload.index, 1);
     },
-
     resetForm: () => {
       return initialState;
     },
