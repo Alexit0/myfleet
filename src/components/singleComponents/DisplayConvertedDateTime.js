@@ -1,7 +1,13 @@
 import React from "react";
 
-const DisplayConvertedDateTime = ({ formattedDateTime, type }) => {
-  const formatTime = (date) => {
+const DisplayConvertedDateTime = ({
+  formattedDateTime,
+  type,
+  coordinates,
+  address,
+  comments,
+}) => {
+  const formatTime = (date, includeDate = true) => {
     const options = {
       year: "numeric",
       month: "2-digit",
@@ -11,9 +17,16 @@ const DisplayConvertedDateTime = ({ formattedDateTime, type }) => {
       hour12: false,
     };
 
-    return new Intl.DateTimeFormat("en-US", options)
-      .format(date)
-      .replace(",", "");
+    const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
+      date
+    );
+
+    if (!includeDate) {
+      // Return only the time part if includeDate is false
+      return formattedDate.substr(formattedDate.indexOf(" ") + 1);
+    }
+
+    return formattedDate.replace(",", "");
   };
 
   return (
@@ -24,11 +37,18 @@ const DisplayConvertedDateTime = ({ formattedDateTime, type }) => {
             Date:{" "}
             {`${formatTime(formattedDateTime.start)}${
               formattedDateTime.end
-                ? ` - ${formatTime(formattedDateTime.end)}`
+                ? ` - ${formatTime(
+                    formattedDateTime.end,
+                    formattedDateTime.start.toDateString() !==
+                      formattedDateTime.end.toDateString()
+                  )}`
                 : ""
             }`}
             {type && ` ${type}: `}
+            {address && ` ${address} `}
+            {coordinates && ` GPS: ${coordinates}`}
           </p>
+          <p> {comments && ` ${comments} `}</p>
         </div>
       )}
     </div>

@@ -33,21 +33,10 @@ const TextExtractionComponent = ({ index, handleInput, name, title }) => {
   };
 
   const processImage = (file) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const image = new Image();
-      image.src = e.target.result;
-
-      Tesseract.recognize(
-        image,
-        "eng" // language code, e.g., 'eng' for English
-      ).then(({ data: { text } }) => {
-        setExtractedText(text);
-        updateTextareaHeight();
-      });
-    };
-
-    reader.readAsDataURL(file);
+    Tesseract.recognize(file, "eng").then(({ data: { text } }) => {
+      setExtractedText(text);
+      updateTextareaHeight();
+    });
   };
 
   const updateTextareaHeight = useCallback(() => {

@@ -57,6 +57,9 @@ const YourPage = () => {
           <DisplayConvertedDateTime
             formattedDateTime={parseDateTimeString(singleForm.dateTime)}
             type={singleForm.type}
+            address={singleForm.address}
+            comments={singleForm.comments}
+            coordinates={singleForm.coordinates}
           />
         </div>
       ))}
