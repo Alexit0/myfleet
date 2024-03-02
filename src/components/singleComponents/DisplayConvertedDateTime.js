@@ -34,7 +34,7 @@ const DisplayConvertedDateTime = ({
       {formattedDateTime && (
         <div>
           <p>
-            Date:{" "}
+            {" "}
             {`${formatTime(formattedDateTime.start)}${
               formattedDateTime.end
                 ? ` - ${formatTime(

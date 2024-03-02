@@ -20,10 +20,10 @@ const newOrderSlice = createSlice({
   initialState,
   reducers: {
     loadingInput: (state, action) => {
-      const loadingData = { [action.payload.name]: action.payload.value };
-      state[action.payload.index] = {
-        ...state[action.payload.index],
-        ...loadingData,
+      const { name, value, index } = action.payload;
+      state[index] = {
+        ...state[index],
+        [name]: value,
       };
     },
     addForm: (state, action) => {

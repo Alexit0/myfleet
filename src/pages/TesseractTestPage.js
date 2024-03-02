@@ -8,7 +8,7 @@ import parseDateTimeString from "../utils/parseDateTimeString";
 const YourPage = () => {
   const dispatch = useDispatch();
   const orderData = useSelector((state) => state.newOrder);
-  console.log(orderData);
+  console.log("orderData => ", orderData);
 
   const loadingInputHandle = ({ name, value, index }) => {
     dispatch(loadingInput({ name, value, index }));
@@ -22,6 +22,11 @@ const YourPage = () => {
     dispatch(removeForm({ index }));
   };
 
+  // New function to handle input changes from UniversalForm
+  const handleInputChange = ({ name, value, index }) => {
+    dispatch(loadingInput({ name, value, index }));
+  };
+
   return (
     <div>
       <div style={{ display: "flex" }}>
@@ -30,6 +35,7 @@ const YourPage = () => {
             <UniversalForm
               index={index}
               handleInput={loadingInputHandle}
+              handleInputChange={handleInputChange} // Pass down the new handler
               value={singleForm}
             />
             <button
@@ -50,10 +56,8 @@ const YourPage = () => {
         ))}
       </div>
       <p>Order info:</p>
-      {/* Render DisplayConvertedDateTime for each orderData entry */}
       {orderData.map((singleForm, index) => (
         <div key={index}>
-          {/* Pass 'type' to DisplayConvertedDateTime */}
           <DisplayConvertedDateTime
             formattedDateTime={parseDateTimeString(singleForm.dateTime)}
             type={singleForm.type}
