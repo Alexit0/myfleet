@@ -3,8 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const orderForm = {
   type: "",
   dateTime: "",
-  address: "",
-  comments: "",
+  address: {
+    value: "",
+    image: null,
+  },
+  comments: {
+    value: "",
+    image: null,
+  },
   coordinates: "",
 };
 
@@ -19,11 +25,22 @@ const newOrderSlice = createSlice({
   initialState,
   reducers: {
     loadingInput: (state, action) => {
-      const loadingData = { [action.payload.name]: action.payload.value };
-      state[action.payload.index] = {
-        ...state[action.payload.index],
-        ...loadingData,
-      };
+      const { name, value, index } = action.payload;
+    
+      // If the name is 'address' or 'comments', update the nested object
+      if (name === 'address' || name === 'comments') {
+        state[index][name] = {
+          ...state[index][name],
+          value: value,
+        };
+      } else {
+        // Otherwise, update the top-level field
+        state[index][name] = value;
+      }
+    },
+    loadingImage: (state, action) => {
+      const { index, name, image } = action.payload;
+      state[index][name].image = image;
     },
     addForm: (state, action) => {
       state.splice(+action.payload.index + 1, 0, { ...orderForm });
@@ -36,8 +53,7 @@ const newOrderSlice = createSlice({
     },
   },
 });
-
-export const { addForm, removeForm, loadingInput, resetForm } =
+export const { addForm, removeForm, loadingInput, resetForm, loadingImage } =
   newOrderSlice.actions;
 
 export default newOrderSlice;

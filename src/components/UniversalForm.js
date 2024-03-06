@@ -4,7 +4,7 @@ import TypeSelect from "../components/singleComponents/TypeSelect";
 import DateAndTimeNew from "../components/singleComponents/DateAndTimeNew";
 import Coordinates from "../components/singleComponents/Coordinates";
 
-const UniversalForm = ({ index, value, handleInput }) => {
+const UniversalForm = ({ index, value, handleInput, handleImage }) => {
   return (
     <div style={{ padding: "10px" }}>
       <div
@@ -31,15 +31,19 @@ const UniversalForm = ({ index, value, handleInput }) => {
             title="Address"
             name="address"
             index={index}
-            value={value.address}
+            image={value.address.image}
+            value={value.address.value}
             handleInput={handleInput}
+            handleImage={handleImage}
           />
           <TextExtractionComponent
             title="Comments"
             name="comments"
             index={index}
-            value={value.comments}
+            image={value.comments.image}
+            value={value.comments.value}
             handleInput={handleInput}
+            handleImage={handleImage}
           />
         </div>
         <Coordinates

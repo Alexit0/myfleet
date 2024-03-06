@@ -1,51 +1,44 @@
-import React, { useRef, useEffect, useCallback, useState } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import Tesseract from "tesseract.js";
 
 const TextExtractionComponent = ({
   index,
   handleInput,
+  handleImage,
   name,
   title,
-  value, // prop for the current value
-  onChange, // prop for the change event
+  value,
+  onChange,
+  image, // Image URL received from the Redux store
 }) => {
-  // State to store the pasted image file
-  const [pastedImage, setPastedImage] = useState(null);
-
-  // Reference to the textarea element
   const textareaRef = useRef(null);
 
-  // Function to handle paste events and extract image data
-  const handlePaste = (e) => {
-    // Access clipboard data from the event
+  const handlePaste = async (e) => {
     const clipboardData = e.clipboardData || window.clipboardData;
 
-    // Check if clipboard data is available
     if (clipboardData) {
       const items = clipboardData.items;
 
-      // Check if there are items in the clipboard
       if (items) {
         for (let i = 0; i < items.length; i++) {
           const item = items[i];
 
-          // Check if the item is an image
           if (item.type.indexOf("image") !== -1) {
-            // Create a Blob from the clipboard image data
             const blob = item.getAsFile();
             const file = new File([blob], "pasted-image.png", {
               type: "image/png",
             });
 
-            // Set the pastedImage state with the URL of the Blob
-            setPastedImage(URL.createObjectURL(file));
+            // Update the Redux store with the image URL
+            handleImage({ index, name, image: URL.createObjectURL(file) });
 
             // Process the image using Tesseract
-            processImage(file);
+            const text = await processImage(file);
+
+            // Dispatch loadingInput action with the extracted text
+            handleInput({ name, value: text, index });
 
             e.preventDefault();
-
-            // Exit the loop
             break;
           }
         }
@@ -53,65 +46,39 @@ const TextExtractionComponent = ({
     }
   };
 
-  // Function to process the image using Tesseract
-  const processImage = (file) => {
-    // Use Tesseract to recognize text from the image
-    Tesseract.recognize(file, "eng").then(({ data: { text } }) => {
-      // Dispatch loadingInput action immediately after extracting text
-      handleInput({
-        name: name,
-        value: text,
-        index,
-      });
-
-      // Update the textarea height based on the content
-      updateTextareaHeight();
-    });
+  const processImage = async (file) => {
+    const {
+      data: { text },
+    } = await Tesseract.recognize(file, "eng");
+    return text;
   };
 
-  // Function to update the textarea height based on content
   const updateTextareaHeight = useCallback(() => {
-    // Check if the textareaRef is available
     if (textareaRef.current) {
-      // Reset the textarea height to auto
-      textareaRef.current.style.height = "auto";
-
-      // Set the new height based on the scrollHeight
       const newHeight = textareaRef.current.scrollHeight + "px";
       textareaRef.current.style.height = newHeight;
     }
   }, []);
 
-  // Effect hook to update textarea height when value changes
   useEffect(() => {
     updateTextareaHeight();
   }, [value, updateTextareaHeight]);
 
   const handleTextareaChange = (event) => {
-    // Call the provided onChange prop with updated textarea value
     onChange && onChange(event.target.value);
-
-    // Dispatch loadingInput action immediately after extracting text
-    handleInput({
-      name: event.target.name,
-      value: event.target.value,
-      index,
-    });
-
+    handleInput({ name: event.target.name, value: event.target.value, index });
     updateTextareaHeight();
   };
 
-  // JSX structure for the TextExtractionComponent
   return (
     <div>
-      {/* Label for the textarea */}
       <label>{title}</label>
 
-      {/* Display the pasted image if available */}
-      {pastedImage && (
+      {/* Render the image if available in the Redux store */}
+      {image && (
         <div>
           <img
-            src={pastedImage}
+            src={image}
             alt="Pasted"
             style={{
               maxWidth: "170px",
@@ -123,7 +90,7 @@ const TextExtractionComponent = ({
         </div>
       )}
 
-      {/* Textarea for pasting content from the clipboard */}
+      {/* Textarea for pasting and extracting text */}
       <textarea
         name={name}
         ref={textareaRef}
@@ -131,13 +98,12 @@ const TextExtractionComponent = ({
         placeholder="Paste from Clipboard"
         onPaste={handlePaste}
         value={value}
-        spellCheck={false} // Disable spell check
-        onChange={handleTextareaChange} // Handle textarea changes
-        readOnly={false} // Make textarea editable
+        spellCheck={false}
+        onChange={handleTextareaChange}
+        readOnly={false}
       />
     </div>
   );
 };
 
-// Export the TextExtractionComponent
 export default TextExtractionComponent;
