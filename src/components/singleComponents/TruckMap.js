@@ -69,14 +69,15 @@ const TruckMap = ({ data }) => {
       }
     });
 
-    Object.entries(groupedData).forEach(
-      ([truckNumber, { coordinates, iconColor, unloadingDate }]) => {
+    Object.entries(groupedData).forEach(([truckNumber, { coordinates, iconColor, unloadingDate }]) => {
+      // Add a check for null or undefined coordinates
+      if (coordinates && coordinates.length === 2) {
         const truckIcon = new L.Icon({
           iconUrl: `/icons/truck-icon-${iconColor}.svg`,
           iconSize: [32, 32],
           iconAnchor: [16, 16],
         });
-
+    
         const marker = L.marker(coordinates, { icon: truckIcon })
           .addTo(mapRef.current)
           .bindTooltip(truckNumber, {
@@ -85,12 +86,10 @@ const TruckMap = ({ data }) => {
             offset: [0, -18],
             className: classes["truck-label"],
           });
-
-        marker.bindPopup(
-          `Unloading Date: ${unloadingDate.toISOString().split("T")[0]}`
-        );
+    
+        marker.bindPopup(`Unloading Date: ${unloadingDate.toISOString().split("T")[0]}`);
       }
-    );
+    });
 
     return () => {
       if (mapRef.current) {

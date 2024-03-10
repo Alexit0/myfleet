@@ -1,6 +1,9 @@
 // NewOrderPage.js
 import React, { useEffect } from "react";
+// IMPORT OLD ORDER FORM
 import OrderForm from "../components/OrderForm";
+// IMPORT NEW ORDER FORM
+import OrderFormV2 from "./OrderFormV2";
 import {
   useRouteLoaderData,
   Link,
@@ -12,8 +15,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { resetForm } from "../store/orderSlice";
 import { LeavePageModal } from "../ui/icons/Modal";
 import { useFormTouched } from "../utils/hooks/useFormTouched";
+
 export default function NewOrderPage() {
-  const data = useSelector((state) => state.order);
+  // OLD FORM STATE
+  const oldData = useSelector((state) => state.order);
+  // NEW FORM STATE
+  const data = useSelector((state) => state.newOrder);
+  // console.log("data => ", data)
+  // console.log("oldData => ", oldData)
+
   const truckNumber = useRouteLoaderData("truck-details").truckNumber;
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,7 +63,8 @@ export default function NewOrderPage() {
       <h3>Truck details:</h3>
       <h1>{truckNumber}</h1>
       <p />
-      <OrderForm data={data} truckNumber={truckNumber} method="post" />
+      {/* <OrderForm data={oldData} truckNumber={truckNumber} method="post" /> */}
+      <OrderFormV2 data={data} truckNumber={truckNumber} method="post" />
       <p />
       <Link to="/trucks" className="knopf standard link">
         Cancel and go back to the list

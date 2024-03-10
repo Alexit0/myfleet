@@ -9,7 +9,7 @@ import TruckDetailsPage from "./pages/TruckDetails";
 import NewTruck from "./pages/NewTruck.js";
 import EditOrderPage from "./pages/EditOrder.js";
 import SuccessPage from "./pages/SuccessPage.js";
-import TesseractTestPage from "./pages/TesseractTestPage.js";
+// import TesseractTestPage from "./pages/TesseractTestPage.js";
 import ParseAddressPage from "./pages/ParseAddressPage.js";
 
 import { trucksLoader } from "./utils/loaders/trucksLoader.js";
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage />, loader: ordersLoader },
       { path: "success", element: <HomePage />, loader: ordersLoader }, // Route for "/success on adding the order"
-      { path: 'tesseract', element: <TesseractTestPage/>},
+      // { path: 'tesseract', element: <TesseractTestPage/>},
       { path: 'addressit', element: <ParseAddressPage/>},
 
       {
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
               {
                 path: "neworder",
                 element: <NewOrderPage />,
-                action: addOrderAction,
+                // action: addOrderAction,
               },
             ],
           },
