@@ -26,8 +26,9 @@ const OrderFormV2 = ({ data, truckNumber, method }) => {
   const navigate = useNavigate();
   const params = useParams();
 
-  const censoredState = data.map((order) => ({
+  const censoredState = data.map((order, index) => ({
     ...order,
+    index,
     address: order.address.value,
     comments: order.comments.value,
   }));
