@@ -70,11 +70,7 @@ function OrderTable() {
     },
     {
       name: "Loading place",
-      selector: (row) => row.loadingPlace,
-    },
-    {
-      name: "Unloading place",
-      selector: (row) => row.unloadingPlace,
+      selector: (row) => row.order[0].address,
     },
     {
       name: "Action",
@@ -114,23 +110,15 @@ function OrderTable() {
     },
   ];
 
-  // Invoke groupOrdersByDate function to get the grouped orders
-  const groupedOrders = groupOrdersByDate(ordersData);
-
-  // Sort entries by date in descending order
-  const sortedTables = Object.entries(groupedOrders).sort(([dateA], [dateB]) =>
-    dateB.localeCompare(dateA)
-  );
-
-  const tables = sortedTables.map(([date, orders]) => (
-    <div key={date}>
-      <h2>{date}</h2>
+  const tables = ordersData.map((order) => (
+    <div key={order._id}>
+      <h2>{order.order[0].dateTime}</h2>
       <div
         style={{ borderRadius: "10px" }} // Add inline styling
       >
         <DataTable
           columns={columns}
-          data={orders}
+          data={[order]}
           expandableRows
           expandableRowsComponent={ExpandedComponent}
           progressPending={pending}
