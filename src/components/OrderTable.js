@@ -59,6 +59,16 @@ function OrderTable() {
     setPending(false);
   }, []);
 
+  // Group orders by date
+  const groupedOrders = {};
+  ordersData.forEach((order) => {
+    const date = order.order[0].dateTime.split(" ")[0]; // Extract date part from dateTime
+    if (!groupedOrders[date]) {
+      groupedOrders[date] = [];
+    }
+    groupedOrders[date].push(order);
+  });
+
   const columns = [
     {
       name: "Truck number",
@@ -110,15 +120,14 @@ function OrderTable() {
     },
   ];
 
-  const tables = ordersData.map((order) => (
-    <div key={order._id}>
-      <h2>{order.order[0].dateTime}</h2>
-      <div
-        style={{ borderRadius: "10px" }} // Add inline styling
-      >
+  const tables = Object.entries(groupedOrders).map(([date, orders]) => (
+    <div key={date}>
+      <h2>{date}</h2>
+      <div style={{ borderRadius: "10px" }}>
+        {/* Render column headers outside the loop */}
         <DataTable
           columns={columns}
-          data={[order]}
+          data={orders}
           expandableRows
           expandableRowsComponent={ExpandedComponent}
           progressPending={pending}
@@ -133,33 +142,5 @@ function OrderTable() {
 
   return <React.Fragment>{tables}</React.Fragment>;
 }
-
-function groupOrdersByDate(ordersData) {
-  const groupedOrders = {};
-  ordersData.forEach((element) => {
-    element.order.forEach((order) => {
-      const date = order.dateTime.split(" ")[0]; // Extract date part from dateTime
-      if (!groupedOrders[date]) {
-        groupedOrders[date] = [];
-      }
-      groupedOrders[date].push({
-        ...order,
-        truckNumber: element.truckNumber,
-        created_at: element.created_at,
-        updated_at: element.updated_at,
-      });
-    });
-  });
-
-  // Sort grouped orders by date
-  const sortedGroupedOrders = {};
-  Object.keys(groupedOrders).sort().forEach(date => {
-    sortedGroupedOrders[date] = groupedOrders[date];
-  });
-
-  return sortedGroupedOrders;
-}
-
-
 
 export default OrderTable;
