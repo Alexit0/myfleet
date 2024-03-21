@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useLoaderData, Link, useNavigate, useBlocker } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import OrderForm from "../components/OrderForm";
+import OrderFormV2 from "./OrderFormV2";
 import { editOrderDetails } from "../store/orderSlice";
 import { useFormTouched } from "../utils/hooks/useFormTouched";
 import { resetForm } from "../store/orderSlice";
@@ -17,9 +18,11 @@ export default function EditOrderPage() {
   useEffect(() => {
     // Dispatch the action to edit order details when the component mounts
     dispatch(editOrderDetails(orderData.order));
+    console.log("orderData ==> ", orderData)
+
   }, [dispatch, orderData.order]);
 
-  const data = useSelector((state) => state.order);
+  const data = useSelector((state) => state.newOrder);
 
   let blocker;
 
@@ -44,7 +47,12 @@ export default function EditOrderPage() {
   return (
     <div>
       <h1>Edit order</h1>
-      <OrderForm data={data} truckNumber={orderData.truckNumber} method="put" />
+      <OrderFormV2
+        data={orderData.order}
+        truckNumber={data.truckNumber}
+        method="post"
+      />
+
       <p />
       <Link to="/orders" className="knopf standard link">
         Cancel
