@@ -3,75 +3,38 @@ import classes from "./ExpandedComponent.module.css";
 
 // An expandable component.
 const ExpandedComponent = ({ data }) => {
-  const loadingPlacesArray = data.order.map((order) => ({
-    ...order,
-    isLoadingPlace: true,
-  }));
-
-  const unloadingPlacesArray = data.order.flatMap((order) =>
-    order.unloadingPlace.map((place) => ({ ...place, isLoadingPlace: false }))
-  );
-
-  const allPlacesArray = [...loadingPlacesArray, ...unloadingPlacesArray];
-
-  // Group places by date
-  const groupedPlaces = allPlacesArray.reduce((grouped, place) => {
-    const key = place.date;
-    if (!grouped[key]) {
-      grouped[key] = [];
-    }
-    grouped[key].push(place);
-    return grouped;
-  }, {});
-
   return (
     <div>
       <ul className={classes.ul}>
-        {Object.entries(groupedPlaces).map(([date, places]) => (
-          <li key={date}>
-            <ul className={classes.ul}>
-              {places.map((place, index) => (
-                <li key={`${place.address}-${index}`}>
-                  <strong>{`${place.date} `}</strong>
-                  {place.isLoadingPlace ? (
-                    <strong>Loading: </strong>
-                  ) : (
-                    <strong>Unloading: </strong>
-                  )}
-
-                  {`${place.address}, ${place.postCode} (${place.distance}km) GPS: ${place.coordinates}`}
+        {data.order.map((place, index) => (
+          <li key={`${place.address}-${index}`}>
+            <strong>{`${place.dateTime} `}</strong>
+            <strong>{`${place.type}: `}</strong>
+            <br />
+            {place.address
+              .split(/\n+/)
+              .filter((line) => line.trim() !== "")
+              .map((line, i) => (
+                <React.Fragment key={i}>
+                  {line}
                   <br />
-                  {place.isLoadingPlace && (
-                    <ul className={classes.ul}>
-                      {place.unloadingPlace.map(
-                        (unloadingPlace, innerIndex) => (
-                          <React.Fragment
-                            key={`${date}-${index}-${innerIndex}`}
-                          >
-                            <li
-                              key={`${date}-${unloadingPlace.address}-${innerIndex}`}
-                            >
-                              {`Receiver: ${unloadingPlace.address}, ${unloadingPlace.postCode}`}
-                            </li>
-                            <li>{`Cargo: ${unloadingPlace.cargoDetails}`}</li>
-                          </React.Fragment>
-                        )
-                      )}
-                      <li>{`Reference: ${place.comments}`}</li>
-                    </ul>
-                  )}
-                  {!place.isLoadingPlace && (
-                    <>
-                      <ul className={classes.ul}>
-                        <li>
-                          {place.comments && `Reference: ${place.comments}`}
-                        </li>
-                      </ul>
-                    </>
-                  )}
-                </li>
+                </React.Fragment>
               ))}
-            </ul>
+            {place.distance && `(${place.distance} km)`}
+            {place.coordinates && `GPS: ${place.coordinates}`}
+            <br />
+            <br />
+            {place.comments && (
+              <div>
+                <strong>Comments:</strong>{" "}
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: place.comments.replace(/\n/g, "<br />"),
+                  }}
+                />
+              </div>
+            )}
+            <br />
           </li>
         ))}
       </ul>

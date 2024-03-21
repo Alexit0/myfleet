@@ -69,8 +69,8 @@ function OrderTable() {
       },
     },
     {
-      name: "Loading place",
-      selector: (row) => row.order[0].address,
+      name: "Trip",
+      selector: (row) => row.order.map((item) => item.type).join(" | "),
     },
     {
       name: "Action",
@@ -134,37 +134,32 @@ function OrderTable() {
   return <React.Fragment>{tables}</React.Fragment>;
 }
 
-// Filter out loading post codes
-function outputArray(data) {
-  const array = data.map((element) => element.postCode);
-  return array.join(" + ");
-}
-
-// Filter out unloading city post codes
-function outputArray2(data) {
-  return data
-    .flatMap((element) => element.unloadingPlace.map((e) => e.postCode))
-    .filter((element) => element !== "")
-    .join(" + ");
-}
-
 function groupOrdersByDate(ordersData) {
   const groupedOrders = {};
   ordersData.forEach((element) => {
-    const validOrders = element.order.filter((el) => el);
-    if (validOrders.length !== 0) {
-      const date = validOrders[0].date;
+    element.order.forEach((order) => {
+      const date = order.dateTime.split(" ")[0]; // Extract date part from dateTime
       if (!groupedOrders[date]) {
         groupedOrders[date] = [];
       }
       groupedOrders[date].push({
-        ...element,
-        loadingPlace: outputArray(element.order),
-        unloadingPlace: outputArray2(element.order),
+        ...order,
+        truckNumber: element.truckNumber,
+        created_at: element.created_at,
+        updated_at: element.updated_at,
       });
-    }
+    });
   });
-  return groupedOrders;
+
+  // Sort grouped orders by date
+  const sortedGroupedOrders = {};
+  Object.keys(groupedOrders).sort().forEach(date => {
+    sortedGroupedOrders[date] = groupedOrders[date];
+  });
+
+  return sortedGroupedOrders;
 }
+
+
 
 export default OrderTable;
