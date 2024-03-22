@@ -1,7 +1,7 @@
 import React from "react";
 
 const Coordinates = ({ index, value, handleInput }) => {
-  console.log(value)
+  // console.log(value)
   const handleCoordinates = (event) => {
     handleInput({
       name: event.target.name,

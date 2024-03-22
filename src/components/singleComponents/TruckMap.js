@@ -25,59 +25,51 @@ const TruckMap = ({ data }) => {
 
     data.forEach((truck) => {
       if (truck.order && truck.order.length > 0) {
-        const latestOrder = truck.order[truck.order.length - 1];
+        const latestOrder = truck.order[truck.order.length - 1]; // Get the latest order
 
-        if (
-          latestOrder.unloadingPlace &&
-          latestOrder.unloadingPlace.length > 0
-        ) {
-          const latestUnloadingPlace =
-            latestOrder.unloadingPlace[latestOrder.unloadingPlace.length - 1];
+        if (latestOrder.coordinates) { // Use coordinates from the latest order
+          const coordinates = latestOrder.coordinates
+            .split(",")
+            .map((coord) => parseFloat(coord.trim()));
 
-          if (latestUnloadingPlace.coordinates) {
-            const coordinates = latestUnloadingPlace.coordinates
-              .split(",")
-              .map((coord) => parseFloat(coord.trim()));
+          let iconColor = "black";
 
-            let iconColor = "black";
+          const unloadingDate = new Date(latestOrder.dateTime.split(" ")[0]); // Parse unloading date from dateTime
 
-            const unloadingDate = new Date(latestUnloadingPlace.date);
+          if (unloadingDate > new Date()) {
+            iconColor = "green";
+          } else if (
+            unloadingDate.toISOString().split("T")[0] === todayDate
+          ) {
+            iconColor = "yellow";
+          } else {
+            iconColor = "red";
+          }
 
-            if (unloadingDate > new Date()) {
-              iconColor = "green"; // Future unloading date
-            } else if (
-              unloadingDate.toISOString().split("T")[0] === todayDate
-            ) {
-              iconColor = "yellow"; // Today's unloading date
-            } else {
-              iconColor = "red"; // Past unloading date
-            }
-
-            if (
-              !groupedData[truck.truckNumber] ||
-              unloadingDate >
-                new Date(groupedData[truck.truckNumber].unloadingDate)
-            ) {
-              groupedData[truck.truckNumber] = {
-                coordinates,
-                iconColor,
-                unloadingDate,
-              };
-            }
+          if (
+            !groupedData[truck.truckNumber] ||
+            unloadingDate >
+              new Date(groupedData[truck.truckNumber].unloadingDate)
+          ) {
+            groupedData[truck.truckNumber] = {
+              coordinates,
+              iconColor,
+              unloadingDate,
+              type: latestOrder.type // Include the type of order
+            };
           }
         }
       }
     });
 
-    Object.entries(groupedData).forEach(([truckNumber, { coordinates, iconColor, unloadingDate }]) => {
-      // Add a check for null or undefined coordinates
+    Object.entries(groupedData).forEach(([truckNumber, { coordinates, iconColor, unloadingDate, type }]) => {
       if (coordinates && coordinates.length === 2) {
         const truckIcon = new L.Icon({
           iconUrl: `/icons/truck-icon-${iconColor}.svg`,
           iconSize: [32, 32],
           iconAnchor: [16, 16],
         });
-    
+
         const marker = L.marker(coordinates, { icon: truckIcon })
           .addTo(mapRef.current)
           .bindTooltip(truckNumber, {
@@ -86,8 +78,8 @@ const TruckMap = ({ data }) => {
             offset: [0, -18],
             className: classes["truck-label"],
           });
-    
-        marker.bindPopup(`Unloading Date: ${unloadingDate.toISOString().split("T")[0]}`);
+
+        marker.bindPopup(`${type}: ${unloadingDate.toISOString().split("T")[0]}`);
       }
     });
 

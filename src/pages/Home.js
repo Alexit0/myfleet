@@ -9,7 +9,7 @@ const HomePage = () => {
 
   // Check if data is available before rendering the map
   if (!data) {
-    return <div>Loading...</div>; // You can replace this with a loading indicator or message
+    return <div>Loading...</div>; 
   }
 
   return (

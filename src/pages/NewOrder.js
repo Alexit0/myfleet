@@ -1,8 +1,5 @@
 // NewOrderPage.js
 import React, { useEffect } from "react";
-// IMPORT OLD ORDER FORM
-import OrderForm from "../components/OrderForm";
-// IMPORT NEW ORDER FORM
 import OrderFormV2 from "./OrderFormV2";
 import {
   useRouteLoaderData,
@@ -17,12 +14,8 @@ import { LeavePageModal } from "../ui/icons/Modal";
 import { useFormTouched } from "../utils/hooks/useFormTouched";
 
 export default function NewOrderPage() {
-  // OLD FORM STATE
-  const oldData = useSelector((state) => state.order);
-  // NEW FORM STATE
   const data = useSelector((state) => state.newOrder);
-  // console.log("data => ", data)
-  // console.log("oldData => ", oldData)
+  console.log("NewOrder.data => ", data);
 
   const truckNumber = useRouteLoaderData("truck-details").truckNumber;
   const dispatch = useDispatch();
@@ -63,7 +56,6 @@ export default function NewOrderPage() {
       <h3>Truck details:</h3>
       <h1>{truckNumber}</h1>
       <p />
-      {/* <OrderForm data={oldData} truckNumber={truckNumber} method="post" /> */}
       <OrderFormV2 data={data} truckNumber={truckNumber} method="post" />
       <p />
       <Link to="/trucks" className="knopf standard link">

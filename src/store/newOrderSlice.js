@@ -26,9 +26,9 @@ const newOrderSlice = createSlice({
   reducers: {
     loadingInput: (state, action) => {
       const { name, value, index } = action.payload;
-    
+
       // If the name is 'address' or 'comments', update the nested object
-      if (name === 'address' || name === 'comments') {
+      if (name === "address" || name === "comments") {
         state[index][name] = {
           ...state[index][name],
           value: value,
@@ -51,9 +51,20 @@ const newOrderSlice = createSlice({
     resetForm: () => {
       return initialState;
     },
+
+    editOrderDetails: (state, action) => {
+      console.log("action IN SLICE", action.payload);
+      return [...action.payload];
+    },
   },
 });
-export const { addForm, removeForm, loadingInput, resetForm, loadingImage } =
-  newOrderSlice.actions;
+export const {
+  addForm,
+  removeForm,
+  loadingInput,
+  resetForm,
+  loadingImage,
+  editOrderDetails,
+} = newOrderSlice.actions;
 
 export default newOrderSlice;

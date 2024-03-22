@@ -11,18 +11,11 @@ import { useDispatch } from "react-redux";
 import DisplayConvertedDateTime from "../components/singleComponents/DisplayConvertedDateTime";
 import parseDateTimeString from "../utils/parseDateTimeString";
 
-// NEW FORM IMPORTS
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const OrderFormV2 = ({ data, truckNumber, method }) => {
   const dispatch = useDispatch();
-  // Deprecated
-  // const orderData = useSelector((state) => state.newOrder);
-  // console.log("orderData =>", orderData);
-
-  // NEW FORM SUBMISSION LOGIC
-
   const navigate = useNavigate();
   const params = useParams();
 
@@ -34,12 +27,14 @@ const OrderFormV2 = ({ data, truckNumber, method }) => {
   }));
 
   const orderData = {
-    truckNumber: truckNumber,
+    truckNumber,
     order: [...censoredState],
   };
 
-  console.log("orderData =>", orderData);
-  console.log("data =>", data);
+  console.log("OrderFormV2.orderData =>", orderData);
+  console.log("OrderFOrmV2.data =>", data);
+  console.log("OrderFormV2.truckNumber ==>", truckNumber);
+  console.log("OrderFormV2.censoredState ==>", censoredState);
 
   const handleImageChange = ({ index, name, image }) => {
     dispatch(loadingImage({ index, name, image }));

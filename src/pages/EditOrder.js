@@ -2,9 +2,8 @@
 import React, { useEffect } from "react";
 import { useLoaderData, Link, useNavigate, useBlocker } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import OrderForm from "../components/OrderForm";
 import OrderFormV2 from "./OrderFormV2";
-import { editOrderDetails } from "../store/orderSlice";
+import { editOrderDetails } from "../store/newOrderSlice";
 import { useFormTouched } from "../utils/hooks/useFormTouched";
 import { resetForm } from "../store/orderSlice";
 import { LeavePageModal } from "../ui/icons/Modal";
@@ -17,9 +16,12 @@ export default function EditOrderPage() {
 
   useEffect(() => {
     // Dispatch the action to edit order details when the component mounts
-    dispatch(editOrderDetails(orderData.order));
-    console.log("orderData ==> ", orderData)
-
+    const updatedOrders = orderData.order.map(({ index, ...order }) => ({
+      ...order,
+      address: { value: order.address },
+      comments: { value: order.comments },
+    }));
+    dispatch(editOrderDetails(updatedOrders));
   }, [dispatch, orderData.order]);
 
   const data = useSelector((state) => state.newOrder);
@@ -48,9 +50,9 @@ export default function EditOrderPage() {
     <div>
       <h1>Edit order</h1>
       <OrderFormV2
-        data={orderData.order}
-        truckNumber={data.truckNumber}
-        method="post"
+        data={data}
+        truckNumber={orderData.truckNumber}
+        method="put"
       />
 
       <p />
