@@ -43,7 +43,7 @@ $ npm install
 ```
 
 ## Running the app
-1. Download, install and run the back-end server from [here](https://github.com/Alexit0/fleetBack).
+1. Download, install and run the back-end server from [here](https://github.com/Alexit0/fleetBackEnd).
 2. Run the application:
 ```
 $ npm start
