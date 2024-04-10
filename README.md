@@ -11,7 +11,8 @@
 
 This application is a simple utility allowing to optimise workflow for the transport spedition companies with certain requirements.
 
-Application allowing to enter orders to the database and see the history of the orders.
+Application allowing to enter orders to the database, see the history of the orders and due date and position of the order on the map.
+
 
 
 View the list of existing transport in the system on the TRUCKS page. Add new transport to the system. 
@@ -20,6 +21,8 @@ Add the order to an existing transport. Get to view/edit/delete order at the ORD
 
 
 HOME page contains visualised data of the orders with colors representing if the transport is in need of an order.
+
+UPD: Now possible to add loading address form the picture. Just use a Snipping tool on the address section and then press Ctrl+V in the input field.
 
 
 ### Built With
